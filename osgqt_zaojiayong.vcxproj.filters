@@ -71,6 +71,9 @@
     <ClCompile Include="qtosgview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Photographer_sx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h">
@@ -97,23 +100,23 @@
     <ClInclude Include="structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_osgqt.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Photographer_sx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_test_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    
-    
-    
-    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
-    
-    <ClInclude Include="ui_osgqt.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="osgqt.ui">
@@ -124,5 +127,15 @@
     <QtRcc Include="image.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tool_test_2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Tool_test_2.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>

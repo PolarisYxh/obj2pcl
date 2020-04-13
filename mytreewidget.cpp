@@ -52,7 +52,7 @@
 mytreewidget::mytreewidget(QWidget *parent) : QTreeWidget(parent){
     //tree = new QTreeWidget(this);
     this->setHeaderLabel("3D Model Components List");
-    this->resize(211,831);
+    //this->resize(211,831);
     this->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     this->header()->setStretchLastSection(false);
     this->setSelectionMode(QAbstractItemView::ExtendedSelection);

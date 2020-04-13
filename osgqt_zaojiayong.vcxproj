@@ -104,8 +104,8 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;H:\R2015\extern\include;H:\R2015\extern\include\win64;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build\bin;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\R2015\extern\lib\win64\microsoft;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>H:\osg3.2.1\OpenSceneGraph\include;H:\osg3.2.1\OpenSceneGraph\bin;H:\QT\Tools\mingw530_32\opt\include;H:\R2015\extern\include;H:\R2015\extern\include\win64;$(IncludePath)</IncludePath>
@@ -266,8 +266,8 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;C:\OSGQT\lib;D:\matlab\extern\lib\win64\microsoft;H:\R2015\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;C:\OSGQT\lib;D:\MATLAB\R2017a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -385,17 +385,21 @@
     <ClCompile Include="mytreewidget.cpp" />
     <ClCompile Include="mytreewidget2.cpp" />
     <ClCompile Include="osgqt.cpp" />
+    <ClCompile Include="Photographer_sx.cpp" />
     <ClCompile Include="qtosgview.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="DOFAdder.h" />
     <ClInclude Include="DOFCalculation.h" />
+    <ClInclude Include="Tool_test_2.h" />
     <QtMoc Include="mytreewidget.h">
     </QtMoc>
+    <ClInclude Include="GeneratedFiles\ui_osgqt.h" />
     <ClInclude Include="mytreewidget2.h" />
     <QtMoc Include="osgqt.h">
     </QtMoc>
+    <ClInclude Include="Photographer_sx.h" />
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
   </ItemGroup>
@@ -426,7 +430,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <ClInclude Include="ui_osgqt.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="osgqt.ui">
@@ -435,6 +438,12 @@
   <ItemGroup>
     <QtRcc Include="image.qrc">
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tool_test_2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Tool_test_2.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
