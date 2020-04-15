@@ -74,8 +74,26 @@
     <ClCompile Include="Photographer_sx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="showpcl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qabout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qimageviewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_osgqt.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_showpcl.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="AnimationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,25 +103,16 @@
     <ClInclude Include="DOFCalculation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="mytreewidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClInclude Include="mytreewidget2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="osgqt.h">
+    <ClInclude Include="Photographer_sx.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </ClInclude>
     <ClInclude Include="qtosgview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="structures.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_osgqt.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Photographer_sx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tool_test_2.h">
@@ -122,6 +131,9 @@
     <QtUic Include="osgqt.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="showpcl.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="image.qrc">
@@ -137,5 +149,28 @@
     <Library Include="Tool_test_2.lib">
       <Filter>Resource Files</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="mainwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mytreewidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="osgqt.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="qabout.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="qimageviewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="showpcl.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="showpic.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

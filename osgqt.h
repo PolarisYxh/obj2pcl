@@ -14,12 +14,42 @@
 #include <QMessagebox>
 #include <sstream>
 #include "Photographer_sx.h"
+#include "mainwindow.h"
 #include "Tool_test_2.h"
+#include "showpcl.h"
+#include "showpic.h"
 //#include "engine.h"
 using namespace  std;
 namespace Ui {
 class osgqt;
 }
+
+class modelCallBack : public osg::NodeCallback
+{
+  public:
+	     modelCallBack() :r(0.0),range(0.0){}
+		 modelCallBack(float x1, float x2) :r(x1), range(x2) {}
+	
+		virtual void operator()(osg::Node * node, osg::NodeVisitor * nv)
+		{
+				//osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(node);
+				osg::ComputeBoundsVisitor boundVisitor;
+				osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(node);
+				dofnode->accept(boundVisitor);
+				osg::Vec3 curvec = dofnode->getCurrentHPR();
+				float ani_radians = osg::DegreesToRadians(r);
+				float ani_range = osg::DegreesToRadians(range);
+				float cur_rad = curvec.y();
+				if (cur_rad < ani_range)
+				{
+					curvec.set(0, cur_rad+ani_radians, 0);
+					dofnode->setCurrentHPR(curvec);
+				}
+			    traverse(node, nv);
+		}
+ private:
+    float r,range;
+};
 
 class osgqt : public QWidget
 {
@@ -28,7 +58,7 @@ class osgqt : public QWidget
 public:
     explicit osgqt(QWidget *parent = 0);
     void addmodel(osg::ref_ptr<osg::Node> model);
-	void viewmotion();
+	//void viewmotion();
 	void drawCircle();
     osg::ref_ptr<osg::Vec3Array> getarray(osg::ref_ptr<osg::Node> node,osg::Matrix m);
     ~osgqt();
@@ -53,7 +83,7 @@ private slots:
 	void generateButton_pressed();
 	void motion_play_clicked();
 	void showButton_pressed();
-	void showButton_1_pressed();
+	void showpcl_pressed();
     void on_treeWidget_itemSelectionChanged();
     void on_Reset_clicked();
 	//void camera_height_ok();
@@ -74,6 +104,7 @@ private:
 		int motion_fre;
 	}motiondef;*/
 	void removenode(std::string name);
+	bool motionfunc();
 	//QMap<QString, QVector2D> motion;//保存运动信息
 	QString motionname;
 	float motion[2];
@@ -84,13 +115,18 @@ private:
 	QString savepclpath;
 	QString filepath;
 	Photographer pg;
+	osg::ref_ptr<osg::Node> model;
 	osg::ref_ptr<osg::Group> root= new osg::Group;
 	//表盘的几何节点
 	osg::ref_ptr<osg::Geode> clockGeode = new osg::Geode;
 	//圆圈
 	osg::ref_ptr<osg::Geometry> clockGeometry = new osg::Geometry;
 	osg::ref_ptr<osg::Node> kinect;
-	
+	osg::ref_ptr<osg::Node> viewport;
+	//motion
+	std::vector<osg::Group*> dofnodes;
+	int dof_ID;
+	modelCallBack * cb;
 };
 
 #endif // OSG QT_H

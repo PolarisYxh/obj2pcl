@@ -204,7 +204,7 @@ int Photographer::Tool_test_1(std::string ive_path, std::string save_path, std::
 	float ani_radians = osg::DegreesToRadians(ani_angle);
 	for (i = 0; i < ani_count + 1; i++)
 	{
-		curvec.set(0, i * ani_radians, 0);  //待验证
+		curvec.set(0, i * ani_radians, 0);
 		dofnode->setCurrentHPR(curvec);
 
 		//开始布置每个相机

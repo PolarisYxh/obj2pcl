@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_osgqt_t {
     QByteArrayData data[28];
-    char stringdata0[533];
+    char stringdata0[528];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -54,11 +54,11 @@ QT_MOC_LITERAL(19, 336, 19), // "startButton_pressed"
 QT_MOC_LITERAL(20, 356, 22), // "generateButton_pressed"
 QT_MOC_LITERAL(21, 379, 19), // "motion_play_clicked"
 QT_MOC_LITERAL(22, 399, 18), // "showButton_pressed"
-QT_MOC_LITERAL(23, 418, 20), // "showButton_1_pressed"
-QT_MOC_LITERAL(24, 439, 34), // "on_treeWidget_itemSelectionCh..."
-QT_MOC_LITERAL(25, 474, 16), // "on_Reset_clicked"
-QT_MOC_LITERAL(26, 491, 19), // "camera_play_clicked"
-QT_MOC_LITERAL(27, 511, 21) // "camera_delete_clicked"
+QT_MOC_LITERAL(23, 418, 15), // "showpcl_pressed"
+QT_MOC_LITERAL(24, 434, 34), // "on_treeWidget_itemSelectionCh..."
+QT_MOC_LITERAL(25, 469, 16), // "on_Reset_clicked"
+QT_MOC_LITERAL(26, 486, 19), // "camera_play_clicked"
+QT_MOC_LITERAL(27, 506, 21) // "camera_delete_clicked"
 
     },
     "osgqt\0treeItemChanged\0\0QTreeWidgetItem*\0"
@@ -72,8 +72,7 @@ QT_MOC_LITERAL(27, 511, 21) // "camera_delete_clicked"
     "motion_delete_clicked\0camera_confirm_clicked\0"
     "startButton_pressed\0generateButton_pressed\0"
     "motion_play_clicked\0showButton_pressed\0"
-    "showButton_1_pressed\0"
-    "on_treeWidget_itemSelectionChanged\0"
+    "showpcl_pressed\0on_treeWidget_itemSelectionChanged\0"
     "on_Reset_clicked\0camera_play_clicked\0"
     "camera_delete_clicked"
 };
@@ -163,7 +162,7 @@ void osgqt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 13: _t->generateButton_pressed(); break;
         case 14: _t->motion_play_clicked(); break;
         case 15: _t->showButton_pressed(); break;
-        case 16: _t->showButton_1_pressed(); break;
+        case 16: _t->showpcl_pressed(); break;
         case 17: _t->on_treeWidget_itemSelectionChanged(); break;
         case 18: _t->on_Reset_clicked(); break;
         case 19: _t->camera_play_clicked(); break;

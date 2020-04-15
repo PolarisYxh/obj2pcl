@@ -104,7 +104,7 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\include;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,13 +155,13 @@
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>_WINDOWS;UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;E:/CVPR19/????/osgqt_zaojiayong;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include/QtOpenGL;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;H:\vs2017\VC\Tools\MSVC\14.16.27023\ATLMFC\include;H:\vs2017\VC\Tools\MSVC\14.16.27023\include;H:\Windows Kits\10\include\10.0.17763.0\ucrt;H:\Windows Kits\10\include\10.0.17763.0\shared;H:\Windows Kits\10\include\10.0.17763.0\um;H:\Windows Kits\10\include\10.0.17763.0\winrt;H:\Windows Kits\10\include\10.0.17763.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>image</InitFuncName>
@@ -222,13 +222,13 @@
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>_WINDOWS;UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;E:/CVPR19/????/osgqt_zaojiayong;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include/QtOpenGL;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;H:\vs2017\VC\Tools\MSVC\14.16.27023\ATLMFC\include;H:\vs2017\VC\Tools\MSVC\14.16.27023\include;H:\Windows Kits\10\include\10.0.17763.0\ucrt;H:\Windows Kits\10\include\10.0.17763.0\shared;H:\Windows Kits\10\include\10.0.17763.0\um;H:\Windows Kits\10\include\10.0.17763.0\winrt;H:\Windows Kits\10\include\10.0.17763.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>image</InitFuncName>
@@ -296,13 +296,13 @@
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>_WINDOWS;UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;E:/CVPR19/????/osgqt_zaojiayong;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include/QtOpenGL;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;H:\vs2017\VC\Tools\MSVC\14.16.27023\ATLMFC\include;H:\vs2017\VC\Tools\MSVC\14.16.27023\include;H:\Windows Kits\10\include\10.0.17763.0\ucrt;H:\Windows Kits\10\include\10.0.17763.0\shared;H:\Windows Kits\10\include\10.0.17763.0\um;H:\Windows Kits\10\include\10.0.17763.0\winrt;H:\Windows Kits\10\include\10.0.17763.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -362,13 +362,13 @@
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>_WINDOWS;UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;E:/CVPR19/????/osgqt_zaojiayong;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include/QtOpenGL;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;H:\vs2017\VC\Tools\MSVC\14.16.27023\ATLMFC\include;H:\vs2017\VC\Tools\MSVC\14.16.27023\include;H:\Windows Kits\10\include\10.0.17763.0\ucrt;H:\Windows Kits\10\include\10.0.17763.0\shared;H:\Windows Kits\10\include\10.0.17763.0\um;H:\Windows Kits\10\include\10.0.17763.0\winrt;H:\Windows Kits\10\include\10.0.17763.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -382,26 +382,34 @@
     <ClCompile Include="DOFAdder.cpp" />
     <ClCompile Include="DOFCalculation.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="mytreewidget.cpp" />
     <ClCompile Include="mytreewidget2.cpp" />
     <ClCompile Include="osgqt.cpp" />
     <ClCompile Include="Photographer_sx.cpp" />
+    <ClCompile Include="qabout.cpp" />
+    <ClCompile Include="qimageviewer.cpp" />
     <ClCompile Include="qtosgview.cpp" />
+    <ClCompile Include="showpcl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="DOFAdder.h" />
     <ClInclude Include="DOFCalculation.h" />
-    <ClInclude Include="Tool_test_2.h" />
-    <QtMoc Include="mytreewidget.h">
-    </QtMoc>
+    <ClInclude Include="GeneratedFiles\ui_showpcl.h" />
     <ClInclude Include="GeneratedFiles\ui_osgqt.h" />
     <ClInclude Include="mytreewidget2.h" />
-    <QtMoc Include="osgqt.h">
-    </QtMoc>
     <ClInclude Include="Photographer_sx.h" />
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
+    <ClInclude Include="Tool_test_2.h" />
+    <QtMoc Include="showpic.h" />
+    <QtMoc Include="showpcl.h" />
+    <QtMoc Include="qimageviewer.h" />
+    <QtMoc Include="qabout.h" />
+    <QtMoc Include="osgqt.h" />
+    <QtMoc Include="mytreewidget.h" />
+    <QtMoc Include="mainwindow.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -434,6 +442,7 @@
   <ItemGroup>
     <QtUic Include="osgqt.ui">
     </QtUic>
+    <QtUic Include="showpcl.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="image.qrc">

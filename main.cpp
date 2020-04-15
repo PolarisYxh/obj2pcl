@@ -31,6 +31,7 @@
 #include <qtextcodec.h>
 #include "Tool_test_2.h"
 #include "Photographer_sx.h"
+#include "showpcl.h"
 using namespace std;
 int main(int argc, char *argv[])
 {
@@ -39,9 +40,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     osgqt w;
     w.setWindowFlags(w.windowFlags() );//&Qt::WindowMaximizeButtonHint添加最大化按钮
-   // w.setFixedHeight(878);
-    //w.setFixedWidth(1385);
+
     w.setWindowTitle(QObject::tr("Shape2PCL Tool"));
     w.show();
+	/*showpcl w;
+	w.show();*/
     return a.exec();
 }

@@ -1417,7 +1417,14 @@ osgqt::osgqt(QWidget *parent) :
 
 	osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
 	kinect = osgDB::readNodeFile("./resource/kinect.obj", a);
-
+	viewport= osgDB::readNodeFile("./resource/viewport1.obj", a);
+	osg::ref_ptr<osg::PolygonMode> polyMode = new osg::PolygonMode(osg::PolygonMode::FRONT_AND_BACK, osg::PolygonMode::LINE);
+	osg::StateSet* ss1 = viewport->getOrCreateStateSet();  
+	osg::LineWidth* line=new osg::LineWidth(2.f); 
+	ss1->setAttribute(polyMode);
+	ss1->setAttribute(line);
+	//ViewerWindow->setSceneData(viewport.get());
+	
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(timerUpdate()));
     connect(treewidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(treeItemChanged(QTreeWidgetItem*,int)));
@@ -1437,7 +1444,7 @@ osgqt::osgqt(QWidget *parent) :
 	connect(ui->startButton, SIGNAL(pressed()), this, SLOT(startButton_pressed()));
 	connect(ui->generateButton, SIGNAL(pressed()), this, SLOT(generateButton_pressed()));
 	connect(ui->showButton, SIGNAL(pressed()), this, SLOT(showButton_pressed()));
-	connect(ui->showButton_1, SIGNAL(pressed()), this, SLOT(showButton_1_pressed()));
+	connect(ui->showButton_1, SIGNAL(clicked()), this, SLOT(showpcl_pressed()));
 
 	//connect(ui->input_camera_height, SIGNAL(editingFinished()), this, SLOT(camera_height_ok()));
 	//connect(ui->input_shooting_radius, SIGNAL(editingFinished()), this, SLOT(shooting_radius_ok()));
@@ -1521,6 +1528,67 @@ void osgqt::viewmotion()
 }*/
 void osgqt::motion_comfirm_clicked() 
 {
+	if(!motionfunc())return;
+	ui->input_motion_name->setDisabled(true);
+	ui->input_motion_amp->setDisabled(true);
+	ui->input_motion_fre->setDisabled(true);
+}
+void osgqt::motion_play_clicked()
+{
+	if (!motionfunc())
+		return;
+	
+	Photographer pg;
+	pg.getAllDOFNodesUnderNode(model, dofnodes);
+	for (int i = 1; i < dofnodes.size(); i++)//0是根节点
+	{
+		std::string node_name = dofnodes[i]->getName();
+		if (dofnodes[i]->getName() == motionname.toStdString())
+		{
+			dof_ID = i;
+			break;
+		}
+	}
+	/*根据后缀名确定运动类型
+	if (node_name.length() >= 1 && (node_name.substr(node_name.length() - 2, 2) == "_r"))
+		motion_type = R;
+	else if (node_name.length() >= 1 && (node_name.substr(node_name.length() - 2, 2) == "_t"))
+		motion_type = T;
+	else if (node_name.length() >= 2 && (node_name.substr(node_name.length() - 3, 3) == "_rt"))
+		motion_type = RT;
+	else
+		motion_type = NONE;
+	osg::Vec3 curvec;
+	switch (motion_type)
+	{
+	case R: {
+
+		curvec = dofnode->getCurrentHPR();
+		curvec = dofnode->getCurrentHPR();
+		curvec.set(curvec.x(), curvec.y() + DEGREE_PER_STEP, curvec.z());
+		dofnode->setCurrentHPR(curvec);
+		break; }
+	case T:
+		curvec = dofnode->getCurrentTranslate();
+		curvec.set(curvec.x() + DISTANCE_PER_STEP, curvec.y(), curvec.z());
+		dofnode->setCurrentTranslate(curvec);
+		break;
+	case RT:
+		curvec = dofnode->getCurrentHPR();
+		curvec.set(curvec.x(), curvec.y() + DEGREE_PER_STEP, curvec.z());
+		dofnode->setCurrentHPR(curvec);
+		curvec = dofnode->getCurrentTranslate();
+		curvec.set(curvec.x() + DISTANCE_PER_STEP, curvec.y(), curvec.z());
+		dofnode->setCurrentTranslate(curvec);
+		break;
+	default:
+		break;
+	}*/
+	cb = new modelCallBack(2.0f, motion[0]);
+	dofnodes[dof_ID]->setUpdateCallback(cb);
+}
+bool osgqt::motionfunc()
+{
 	QString amp = ui->input_motion_amp->text();
 	QString fre = ui->input_motion_fre->text();
 	if (fre == "" || amp == "")
@@ -1529,7 +1597,7 @@ void osgqt::motion_comfirm_clicked()
 		msgBox.setText("Please input motion range or motion frequency!");
 		msgBox.exec();
 		//ui->setting_message->append("please input motion amplitude or motion frequency!");
-		return;
+		return false;
 	}
 	map<string, bool>::iterator it;
 	it = map_to_choose.begin();
@@ -1541,23 +1609,42 @@ void osgqt::motion_comfirm_clicked()
 	if (it == map_to_choose.end())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please add a motion part!");
+		msgBox.setText("Please click the dof in tree widget to add a motion part!");
 		msgBox.exec();
-		return;
+		return false;
+	}
+	else if (!is_dof_node1[it->first])
+	{
+		QMessageBox msgBox;
+		msgBox.setText("The motion part is not a dof part");
+		msgBox.exec();
+		return false;
 	}
 	motionname = QString::fromStdString(it->first);
-	ui->input_motion_name->setText(motionname);
+	//ui->input_motion_name->setText(motionname);
 	motion[0] = amp.toFloat();
 	motion[1] = fre.toFloat();
-	ui->input_motion_name->setDisabled(true);
-	ui->input_motion_amp->setDisabled(true);
-	ui->input_motion_fre->setDisabled(true);
+	return true;
 }
-void osgqt::motion_play_clicked()
+void osgqt::motion_delete_clicked()
 {
-
+	ui->input_motion_amp->setDisabled(false);
+	ui->input_motion_fre->setDisabled(false);
+	ui->input_motion_name->setDisabled(false);
+	ui->input_motion_amp->clear();
+	ui->input_motion_fre->clear();
+	ui->input_motion_name->clear();
+	treewidget->clearSelection();
+	motionname = "";
+	motion[0] = 0;
+	motion[1] = 0;
+	dofnodes[dof_ID]->removeUpdateCallback(cb);
+	osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(dofnodes[dof_ID]);
+	osg::Vec3 reset=osg::Vec3(0, 0, 0);
+	dofnode->setCurrentHPR(reset);
 }
-void osgqt::camera_confirm_clicked() {
+void osgqt::camera_confirm_clicked() 
+{
 	QString h=ui->input_camera_height->text();
 	QString r = ui->input_shooting_radius->text();
 	QString n = ui->input_shooting_times->text();
@@ -1571,16 +1658,15 @@ void osgqt::camera_confirm_clicked() {
 	camera_height = h.toFloat();
 	shooting_radius = r.toFloat();
 	shooting_times = n.toFloat();
-	//ui->setting_message->append(QString("camera\nheight,radius,times;"));
-	//ui->setting_message->append(QString("%1,%2,%3;").arg(camera_height).arg(shooting_radius).arg(shooting_times));
 	ui->input_camera_height->setDisabled(true);
 	ui->input_shooting_radius->setDisabled(true);
 	ui->input_shooting_times->setDisabled(true);
 }
 void osgqt::camera_delete_clicked()
 {
-	//ui->setting_message->clear();
-	//ui->setting_message->append(QString("camera\nheight,radius,times;"));
+	removenode("kinectMT");
+	removenode("viewport");
+	removenode("circle");
 	ui->input_camera_height->clear();
 	ui->input_shooting_radius->clear();
 	ui->input_shooting_times->clear();
@@ -1621,6 +1707,7 @@ void osgqt::camera_play_clicked()
 	float thea = 2 * osg::PI / shooting_times;
 	//MT->removeChild(kinect);
 	removenode("kinectMT");
+	removenode("viewportMT");
 	for (int i = 0; i < shooting_times; i++)
 	{
 		osg::Vec3d eyes = osg::Vec3d(r.toDouble() * cos(i * thea), r.toDouble() * sin(i * thea), h.toDouble());
@@ -1635,15 +1722,21 @@ void osgqt::camera_play_clicked()
 			0, 0, 1, 0,
 			0, 0, 0, 1);
 		osg::Matrix Vf = Vni * Vtrans;
-		osg::Matrix m = osg::Matrix::scale(0.5, 0.5, 0.5) * Vf;
+		osg::Matrix m = osg::Matrix::scale(1, 1, 1) * Vf;
 		//osg::Matrix m = osg::Matrix::rotate(osg::inDegrees(90.0f),0.0f, 1.0f, 0.0f)* osg::Matrix::rotate(osg::inDegrees(-90.0f), 1.0f, 0.0f, 0.0f)
 			//* osg::Matrix::scale(1, 1, 1)
 			//* osg::Matrix::translate(0.5f, 0, 0);
 		osg::MatrixTransform* MT = new osg::MatrixTransform;
+		osg::MatrixTransform* MT1 = new osg::MatrixTransform;
 		MT->setName("kinectMT");
 		MT->setMatrix(m);
 		MT->addChild(kinect);
+		MT1->setName("viewportMT");
+		m = osg::Matrix::scale(0.1, 0.1, 0.1) * m;
+		MT1->setMatrix(m);
+		MT1->addChild(viewport);
 		root->addChild(MT);
+		root->addChild(MT1);
 		ViewerWindow->setSceneData(root.get());
 	}
 	drawCircle();
@@ -1728,10 +1821,10 @@ void osgqt::startButton_pressed() {
 	savepicpath = directory;
 	if (savepicpath == "")
 		return;
-	if (shooting_radius == 0 || shooting_times == 0|| motion.empty())
+	if (ui->input_camera_height->isEnabled()|| ui->input_motion_amp->isEnabled())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please set the camera or animation parameter above!");
+		msgBox.setText("Please confirm the camera or animation parameter above!");
 		msgBox.exec();
 		return;
 	}
@@ -1748,25 +1841,29 @@ void osgqt::startButton_pressed() {
 	int result = messageBox.exec();
 	if (result == QMessageBox::No)
 	{
-		motion.clear();
+		//motion.clear();
+		motionname = "";
+		motion[0] = 0;
+		motion[1] = 0;
 		camera_height = 0;
 		shooting_radius = 0;
 		shooting_times = 0;
 		return;
 	}
 	savepicpath += "/";
-	pg.Tool_test_1(filepath.toStdString(), savepicpath.toStdString(), motion.firstKey().toStdString(), 
-		motion.first().x(), motion.first().y(), camera_height, shooting_radius, shooting_times);
+	pg.Tool_test_1(filepath.toStdString(), savepicpath.toStdString(), motionname.toStdString(), 
+		motion[0], motion[1], camera_height, shooting_radius, shooting_times);
 }
 void osgqt::generateButton_pressed() 
 {
 	QString directory;
-	//QString current_path = QDir::currentPath();
-	if (savepicpath != "")
-		directory = QFileDialog::getExistingDirectory(this, tr("Choose Save Path"), savepicpath);
+	if (savepicpath == "")
+	{
+		directory = QFileDialog::getExistingDirectory(this, tr("Choose rgb and depth directory"), "./");
+		savepicpath = directory;
+	}
 	else if (savepicpath != "")
-		directory = QFileDialog::getExistingDirectory(this, tr("Choose Save Path"), savepclpath);
-	else directory = QFileDialog::getExistingDirectory(this, tr("Choose Save Path"), "./");
+		directory = QFileDialog::getExistingDirectory(this, tr("Choose directory to Save pointcloud data"), savepicpath);
 	savepclpath = directory;
 	if (savepclpath == "")
 		return;
@@ -1777,10 +1874,10 @@ void osgqt::generateButton_pressed()
 		return;
 	}
 	// 为变量分配内存空间，可以查帮助mwArray
-	std::string path= savepclpath.toStdString()+"/";
+	std::string path= savepicpath.toStdString()+"/";
 	const char * str = path.c_str();
 	//const char* str = "D:\\my\\sunxun\\test1";
-	double anitimes = motion.begin()->y();
+	double anitimes = motion[1];
 	double ani_count_plus1 = anitimes + 1;
 	mwArray root_path(str);
 	mwArray ani_count_mat(1, 1, mxDOUBLE_CLASS);// 1，1表示矩阵的大小（所有maltab只有一种变量，就是矩阵，为了和Cpp变量接轨，设置成1*1的矩阵，mxDOUBLE_CLASS表示变量的精度）
@@ -1798,65 +1895,31 @@ void osgqt::generateButton_pressed()
 	//mclTerminateApplication();
 	
 }
-void osgqt::showButton_pressed() {
-
-}
-void osgqt::showButton_1_pressed() {
-
-}
-
-/*void osgqt::camera_height_ok() //在一定高度上画圆
+void osgqt::showButton_pressed() 
 {
-	if (ui->input_camera_height->text() == "")return;
-	drawCircle();
+	/*showpic* picwindow = new showpic(NULL, savepicpath);
+	picwindow->show();*/
+	MainWindow* mainWindow;
+	if(savepicpath=="")
+		mainWindow =new MainWindow(NULL,"D:\\my\\sunxun\\test1",0);
+	else
+		mainWindow = new MainWindow(NULL, savepicpath,0);//flag=0表示显示图片
+	mainWindow->resize(1000,800);
+	mainWindow->setWindowIcon(QIcon("./images/logo.png"));
+	mainWindow->show();
 }
-void osgqt::shooting_radius_ok() 
+void osgqt::showpcl_pressed() 
 {
-	if (ui->input_shooting_radius->text()=="")return;
-	drawCircle();
+	MainWindow* mainWindow;
+	if (savepicpath == "")
+		mainWindow = new MainWindow(NULL, "D:\\my\\sunxun\\test1",1);
+	else
+		mainWindow = new MainWindow(NULL, savepicpath,1);
+	mainWindow->resize(1000, 800);
+	mainWindow->setWindowIcon(QIcon("./images/logo.png"));
+	mainWindow->show();
 }
 
-void osgqt::shooting_times_ok()
-{
-	//if (ui->input_shooting_times->text() == "")return;
-	QString h = ui->input_camera_height->text();
-	QString r = ui->input_shooting_radius->text();
-	QString n = ui->input_shooting_times->text();
-	if (h == "" || r == "" || n == "")
-	{
-		return;
-	}
-	shooting_times = n.toInt();
-
-	float thea = 2 * osg::PI / shooting_times;
-	//MT->removeChild(kinect);
-	removenode("kinectMT");
-	for (int i = 0; i < shooting_times; i++)
-	{
-		osg::Vec3d eyes = osg::Vec3d(r.toDouble() * cos(i * thea), r.toDouble() * sin(i * thea), h.toDouble());
-		osg::Vec3d	center = osg::Vec3d(0.0, 0.0, 0.0);
-		osg::Vec3d up = osg::Vec3d(0.0, 0.0, -1.0);
-		ViewerWindow->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
-		osg::Matrix V = ViewerWindow->getCamera()->getViewMatrix(); // 视图矩阵
-		osg::Matrix Vni = osg::Matrix::inverse(V);
-		osg::Matrix Vtrans = osg::Matrix
-		    (1,0,0,0,
-			0,-1,0,0,
-			0,0,1,0,
-			0,0,0,1);
-		osg::Matrix Vf =Vni*Vtrans;
-		osg::Matrix m = osg::Matrix::scale(0.5, 0.5, 0.5)*Vf;
-		//osg::Matrix m = osg::Matrix::rotate(osg::inDegrees(90.0f),0.0f, 1.0f, 0.0f)* osg::Matrix::rotate(osg::inDegrees(-90.0f), 1.0f, 0.0f, 0.0f)
-			//* osg::Matrix::scale(1, 1, 1)
-			//* osg::Matrix::translate(0.5f, 0, 0);
-		osg::MatrixTransform* MT = new osg::MatrixTransform;
-		MT->setName("kinectMT");
-		MT->setMatrix(m);
-		MT->addChild(kinect);
-		root->addChild(MT);
-		ViewerWindow->setSceneData(root.get());
-	}
-}*/
 
 void osgqt::on_treeWidget_itemChanged_child(QTreeWidgetItem *item, int column)
 {
@@ -2455,8 +2518,8 @@ void osgqt::on_directorycomboBox_currentIndexChanged(int index)
     std::string  path = s.toStdString();
 
     osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
-    osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(path,a);
-
+    model = osgDB::readNodeFile(path,a);
+	model->setName("model");
     //auto aaaa = model->asGroup();
 
     model_state_set = model->getStateSet();
@@ -2508,6 +2571,7 @@ void osgqt::on_treeWidget_itemSelectionChanged()//点击了树形图的文字
             if(QString::compare(selectedItemList.at(i)->text(0),"3D Object")==0)
                 continue;
             map_to_choose[selectedItemList.at(i)->text(0).toStdString()]=true;
+			ui->input_motion_name->setText(selectedItemList.at(i)->text(0));
         }
         tree_widget_is_picked_empyt = true;
     }
