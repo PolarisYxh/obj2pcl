@@ -386,25 +386,19 @@
     <ClCompile Include="mytreewidget.cpp" />
     <ClCompile Include="mytreewidget2.cpp" />
     <ClCompile Include="osgqt.cpp" />
-    <ClCompile Include="Photographer_sx.cpp" />
     <ClCompile Include="qabout.cpp" />
     <ClCompile Include="qimageviewer.cpp" />
     <ClCompile Include="qtosgview.cpp" />
-    <ClCompile Include="showpcl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="DOFAdder.h" />
     <ClInclude Include="DOFCalculation.h" />
-    <ClInclude Include="GeneratedFiles\ui_showpcl.h" />
     <ClInclude Include="GeneratedFiles\ui_osgqt.h" />
     <ClInclude Include="mytreewidget2.h" />
-    <ClInclude Include="Photographer_sx.h" />
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="Tool_test_2.h" />
-    <QtMoc Include="showpic.h" />
-    <QtMoc Include="showpcl.h" />
     <QtMoc Include="qimageviewer.h" />
     <QtMoc Include="qabout.h" />
     <QtMoc Include="osgqt.h" />
@@ -442,7 +436,6 @@
   <ItemGroup>
     <QtUic Include="osgqt.ui">
     </QtUic>
-    <QtUic Include="showpcl.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="image.qrc">

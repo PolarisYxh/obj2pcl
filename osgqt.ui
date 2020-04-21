@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1404</width>
-    <height>890</height>
+    <width>1428</width>
+    <height>911</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -52,8 +52,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1371</width>
-         <height>831</height>
+         <width>1401</width>
+         <height>863</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="totalLayout" stretch="200,800,250">
@@ -129,13 +129,13 @@
             <property name="minimumSize">
              <size>
               <width>260</width>
-              <height>200</height>
+              <height>300</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>280</width>
-              <height>220</height>
+              <height>310</height>
              </size>
             </property>
             <property name="layoutDirection">
@@ -147,16 +147,6 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <widget class="QLineEdit" name="input_motion_fre">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>110</y>
-               <width>101</width>
-               <height>20</height>
-              </rect>
-             </property>
-            </widget>
             <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
@@ -174,8 +164,8 @@
              <property name="geometry">
               <rect>
                <x>30</x>
-               <y>70</y>
-               <width>141</width>
+               <y>50</y>
+               <width>101</width>
                <height>21</height>
               </rect>
              </property>
@@ -187,33 +177,33 @@
              <property name="geometry">
               <rect>
                <x>40</x>
-               <y>180</y>
+               <y>260</y>
                <width>75</width>
                <height>23</height>
               </rect>
              </property>
              <property name="text">
-              <string>confirm</string>
+              <string>add</string>
              </property>
             </widget>
             <widget class="QPushButton" name="motion_delete">
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>180</y>
+               <y>260</y>
                <width>75</width>
                <height>23</height>
               </rect>
              </property>
              <property name="text">
-              <string>cancel</string>
+              <string>delete</string>
              </property>
             </widget>
             <widget class="QPushButton" name="motion_play">
              <property name="geometry">
               <rect>
                <x>90</x>
-               <y>150</y>
+               <y>230</y>
                <width>75</width>
                <height>23</height>
               </rect>
@@ -244,14 +234,53 @@
                <height>20</height>
               </rect>
              </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
             </widget>
-            <widget class="QLineEdit" name="input_motion_amp">
+            <widget class="QLineEdit" name="motion_amp">
              <property name="geometry">
               <rect>
                <x>140</x>
                <y>70</y>
                <width>101</width>
                <height>20</height>
+              </rect>
+             </property>
+             <property name="placeholderText">
+              <string>0</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="input_motion_fre">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>110</y>
+               <width>101</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QTextEdit" name="setting_message">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>140</y>
+               <width>241</width>
+               <height>81</height>
+              </rect>
+             </property>
+             <property name="placeholderText">
+              <string>motion info</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="rangecombo">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>70</y>
+               <width>41</width>
+               <height>22</height>
               </rect>
              </property>
             </widget>
@@ -293,7 +322,7 @@
              <property name="geometry">
               <rect>
                <x>40</x>
-               <y>180</y>
+               <y>170</y>
                <width>75</width>
                <height>23</height>
               </rect>
@@ -315,16 +344,6 @@
               <string>camera height</string>
              </property>
             </widget>
-            <widget class="QLineEdit" name="input_camera_height">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>30</y>
-               <width>101</width>
-               <height>20</height>
-              </rect>
-             </property>
-            </widget>
             <widget class="QLabel" name="label_4">
              <property name="geometry">
               <rect>
@@ -336,16 +355,6 @@
              </property>
              <property name="text">
               <string>shooting radius</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="input_shooting_radius">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>70</y>
-               <width>101</width>
-               <height>20</height>
-              </rect>
              </property>
             </widget>
             <widget class="QLabel" name="label_5">
@@ -375,7 +384,7 @@
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>180</y>
+               <y>170</y>
                <width>75</width>
                <height>23</height>
               </rect>
@@ -388,13 +397,33 @@
              <property name="geometry">
               <rect>
                <x>90</x>
-               <y>150</y>
+               <y>140</y>
                <width>75</width>
                <height>23</height>
               </rect>
              </property>
              <property name="text">
               <string>animate</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="input_shooting_radius">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>70</y>
+               <width>101</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="input_camera_height">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>30</y>
+               <width>101</width>
+               <height>20</height>
+              </rect>
              </property>
             </widget>
            </widget>
@@ -404,20 +433,20 @@
             <property name="minimumSize">
              <size>
               <width>250</width>
-              <height>80</height>
+              <height>120</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>280</width>
-              <height>100</height>
+              <height>120</height>
              </size>
             </property>
             <property name="layoutDirection">
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="title">
-             <string>Open File</string>
+             <string>model</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -425,30 +454,92 @@
             <widget class="QToolButton" name="open">
              <property name="geometry">
               <rect>
-               <x>190</x>
+               <x>40</x>
+               <y>20</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>add</string>
+             </property>
+            </widget>
+            <widget class="QToolButton" name="remove">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>20</y>
+               <width>71</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>remove</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="xcoord">
+             <property name="geometry">
+              <rect>
+               <x>30</x>
                <y>50</y>
                <width>51</width>
                <height>21</height>
               </rect>
              </property>
-             <property name="text">
-              <string>open</string>
+             <property name="placeholderText">
+              <string>x</string>
              </property>
             </widget>
-            <widget class="QComboBox" name="directorycomboBox">
+            <widget class="QLineEdit" name="ycoord">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>20</y>
-               <width>231</width>
-               <height>22</height>
+               <x>100</x>
+               <y>50</y>
+               <width>51</width>
+               <height>21</height>
               </rect>
              </property>
-             <property name="mouseTracking">
-              <bool>false</bool>
+             <property name="placeholderText">
+              <string>y</string>
              </property>
-             <property name="currentText">
-              <string/>
+            </widget>
+            <widget class="QLineEdit" name="zcoord">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>50</y>
+               <width>51</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="placeholderText">
+              <string>z</string>
+             </property>
+            </widget>
+            <widget class="QToolButton" name="modelrotate">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>80</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>rotate</string>
+             </property>
+            </widget>
+            <widget class="QToolButton" name="modeltranslate">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>80</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>translate</string>
              </property>
             </widget>
            </widget>
@@ -458,13 +549,13 @@
             <property name="minimumSize">
              <size>
               <width>250</width>
-              <height>210</height>
+              <height>180</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>280</width>
-              <height>240</height>
+              <height>200</height>
              </size>
             </property>
             <property name="layoutDirection">
@@ -480,7 +571,7 @@
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>50</y>
+               <y>20</y>
                <width>231</width>
                <height>31</height>
               </rect>
@@ -493,7 +584,7 @@
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>92</y>
+               <y>62</y>
                <width>231</width>
                <height>31</height>
               </rect>
@@ -506,7 +597,7 @@
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>130</y>
+               <y>100</y>
                <width>231</width>
                <height>31</height>
               </rect>
@@ -519,7 +610,7 @@
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>170</y>
+               <y>140</y>
                <width>231</width>
                <height>31</height>
               </rect>

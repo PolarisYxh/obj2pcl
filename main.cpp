@@ -30,8 +30,6 @@
 #include <QPushButton>
 #include <qtextcodec.h>
 #include "Tool_test_2.h"
-#include "Photographer_sx.h"
-#include "showpcl.h"
 using namespace std;
 int main(int argc, char *argv[])
 {

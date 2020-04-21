@@ -3,7 +3,7 @@
 #include <QString>
 #include <osg/Node>
 #include <osg/TriangleFunctor>
-#include "Photographer_sx.h"
+//#include "Photographer_sx.h"
 #include <osg/Point>
 namespace Ui {
 	class showpic;

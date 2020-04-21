@@ -5,7 +5,7 @@
 #include <QtWidgets/QMainWindow>
 #include <osg/Node>
 #include <osg/TriangleFunctor>
-#include "Photographer_sx.h"
+//#include "Photographer_sx.h"
 #include "qtosgview.h"
 #include <osg/Point>
 #include <QFileInfo>
