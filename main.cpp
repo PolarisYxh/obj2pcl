@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     osgqt w;
-    w.setWindowFlags(w.windowFlags() );//&Qt::WindowMaximizeButtonHint添加最大化按钮
-
+    w.setWindowFlags(w.windowFlags());//&Qt::WindowMaximizeButtonHint添加最大化按钮
+	w.showMaximized();
     w.setWindowTitle(QObject::tr("Shape2PCL Tool"));
     w.show();
 	/*showpcl w;

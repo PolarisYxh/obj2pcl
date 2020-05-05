@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1428</width>
-    <height>911</height>
+    <width>1449</width>
+    <height>946</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -52,11 +52,11 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1401</width>
-         <height>863</height>
+         <width>1421</width>
+         <height>893</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="totalLayout" stretch="200,800,250">
+       <layout class="QHBoxLayout" name="totalLayout" stretch="200,800,280">
         <property name="spacing">
          <number>3</number>
         </property>
@@ -128,13 +128,13 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>260</width>
+              <width>280</width>
               <height>300</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>280</width>
+              <width>300</width>
               <height>310</height>
              </size>
             </property>
@@ -142,7 +142,7 @@
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="title">
-             <string>Dof Animate setting</string>
+             <string>Dof Animate Setting</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -163,14 +163,14 @@
             <widget class="QLabel" name="label_6">
              <property name="geometry">
               <rect>
-               <x>30</x>
+               <x>20</x>
                <y>50</y>
-               <width>101</width>
+               <width>111</width>
                <height>21</height>
               </rect>
              </property>
              <property name="text">
-              <string>motion range</string>
+              <string>rotation range</string>
              </property>
             </widget>
             <widget class="QPushButton" name="motion_confirm">
@@ -216,20 +216,23 @@
              <property name="geometry">
               <rect>
                <x>30</x>
-               <y>30</y>
+               <y>20</y>
                <width>141</width>
                <height>21</height>
               </rect>
              </property>
              <property name="text">
-              <string>motion name</string>
+              <string>dof name</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="input_motion_name">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>30</y>
+               <y>20</y>
                <width>101</width>
                <height>20</height>
               </rect>
@@ -237,21 +240,30 @@
              <property name="readOnly">
               <bool>true</bool>
              </property>
+             <property name="placeholderText">
+              <string>_r _t _rt</string>
+             </property>
             </widget>
             <widget class="QLineEdit" name="motion_amp">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>70</y>
+               <y>50</y>
                <width>101</width>
                <height>20</height>
               </rect>
              </property>
              <property name="placeholderText">
-              <string>0</string>
+              <string>0-360</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="input_motion_fre">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>140</x>
@@ -259,6 +271,9 @@
                <width>101</width>
                <height>20</height>
               </rect>
+             </property>
+             <property name="placeholderText">
+              <string>&gt;0</string>
              </property>
             </widget>
             <widget class="QTextEdit" name="setting_message">
@@ -274,14 +289,33 @@
               <string>motion info</string>
              </property>
             </widget>
-            <widget class="QComboBox" name="rangecombo">
+            <widget class="QLineEdit" name="motion_amp_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
-               <x>80</x>
-               <y>70</y>
-               <width>41</width>
-               <height>22</height>
+               <x>140</x>
+               <y>80</y>
+               <width>101</width>
+               <height>20</height>
               </rect>
+             </property>
+             <property name="placeholderText">
+              <string>&gt;0</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_7">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>80</y>
+               <width>141</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>translation range</string>
              </property>
             </widget>
            </widget>
@@ -299,13 +333,13 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>260</width>
+              <width>280</width>
               <height>200</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>280</width>
+              <width>300</width>
               <height>220</height>
              </size>
             </property>
@@ -432,13 +466,13 @@
            <widget class="QGroupBox" name="groupBox">
             <property name="minimumSize">
              <size>
-              <width>250</width>
+              <width>280</width>
               <height>120</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>280</width>
+              <width>300</width>
               <height>120</height>
              </size>
             </property>
@@ -446,7 +480,7 @@
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="title">
-             <string>model</string>
+             <string>Model</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -548,13 +582,13 @@
            <widget class="QGroupBox" name="groupBox_5">
             <property name="minimumSize">
              <size>
-              <width>250</width>
+              <width>280</width>
               <height>180</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>280</width>
+              <width>300</width>
               <height>200</height>
              </size>
             </property>
@@ -617,6 +651,45 @@
              </property>
              <property name="text">
               <string>show PointCloud</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton">
+             <property name="geometry">
+              <rect>
+               <x>100</x>
+               <y>170</y>
+               <width>31</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>170</y>
+               <width>31</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>170</y>
+               <width>41</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
              </property>
             </widget>
            </widget>

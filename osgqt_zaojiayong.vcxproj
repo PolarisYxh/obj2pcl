@@ -264,6 +264,7 @@
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib</AdditionalDependencies>

@@ -131,16 +131,13 @@ void MainWindow::showpointcloud()
 	while (!fs.eof())
 	{
 		//从txt读取一行中的坐标和proposal类型
-		double x, y, z, r;
+		double x, y, z, r,g,b;
 		int proposal_type;
-		fs >> x >> y >> z >> r;
+		fs >> x >> y >> z >> r>>g>>b;
 		//fs>>z>>x>>y;
 		vertices->push_back(osg::Vec3d(x, y, z));
 		osg::Vec4 color;
-		if (r == 0)
-			color = osg::Vec4(0, 0, 0, 1.0);
-		else if (r == 1)
-			color = osg::Vec4(1.0, 0, 0, 1.0);
+		color = osg::Vec4(r/255.0,g/255.0,b/255.0, 1.0);
 		//color=osg::Vec4(0.7,0.7,0.7,1.0);
 		colors->push_back(color);
 	}

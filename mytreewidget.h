@@ -24,12 +24,13 @@ public:
     std::string error_message;
     std::vector<string> all_node_name;  //注释：父节点信息
     std::map<string,int> node_to_int; //注释：用于确认父节点是第几号结点
-    std::vector<std::vector<string>> model_structure_tree;
+	std::vector<std::vector<osg::ref_ptr<osg::Node>>> model_structure_tree;
     std::map<string,bool> child_map; //注释： 用于在attach时防止加入到子节点上
     std::vector<string> final_attach_node_name;
     std::string father_name;
     bool drop = false;
-    std::map<string,bool> is_model_componets;
+    std::map<osg::ref_ptr<osg::Node>,bool> is_model_componets;
+	QMap<QTreeWidgetItem*, osg::ref_ptr<osg::Node> > item_node;
 signals:
 
 public slots:

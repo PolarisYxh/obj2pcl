@@ -1,0 +1,7 @@
+E:/shapenet_part/04379243/75bb849ce0a252e72c1a544eca74c954/models/model_normalized.obj
+E:/shapenet_part/04379243/af71e4dcd477656f9cd431573238602d/models/model_normalized.obj
+E:/shapenet_part/04379243/c3884d2d31ac0ac9593ebeeedbff73b/models/model_normalized.obj
+E:/shapenet_part/02808440/d0c3bf270f9e04eb362845c6edb57fc/models/model_normalized.obj
+E:/shapenet_part/02808440/3121fcae458eebe383797e9920834fab/models/model_normalized.obj
+E:/shapenet_part/03211117/7c06bba1afa0553225a454369d791fb0/models/model_normalized.obj
+

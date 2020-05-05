@@ -117,7 +117,7 @@ void mytreewidget::dfs(string father_name){
     int father_idx = this->node_to_int[father_name];
     this->child_map[father_name] = true;
     for(int i = 0;i<this->model_structure_tree[father_idx].size();i++){
-        dfs(this->model_structure_tree[father_idx].at(i));
+        dfs(this->model_structure_tree[father_idx].at(i)->getName());
     }
 }
 
@@ -129,7 +129,7 @@ void mytreewidget::dfs2(string root_name){
     }
     int father_idx = this->node_to_int[root_name];
     for(int i = 0;i<this->model_structure_tree[father_idx].size();i++){
-        dfs2(this->model_structure_tree[father_idx].at(i));
+        dfs2(this->model_structure_tree[father_idx].at(i)->getName());
     }
 }
 
@@ -149,7 +149,7 @@ void mytreewidget::dropEvent(QDropEvent *event)
             return;
         }
 
-        bool flag = this->is_model_componets[Dropname.toStdString()];
+        bool flag = this->is_model_componets[item_node[itemOver]];
         if(flag){
             this->error_flag = true;
             this->error_message = "This is not a group,it's a componet!";

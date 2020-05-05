@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -48,7 +47,8 @@ public:
     QLineEdit *motion_amp;
     QLineEdit *input_motion_fre;
     QTextEdit *setting_message;
-    QComboBox *rangecombo;
+    QLineEdit *motion_amp_2;
+    QLabel *label_7;
     QGroupBox *groupBox_14;
     QPushButton *camera_confirm;
     QLabel *label_2;
@@ -72,6 +72,9 @@ public:
     QPushButton *generateButton;
     QPushButton *showButton;
     QPushButton *showButton_1;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QPushButton *Reset;
 
     void setupUi(QWidget *osgqt)
@@ -80,7 +83,7 @@ public:
             osgqt->setObjectName(QString::fromUtf8("osgqt"));
         osgqt->setWindowModality(Qt::NonModal);
         osgqt->setEnabled(true);
-        osgqt->resize(1428, 911);
+        osgqt->resize(1449, 946);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -100,7 +103,7 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         horizontalLayoutWidget = new QWidget(tab);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 0, 1401, 863));
+        horizontalLayoutWidget->setGeometry(QRect(0, 0, 1421, 893));
         totalLayout = new QHBoxLayout(horizontalLayoutWidget);
         totalLayout->setSpacing(3);
         totalLayout->setContentsMargins(11, 11, 11, 11);
@@ -150,8 +153,8 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(groupBox_6->sizePolicy().hasHeightForWidth());
         groupBox_6->setSizePolicy(sizePolicy2);
-        groupBox_6->setMinimumSize(QSize(260, 300));
-        groupBox_6->setMaximumSize(QSize(280, 310));
+        groupBox_6->setMinimumSize(QSize(280, 300));
+        groupBox_6->setMaximumSize(QSize(300, 310));
         groupBox_6->setLayoutDirection(Qt::RightToLeft);
         groupBox_6->setAlignment(Qt::AlignCenter);
         label_3 = new QLabel(groupBox_6);
@@ -159,7 +162,7 @@ public:
         label_3->setGeometry(QRect(10, 110, 131, 16));
         label_6 = new QLabel(groupBox_6);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(30, 50, 101, 21));
+        label_6->setGeometry(QRect(20, 50, 111, 21));
         motion_confirm = new QPushButton(groupBox_6);
         motion_confirm->setObjectName(QString::fromUtf8("motion_confirm"));
         motion_confirm->setGeometry(QRect(40, 260, 75, 23));
@@ -171,23 +174,30 @@ public:
         motion_play->setGeometry(QRect(90, 230, 75, 23));
         label_9 = new QLabel(groupBox_6);
         label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(30, 30, 141, 21));
+        label_9->setGeometry(QRect(30, 20, 141, 21));
         input_motion_name = new QLineEdit(groupBox_6);
         input_motion_name->setObjectName(QString::fromUtf8("input_motion_name"));
-        input_motion_name->setGeometry(QRect(140, 30, 101, 20));
+        input_motion_name->setEnabled(true);
+        input_motion_name->setGeometry(QRect(140, 20, 101, 20));
         input_motion_name->setReadOnly(true);
         motion_amp = new QLineEdit(groupBox_6);
         motion_amp->setObjectName(QString::fromUtf8("motion_amp"));
-        motion_amp->setGeometry(QRect(140, 70, 101, 20));
+        motion_amp->setEnabled(false);
+        motion_amp->setGeometry(QRect(140, 50, 101, 20));
         input_motion_fre = new QLineEdit(groupBox_6);
         input_motion_fre->setObjectName(QString::fromUtf8("input_motion_fre"));
+        input_motion_fre->setEnabled(false);
         input_motion_fre->setGeometry(QRect(140, 110, 101, 20));
         setting_message = new QTextEdit(groupBox_6);
         setting_message->setObjectName(QString::fromUtf8("setting_message"));
         setting_message->setGeometry(QRect(10, 140, 241, 81));
-        rangecombo = new QComboBox(groupBox_6);
-        rangecombo->setObjectName(QString::fromUtf8("rangecombo"));
-        rangecombo->setGeometry(QRect(80, 70, 41, 22));
+        motion_amp_2 = new QLineEdit(groupBox_6);
+        motion_amp_2->setObjectName(QString::fromUtf8("motion_amp_2"));
+        motion_amp_2->setEnabled(false);
+        motion_amp_2->setGeometry(QRect(140, 80, 101, 20));
+        label_7 = new QLabel(groupBox_6);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(0, 80, 141, 21));
 
         rightLayout->addWidget(groupBox_6);
 
@@ -196,8 +206,8 @@ public:
         groupBox_14->setEnabled(true);
         sizePolicy1.setHeightForWidth(groupBox_14->sizePolicy().hasHeightForWidth());
         groupBox_14->setSizePolicy(sizePolicy1);
-        groupBox_14->setMinimumSize(QSize(260, 200));
-        groupBox_14->setMaximumSize(QSize(280, 220));
+        groupBox_14->setMinimumSize(QSize(280, 200));
+        groupBox_14->setMaximumSize(QSize(300, 220));
         groupBox_14->setLayoutDirection(Qt::RightToLeft);
         groupBox_14->setAlignment(Qt::AlignCenter);
         camera_confirm = new QPushButton(groupBox_14);
@@ -232,8 +242,8 @@ public:
 
         groupBox = new QGroupBox(horizontalLayoutWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setMinimumSize(QSize(250, 120));
-        groupBox->setMaximumSize(QSize(280, 120));
+        groupBox->setMinimumSize(QSize(280, 120));
+        groupBox->setMaximumSize(QSize(300, 120));
         groupBox->setLayoutDirection(Qt::RightToLeft);
         groupBox->setAlignment(Qt::AlignCenter);
         open = new QToolButton(groupBox);
@@ -262,8 +272,8 @@ public:
 
         groupBox_5 = new QGroupBox(horizontalLayoutWidget);
         groupBox_5->setObjectName(QString::fromUtf8("groupBox_5"));
-        groupBox_5->setMinimumSize(QSize(250, 180));
-        groupBox_5->setMaximumSize(QSize(280, 200));
+        groupBox_5->setMinimumSize(QSize(280, 180));
+        groupBox_5->setMaximumSize(QSize(300, 200));
         groupBox_5->setLayoutDirection(Qt::RightToLeft);
         groupBox_5->setAlignment(Qt::AlignCenter);
         startButton = new QToolButton(groupBox_5);
@@ -278,6 +288,15 @@ public:
         showButton_1 = new QPushButton(groupBox_5);
         showButton_1->setObjectName(QString::fromUtf8("showButton_1"));
         showButton_1->setGeometry(QRect(10, 140, 231, 31));
+        pushButton = new QPushButton(groupBox_5);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(100, 170, 31, 20));
+        pushButton_2 = new QPushButton(groupBox_5);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(140, 170, 31, 20));
+        pushButton_3 = new QPushButton(groupBox_5);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(180, 170, 41, 28));
 
         rightLayout->addWidget(groupBox_5);
 
@@ -294,7 +313,7 @@ public:
 
         totalLayout->setStretch(0, 200);
         totalLayout->setStretch(1, 800);
-        totalLayout->setStretch(2, 250);
+        totalLayout->setStretch(2, 280);
         tabWidget->addTab(tab, QString());
 
         horizontalLayout->addWidget(tabWidget);
@@ -312,15 +331,19 @@ public:
     {
         osgqt->setWindowTitle(QApplication::translate("osgqt", "osgqt", nullptr));
         copyright1->setText(QApplication::translate("osgqt", "@Copyright Shape2PointCloud", nullptr));
-        groupBox_6->setTitle(QApplication::translate("osgqt", "Dof Animate setting", nullptr));
+        groupBox_6->setTitle(QApplication::translate("osgqt", "Dof Animate Setting", nullptr));
         label_3->setText(QApplication::translate("osgqt", "motion frequency", nullptr));
-        label_6->setText(QApplication::translate("osgqt", "motion range", nullptr));
+        label_6->setText(QApplication::translate("osgqt", "rotation range", nullptr));
         motion_confirm->setText(QApplication::translate("osgqt", "add", nullptr));
         motion_delete->setText(QApplication::translate("osgqt", "delete", nullptr));
         motion_play->setText(QApplication::translate("osgqt", "animate", nullptr));
-        label_9->setText(QApplication::translate("osgqt", "motion name", nullptr));
-        motion_amp->setPlaceholderText(QApplication::translate("osgqt", "0", nullptr));
+        label_9->setText(QApplication::translate("osgqt", "dof name", nullptr));
+        input_motion_name->setPlaceholderText(QApplication::translate("osgqt", "_r _t _rt", nullptr));
+        motion_amp->setPlaceholderText(QApplication::translate("osgqt", "0-360", nullptr));
+        input_motion_fre->setPlaceholderText(QApplication::translate("osgqt", ">0", nullptr));
         setting_message->setPlaceholderText(QApplication::translate("osgqt", "motion info", nullptr));
+        motion_amp_2->setPlaceholderText(QApplication::translate("osgqt", ">0", nullptr));
+        label_7->setText(QApplication::translate("osgqt", "translation range", nullptr));
         groupBox_14->setTitle(QApplication::translate("osgqt", "Photo Track Setting", nullptr));
         camera_confirm->setText(QApplication::translate("osgqt", "confirm", nullptr));
         label_2->setText(QApplication::translate("osgqt", "camera height", nullptr));
@@ -328,7 +351,7 @@ public:
         label_5->setText(QApplication::translate("osgqt", "shooting times", nullptr));
         camera_delete->setText(QApplication::translate("osgqt", "cancel", nullptr));
         camera_play->setText(QApplication::translate("osgqt", "animate", nullptr));
-        groupBox->setTitle(QApplication::translate("osgqt", "model", nullptr));
+        groupBox->setTitle(QApplication::translate("osgqt", "Model", nullptr));
         open->setText(QApplication::translate("osgqt", "add", nullptr));
         remove->setText(QApplication::translate("osgqt", "remove", nullptr));
         xcoord->setPlaceholderText(QApplication::translate("osgqt", "x", nullptr));
@@ -341,6 +364,9 @@ public:
         generateButton->setText(QApplication::translate("osgqt", "generate PointCloud", nullptr));
         showButton->setText(QApplication::translate("osgqt", "show Depth Map", nullptr));
         showButton_1->setText(QApplication::translate("osgqt", "show PointCloud", nullptr));
+        pushButton->setText(QApplication::translate("osgqt", "PushButton", nullptr));
+        pushButton_2->setText(QApplication::translate("osgqt", "PushButton", nullptr));
+        pushButton_3->setText(QApplication::translate("osgqt", "PushButton", nullptr));
         Reset->setText(QApplication::translate("osgqt", "Reset Camera", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("osgqt", "Motion Part2PCL", nullptr));
     } // retranslateUi

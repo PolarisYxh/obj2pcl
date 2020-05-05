@@ -12,6 +12,9 @@
 #include <QTableWidgetItem>
 #include <QHBoxLayout>
 #include <QMessagebox>
+#include <QQuaternion>
+#include <QVector4d>
+#include <QMatrix4x4>
 #include <sstream>
 #include <osgViewer/Viewer>
 #include <osgDB/ReadFile>
@@ -72,112 +75,11 @@
 #include <string>
 #include <vector>
 #include <direct.h>
-
+#include <omp.h>
 using namespace  std;
 namespace Ui {
 class osgqt;
 }
-class NodeVisitor_dyer : public osg::NodeVisitor//用于每帧设置模型的颜色，透明度及光照设置等
-{
-public:
-	NodeVisitor_dyer() :osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
-	{
-		open_transparent = true;
-	}
-	NodeVisitor_dyer(osg::Vec4 given_color, bool if_open) : osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
-	{
-		color = given_color;
-		open_transparent = if_open;
-		diffuse = osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f);
-		ambient = osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f);
-		specular = osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f);
-	}
-	NodeVisitor_dyer(osg::Vec4 given_color, osg::Vec4 ambientcolor, osg::Vec4 diffusecolor,osg::Vec4 specularcolor, bool if_open) : 
-		osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
-	{
-		color = given_color;
-		open_transparent = if_open;
-		ambient = ambientcolor;
-		diffuse = diffusecolor;
-		specular = specularcolor;
-	}
-	~NodeVisitor_dyer() {};
-
-	void apply(osg::Geode& geode)
-	{
-		unsigned int i = 0;
-		osg::ref_ptr<osg::Vec4Array> changecolor = new osg::Vec4Array();//根据changecolor中存储的part类型名为此geode上色
-		changecolor->push_back(color);
-		for (i = 0; i < geode.getNumDrawables(); i++)
-		{
-			osg::ref_ptr<osg::Geometry> geometry = geode.getDrawable(i)->asGeometry();
-			osg::ref_ptr<osg::Array> geocolor = geometry->getColorArray();
-
-			geometry->setColorArray(changecolor);
-			geometry->setColorBinding(osg::Geometry::BIND_OVERALL);
-
-			osg::ref_ptr< osg::StateSet > state_set = geometry->getOrCreateStateSet();//设置geode的材质（这样设置相当于所有的geode的材质相同，如果每个part材质不同可能效果更好？）
-			osg::ref_ptr< osg::Material > material = new osg::Material;
-			material->setColorMode(osg::Material::AMBIENT_AND_DIFFUSE);
-			material->setDiffuse(osg::Material::FRONT_AND_BACK,diffuse );
-			material->setSpecular(osg::Material::FRONT_AND_BACK,specular);
-			material->setAmbient(osg::Material::FRONT_AND_BACK, ambient);
-			material->setShininess(osg::Material::FRONT_AND_BACK, 51.2f);
-			state_set->setAttributeAndModes(material.get(), osg::StateAttribute::ON);
-
-			if (open_transparent)
-			{
-				osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
-				TwoSideLight->setTwoSided(true);
-				//只对模型中的部件进行半透明化，可以在遍历模型部件时，1）设置显示颜色alpha通道小于1，2）开启融合模型，3）同时渲染方式设为透明方式
-				//开启融合操作
-				state_set->setMode(GL_BLEND, osg::StateAttribute::ON);
-				state_set->setMode(GL_RESCALE_NORMAL, osg::StateAttribute::ON);
-				//设置渲染模式
-				state_set->setRenderingHint(osg::StateSet::TRANSPARENT_BIN); 
-				state_set->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面 ;
-				state_set->setAttributeAndModes(TwoSideLight, osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON | osg::StateAttribute::PROTECTED);  //再加上双面光照，使背面完全出现！;
-			}
-		}
-	}
-	void set_color(osg::Vec4 given_color)
-	{
-		color = given_color;
-	}
-	osg::Vec4 get_color()
-	{
-		return color;
-	}
-
-private:
-	osg::Vec4 color,ambient,diffuse,specular;
-	bool open_transparent;//是否开启半透明模式
-};
-class modelCallBack1 : public osg::NodeCallback//用于调用颜色、光照等上面的回调类，暂时没用
-{
-public:
-	modelCallBack1() :Color() {}
-	modelCallBack1(osg::Vec4 color,bool open):Color(color),open_transparent(open)
-	{
-	}
-
-	virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
-	{
-		NodeVisitor_dyer dyerb(Color,open_transparent);
-		node->accept(dyerb);
-		traverse(node, nv);
-	}
-private:
-	osg::Vec4 Color;
-	bool open_transparent;
-};
-
-
-
-
-
-
-
 
 class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 {
@@ -197,8 +99,8 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 			osg::ComputeBoundsVisitor boundVisitor;
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(node);
 			dofnode->accept(boundVisitor);
-			osg::Vec3 curvec;
-			if (node_name.length() >= 1 && (node_name.substr(node_name.length() - 2, 2) == "_r"))
+			osg::Vec3 curvec,curvec1;
+			if (node_name.length() >= 2 && (node_name.substr(node_name.length() - 2, 2) == "_r"))
 			{
 				double r = 2;
 				curvec = dofnode->getCurrentHPR();
@@ -225,7 +127,7 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 					dofnode->setCurrentHPR(curvec);
 				}
 			}
-			else if (node_name.length() >= 1 && (node_name.substr(node_name.length() - 2, 2) == "_t"))
+			else if (node_name.length() >= 2 && (node_name.substr(node_name.length() - 2, 2) == "_t"))
 			{
 				float r = 0.01;
 				curvec = dofnode->getCurrentTranslate();
@@ -251,14 +153,30 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 					dofnode->setCurrentTranslate(curvec);
 				}
 			}
-			else if (node_name.length() >= 2 && (node_name.substr(node_name.length() - 3, 3) == "_rt"))
+			else if (node_name.length() >= 3 && (node_name.substr(node_name.length() - 3, 3) == "_rt"))
 			{
-				/*curvec = dofnode->getCurrentHPR();
-				curvec.set(curvec.x(), curvec.y() + r, curvec.z());
-				dofnode->setCurrentHPR(curvec);
-				curvec = dofnode->getCurrentTranslate();
-				curvec.set(curvec.x() + r, curvec.y(), curvec.z());
-				dofnode->setCurrentTranslate(curvec);*/
+				double r1 = 2;
+				curvec = dofnode->getCurrentHPR();
+				float ani_radians = osg::DegreesToRadians(r1);
+				float yani_range = osg::DegreesToRadians(range[1]);
+				float ycur_rad = curvec.y();
+				
+				if (ycur_rad < yani_range)
+				{
+					curvec.set(0, ycur_rad + ani_radians, 0);
+					dofnode->setCurrentHPR(curvec);
+				}
+			
+				float r = 0.01;
+				curvec1 = dofnode->getCurrentTranslate();
+				float xani_range = range[0];
+				float xcur_rad = curvec.x();
+
+				if (xcur_rad < xani_range)
+				{
+					curvec1.set(xcur_rad + r, 0, 0);
+					dofnode->setCurrentTranslate(curvec1);
+				}
 			}
 			traverse(node, nv);
 		}
@@ -284,53 +202,64 @@ public slots:   //申明信号与槽,当树形控件的子选项被改变时执�
     void treeItemChanged(QTreeWidgetItem* item , int column);
 
 private slots:
-    void timerUpdate();
-    void on_open_clicked();
-	void on_remove_clicked();
-   // void on_directorycomboBox_currentIndexChanged(int index);
-	
+    void timerUpdate();// 注释：计时器函数，用于更新显示，里面主要进行模型部件右键和树状图点选、ctrl+框选的更新显示
+	void on_Reset_clicked();//点击reset camera按钮
+
     void on_tabWidget_currentChanged(int index);
     void on_treeWidget_itemChanged_child(QTreeWidgetItem *item, int column);
     void SetParentPartiallyChecked(QTreeWidgetItem *itm,int column);
     void on_treeWidget_itemChanged_parent(QTreeWidgetItem *item, int column);
-    void update_treewidget();
+    void update_treewidget();// 注释：用于更新树形结构图
+	void on_treeWidget_itemSelectionChanged();//点击了树形图的文字
+    
+    void on_open_clicked();//add model
+	void on_remove_clicked();////删除所选模型的树状图、所属模型的motion信息、lastmotion信息、root下的所属模型
+	void on_modeltranslate_clicked();//点击model模块的平移按钮
+	void on_modelrotate_clicked();//点击model模块的旋转按钮
+
 	void motion_comfirm_clicked();
 	void motion_delete_clicked();
-	void camera_confirm_clicked();
-	void startButton_pressed();
-	void generateButton_pressed();
 	void motion_play_clicked();
-	void showButton_pressed();
-	void showpcl_pressed();
-    void on_treeWidget_itemSelectionChanged();
-    void on_Reset_clicked();
-	void on_modeltranslate_clicked();
-	void on_modelrotate_clicked();
-	//void camera_height_ok();
-	//void shooting_times_ok();
-	//void shooting_radius_ok();
-	void camera_play_clicked();
-	void camera_delete_clicked();
-	bool isdof(osg::Node& node);
+
+	void camera_confirm_clicked();	
+	void camera_play_clicked();//点击camera模块的confirm按钮
+	void camera_delete_clicked();//点击camera模块的delete按钮
+
+	void startButton_pressed();//开始拍照
+	void generateButton_pressed();//开始生成点云
 	
+	void showButton_pressed(); //点击show picture
+	void showpcl_pressed();//点击show pointcloud
+
+	//自动场景相关
+	void on_pushButton_clicked();//自动场景入口
+	void addmodel1(int i);//用于scan2cadtxt文件添加shapenet模型
+	void addmodel2(int i);//用于文本文件添加shape2motion模型
+	void on_pushButton_2_clicked();//删除所有节点，使整个程序reset
+	void on_pushButton_3_clicked();
 private:
-	void move(osg::ref_ptr<osg::Node>, double range[4], bool& ismove);
-	void changecolor(osg::ref_ptr<osg::Node> node, osg::Vec4 Color, bool open_transparent);
-	QTreeWidgetItem* findpar(QTreeWidgetItem* fitem);
-	struct motionif
-	{
-		double motioninfo[4];
-	};
+	void move(osg::ref_ptr<osg::Node>, double range[4], bool& ismove);//用于拍照过程中运动部件的运动
+
+	void changecolor(osg::ref_ptr<osg::Node> node, osg::Vec4 Color, bool open_transparent);//没用
+
+	void update_treewidget1();//用于自动搭建场景里更新树形结构图，并且给第一个dof添加运动信息到motion结构体
+	void update_treewidget2();//用于拍摄自动搭建场景rgb图，添加所有dof到motion中
+	void autostartshoot();//自动场景的自动depth+label拍照功能
+	void autorgbshoot();//自动场景的自动rgb拍照功能
+	void osgqt::autorgbshoot1();//用于场景flt的拍照
+	QTreeWidgetItem* findpar(QTreeWidgetItem* fitem);//找到树形图节点的最上层父节点
+	osg::ref_ptr<osg::Node> findnodepar(osg::ref_ptr<osg::Node> node);//返回模型节点的trans父节点
+	bool isdof(osg::Node& node);
+	//struct motionif
+	//{
+	//	double motioninfo[4];//012对应xyz运动范围，3对应次数
+	//};
     Ui::osgqt *ui;
-    osg::ref_ptr<osg::Node>  EditModel;
-    
-    osg::ref_ptr<osg::Node>  loadedModel2;
     QtOsgView * ViewerWindow;
-	QMap<QString, QTreeWidgetItem*> itemMap_; //注释： 树形图每个栏目对应id
 	QMap<osg::ref_ptr<osg::MatrixTransform>, double> height;
 	void removenode(std::string name);
 	bool motionfunc();
-	QMap<osg::ref_ptr<osg::Node>, motionif> motion;//保存运动信息，用于拍照和animate
+	//QMap<osg::ref_ptr<osg::Node>, motionif> motion;//保存运动信息，用于拍照和animate
 	//QVector<osg::ref_ptr<osg::Node>> lastmotion;//animate中记录上次animate完未reset的部件
 	//QString motionname;
 	//float motion[2];
@@ -341,9 +270,11 @@ private:
 	QString savepclpath;
 	QString filepath;
 	std::string current_file_name = ""; //注释： 用于在信息框显示当前模型名
+	QMap<osg::ref_ptr<osg::Node>, QTreeWidgetItem*> node_item; //注释： 只保存一个模型的node treewidget对应关系
 	//Photographer pg;
 	osg::ref_ptr<osg::Node> model;
 	osg::ref_ptr<osg::Group> root= new osg::Group;
+	osg::ref_ptr<osg::MatrixTransform> roottrans = new osg::MatrixTransform;
 	//表盘的几何节点
 	osg::ref_ptr<osg::Geode> clockGeode = new osg::Geode;
 	//圆圈
@@ -354,6 +285,14 @@ private:
 	std::vector<osg::Group*> dofnodes;
 	int dof_ID;
 	modelCallBack * cb;
+	struct modeldata
+	{
+		string cate;
+		string id;
+		osg::Matrix t[4];//t0 平移 t1 旋转 t2 缩放 t3 boundingbox到模型中心的平移转换
+		osg::Vec3 bobox;
+	}* modelinfo;
+	vector<osg::Vec4> VColor;
 };
 
 #endif // OSG QT_H
