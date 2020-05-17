@@ -128,6 +128,10 @@ void MainWindow::showpointcloud()
 	osg::ref_ptr<osg::Geometry> geom = new osg::Geometry();
 	osg::ref_ptr<osg::Vec3dArray> vertices = new osg::Vec3dArray();
 	osg::ref_ptr<osg::Vec4Array> colors = new osg::Vec4Array();
+	QMessageBox msgBox;
+	msgBox.setText("wait....");
+	msgBox.show();
+	qApp->processEvents();
 	while (!fs.eof())
 	{
 		//从txt读取一行中的坐标和proposal类型

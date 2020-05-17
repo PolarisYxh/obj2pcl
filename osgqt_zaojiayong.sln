@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "osgqt_zaojiayong", "osgqt_zaojiayong.vcxproj", "{80A2592E-159A-3214-B461-7E571872AB73}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MotionScene2PCL", "..\MotionScene2PCL\MotionScene2PCL.vdproj", "{5FAC67FC-58C1-4842-BD76-3BC7EA3A5F6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{80A2592E-159A-3214-B461-7E571872AB73}.Release|x64.Build.0 = Release|x64
 		{80A2592E-159A-3214-B461-7E571872AB73}.Release|x86.ActiveCfg = Release|Win32
 		{80A2592E-159A-3214-B461-7E571872AB73}.Release|x86.Build.0 = Release|Win32
+		{5FAC67FC-58C1-4842-BD76-3BC7EA3A5F6D}.Debug|x64.ActiveCfg = Debug
+		{5FAC67FC-58C1-4842-BD76-3BC7EA3A5F6D}.Debug|x86.ActiveCfg = Debug
+		{5FAC67FC-58C1-4842-BD76-3BC7EA3A5F6D}.Release|x64.ActiveCfg = Release
+		{5FAC67FC-58C1-4842-BD76-3BC7EA3A5F6D}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

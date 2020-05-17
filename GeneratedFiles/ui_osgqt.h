@@ -72,9 +72,6 @@ public:
     QPushButton *generateButton;
     QPushButton *showButton;
     QPushButton *showButton_1;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
     QPushButton *Reset;
 
     void setupUi(QWidget *osgqt)
@@ -162,7 +159,7 @@ public:
         label_3->setGeometry(QRect(10, 110, 131, 16));
         label_6 = new QLabel(groupBox_6);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(20, 50, 111, 21));
+        label_6->setGeometry(QRect(20, 80, 111, 21));
         motion_confirm = new QPushButton(groupBox_6);
         motion_confirm->setObjectName(QString::fromUtf8("motion_confirm"));
         motion_confirm->setGeometry(QRect(40, 260, 75, 23));
@@ -183,7 +180,7 @@ public:
         motion_amp = new QLineEdit(groupBox_6);
         motion_amp->setObjectName(QString::fromUtf8("motion_amp"));
         motion_amp->setEnabled(false);
-        motion_amp->setGeometry(QRect(140, 50, 101, 20));
+        motion_amp->setGeometry(QRect(140, 80, 101, 20));
         input_motion_fre = new QLineEdit(groupBox_6);
         input_motion_fre->setObjectName(QString::fromUtf8("input_motion_fre"));
         input_motion_fre->setEnabled(false);
@@ -194,10 +191,10 @@ public:
         motion_amp_2 = new QLineEdit(groupBox_6);
         motion_amp_2->setObjectName(QString::fromUtf8("motion_amp_2"));
         motion_amp_2->setEnabled(false);
-        motion_amp_2->setGeometry(QRect(140, 80, 101, 20));
+        motion_amp_2->setGeometry(QRect(140, 50, 101, 20));
         label_7 = new QLabel(groupBox_6);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(0, 80, 141, 21));
+        label_7->setGeometry(QRect(0, 50, 141, 21));
 
         rightLayout->addWidget(groupBox_6);
 
@@ -288,15 +285,6 @@ public:
         showButton_1 = new QPushButton(groupBox_5);
         showButton_1->setObjectName(QString::fromUtf8("showButton_1"));
         showButton_1->setGeometry(QRect(10, 140, 231, 31));
-        pushButton = new QPushButton(groupBox_5);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(100, 170, 31, 20));
-        pushButton_2 = new QPushButton(groupBox_5);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(140, 170, 31, 20));
-        pushButton_3 = new QPushButton(groupBox_5);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(180, 170, 41, 28));
 
         rightLayout->addWidget(groupBox_5);
 
@@ -339,10 +327,10 @@ public:
         motion_play->setText(QApplication::translate("osgqt", "animate", nullptr));
         label_9->setText(QApplication::translate("osgqt", "dof name", nullptr));
         input_motion_name->setPlaceholderText(QApplication::translate("osgqt", "_r _t _rt", nullptr));
-        motion_amp->setPlaceholderText(QApplication::translate("osgqt", "0-360", nullptr));
+        motion_amp->setPlaceholderText(QString());
         input_motion_fre->setPlaceholderText(QApplication::translate("osgqt", ">0", nullptr));
         setting_message->setPlaceholderText(QApplication::translate("osgqt", "motion info", nullptr));
-        motion_amp_2->setPlaceholderText(QApplication::translate("osgqt", ">0", nullptr));
+        motion_amp_2->setPlaceholderText(QString());
         label_7->setText(QApplication::translate("osgqt", "translation range", nullptr));
         groupBox_14->setTitle(QApplication::translate("osgqt", "Photo Track Setting", nullptr));
         camera_confirm->setText(QApplication::translate("osgqt", "confirm", nullptr));
@@ -364,9 +352,6 @@ public:
         generateButton->setText(QApplication::translate("osgqt", "generate PointCloud", nullptr));
         showButton->setText(QApplication::translate("osgqt", "show Depth Map", nullptr));
         showButton_1->setText(QApplication::translate("osgqt", "show PointCloud", nullptr));
-        pushButton->setText(QApplication::translate("osgqt", "PushButton", nullptr));
-        pushButton_2->setText(QApplication::translate("osgqt", "PushButton", nullptr));
-        pushButton_3->setText(QApplication::translate("osgqt", "PushButton", nullptr));
         Reset->setText(QApplication::translate("osgqt", "Reset Camera", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("osgqt", "Motion Part2PCL", nullptr));
     } // retranslateUi

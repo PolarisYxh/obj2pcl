@@ -164,7 +164,7 @@
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>50</y>
+               <y>80</y>
                <width>111</width>
                <height>21</height>
               </rect>
@@ -251,13 +251,13 @@
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>50</y>
+               <y>80</y>
                <width>101</width>
                <height>20</height>
               </rect>
              </property>
              <property name="placeholderText">
-              <string>0-360</string>
+              <string/>
              </property>
             </widget>
             <widget class="QLineEdit" name="input_motion_fre">
@@ -296,20 +296,20 @@
              <property name="geometry">
               <rect>
                <x>140</x>
-               <y>80</y>
+               <y>50</y>
                <width>101</width>
                <height>20</height>
               </rect>
              </property>
              <property name="placeholderText">
-              <string>&gt;0</string>
+              <string/>
              </property>
             </widget>
             <widget class="QLabel" name="label_7">
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>80</y>
+               <y>50</y>
                <width>141</width>
                <height>21</height>
               </rect>
@@ -651,45 +651,6 @@
              </property>
              <property name="text">
               <string>show PointCloud</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton">
-             <property name="geometry">
-              <rect>
-               <x>100</x>
-               <y>170</y>
-               <width>31</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>PushButton</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton_2">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>170</y>
-               <width>31</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>PushButton</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="geometry">
-              <rect>
-               <x>180</x>
-               <y>170</y>
-               <width>41</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>PushButton</string>
              </property>
             </widget>
            </widget>

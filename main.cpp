@@ -29,12 +29,12 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <qtextcodec.h>
-#include "Tool_test_2.h"
+
 using namespace std;
 int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(image);
-
+	
     QApplication a(argc, argv);
     osgqt w;
     w.setWindowFlags(w.windowFlags());//&Qt::WindowMaximizeButtonHint添加最大化按钮
@@ -45,3 +45,9 @@ int main(int argc, char *argv[])
 	w.show();*/
     return a.exec();
 }
+//void main(int argc, char* argv[])
+//{
+//	QString rootpath = "D:/my/sunxun/test8";
+//	createPCL pcl1;
+//	pcl1.createSinglePCL(rootpath);
+//}

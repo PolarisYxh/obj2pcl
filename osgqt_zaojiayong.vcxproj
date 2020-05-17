@@ -74,12 +74,14 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+    <Import Project="opencv.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+    <Import Project="opencvd.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
@@ -104,12 +106,16 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\include;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\MATLAB\R2017a\lib;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>H:\osg3.2.1\OpenSceneGraph\include;H:\osg3.2.1\OpenSceneGraph\bin;H:\QT\Tools\mingw530_32\opt\include;H:\R2015\extern\include;H:\R2015\extern\include\win64;$(IncludePath)</IncludePath>
     <LibraryPath>H:\osg3.2.1\OpenSceneGraph\lib;H:\R2015\extern\lib\win64\microsoft;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\MATLAB\R2017a\extern\include;D:\MATLAB\R2017a\extern\include\win64;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\MATLAB\R2017a\extern\lib\win64\mingw64;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -119,20 +125,19 @@
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>false</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmain.lib;shell32.lib;osgViewer.lib;osgDB.lib;osg.lib;OpenThreads.lib;osgGA.lib;osgQt.lib;osgWidget.lib;osgAnimation.lib;osgFX.lib;osgManipulator.lib;osgParticle.lib;osgPresentation.lib;osgShadow.lib;osgSim.lib;osgTerrain.lib;osgText.lib;osgUI.lib;osgUtil.lib;osgVolume.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;$(QTDIR)\lib\Qt5OpenGL.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;$(QTDIR)\lib;C:\OSGQT\lib;D:\matlab\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -143,6 +148,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewer.lib;osgDB.lib;osg.lib;OpenThreads.lib;osgGA.lib;osgWidget.lib;osgAnimation.lib;osgFX.lib;osgManipulator.lib;osgParticle.lib;osgPresentation.lib;osgShadow.lib;osgSim.lib;osgTerrain.lib;osgText.lib;osgUtil.lib;osgVolume.lib;$(QTDIR)\lib\Qt5OpenGL.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>
@@ -267,7 +273,7 @@
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;C:\OSGQT\lib;D:\MATLAB\R2017a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -389,6 +395,7 @@
     <ClCompile Include="osgqt.cpp" />
     <ClCompile Include="qabout.cpp" />
     <ClCompile Include="qimageviewer.cpp" />
+    <ClCompile Include="QtImage2PCL.cpp" />
     <ClCompile Include="qtosgview.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +404,7 @@
     <ClInclude Include="DOFCalculation.h" />
     <ClInclude Include="GeneratedFiles\ui_osgqt.h" />
     <ClInclude Include="mytreewidget2.h" />
+    <ClInclude Include="QtImage2PCL.h" />
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="Tool_test_2.h" />

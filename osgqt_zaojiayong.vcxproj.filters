@@ -80,6 +80,9 @@
     <ClCompile Include="qimageviewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QtImage2PCL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_osgqt.h">
@@ -104,6 +107,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tool_test_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QtImage2PCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

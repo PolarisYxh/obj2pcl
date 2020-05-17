@@ -1,0 +1,16 @@
+set INSTALL_DIR= D:\my\sunxun\osgqt_zaojiayong\release
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgViewer.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgDB.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osg.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\OpenThreads.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgGA.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgUtil.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\zlib.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgText.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgPlugins-3.6.5\osgdb_obj.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgPlugins-3.6.5\osgdb_jpeg.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgPlugins-3.6.5\osgdb_ive.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgSim.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgFX.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgTerrain.dll %INSTALL_DIR%
+copy D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgVolume.dll %INSTALL_DIR%
