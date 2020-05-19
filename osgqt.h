@@ -75,7 +75,8 @@
 #include <string>
 #include <vector>
 #include <direct.h>
-#include <omp.h>
+#include <random>
+#include <ctime>
 using namespace  std;
 namespace Ui {
 class osgqt;
@@ -236,7 +237,7 @@ private slots:
 	void addmodel1(int i);//用于scan2cadtxt文件添加shapenet模型
 	void addmodel2(int i);//用于文本文件添加shape2motion模型
 	void on_pushButton_2_clicked();//删除所有节点，使整个程序reset
-	void on_pushButton_3_clicked();
+	//void on_pushButton_3_clicked();
 private:
 	void move(osg::ref_ptr<osg::Node>, double range[4], bool& ismove);//用于拍照过程中运动部件的运动
 
@@ -285,13 +286,17 @@ private:
 	std::vector<osg::Group*> dofnodes;
 	int dof_ID;
 	modelCallBack * cb;
+	osg::Matrix sceneM=osg::Matrix::identity();
 	struct modeldata
 	{
+		
 		string cate;
 		string id;
 		osg::Matrix t[4];//t0 平移 t1 旋转 t2 缩放 t3 boundingbox到模型中心的平移转换
 		osg::Vec3 bobox;
+		
 	}* modelinfo;
+	osg::Matrix s1=osg::Matrix::identity();
 	vector<osg::Vec4> VColor;
 };
 

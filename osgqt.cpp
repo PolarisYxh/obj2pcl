@@ -545,7 +545,54 @@ protected:
 	bool reserve1 = false;
 	bool reserve2 = false;
 };
+std::set<osg::Geode*> markedGeode;
+class InfoVisitor1 : public osg::NodeVisitor {//自定义model节点访问器
+	/* 注释：class InfoVisitor 主要用于更新树形结构图以及获取可绘制的Geode
+   model -> accept(infovisitor) model为加载的模型
+   更新全局变量all_node_name，model_structure_tree，model_components,is_dof_node1
+*/
+public:
+	InfoVisitor1(osg::Matrix tem) : osg::NodeVisitor(TRAVERSE_ALL_CHILDREN), scale(tem) {  }	//向子节点遍历
 
+	//访问Geode节点
+	virtual void apply(osg::Geode& node)
+	{
+		if (markedGeode.find(&node) != markedGeode.end())
+		{
+			return;
+		}
+		for (int i = 0; i < node.getNumDrawables(); i++)
+		{
+			osg::ref_ptr<osg::Geometry> geom = node.getDrawable(i)->asGeometry();
+			osg::Array* tmp = geom->getVertexArray();
+			osg::Vec3Array* coorArray = (osg::Vec3Array*) tmp;
+			auto it = coorArray->begin();
+			for (; it < coorArray->end(); it++)
+			{
+				// 动起来
+				(*it)=(*it)* scale;
+			}
+			geom->setVertexArray(coorArray);
+		}
+		//markedGeode.insert(&node);
+		//osg::ref_ptr<osg::MatrixTransform> trans = new osg::MatrixTransform;
+		//trans->setMatrix(scale);
+		//trans->setName("scale");
+		////osg::Node* n = node.asNode();
+		//osg::Group* oldpar = node.getParent(0);
+		//trans->addChild(&node);
+		///*oldpar->removeChild(&node);
+		//oldpar->addChild(trans);*/
+		//oldpar->replaceChild(&node,trans);
+		
+		//node.getParent(0)->removeChild(&node);
+		
+		//traverse(node);
+	}
+
+protected:
+	osg::Matrix scale;
+};
 
 //class InfoVisitor2 : public osg::NodeVisitor{
 //    /* 注释：class InfoVisitor 主要用于dof adder更新树形结构图以及获取可绘制的Geode
@@ -711,7 +758,7 @@ public:
 					x.motioninfo[3] = 5;
 					motion.insert(&searchNode, x);
 				}
-				else if (childname.length() >= 3 && (childname.substr(childname.length() - 3, 3) == "_rt"))
+				else if (childname.length() >= 2 && (childname.substr(childname.length() - 2, 2) == "_s"))
 				{
 					motionif x;
 					x.motioninfo[0] = 0.1;
@@ -750,7 +797,7 @@ public:
 		specular = osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f);
 		mode = 2;
 	}
-	NodeVisitor_dyer( osg::Vec4 ambientcolor, osg::Vec4 diffusecolor, osg::Vec4 specularcolor, bool if_open) ://用于右键点选透明，只调整光照
+	NodeVisitor_dyer(osg::Vec4 ambientcolor, osg::Vec4 diffusecolor, osg::Vec4 specularcolor, bool if_open) ://用于右键点选透明，只调整光照
 		osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
 	{
 		ambient = ambientcolor;
@@ -758,11 +805,11 @@ public:
 		specular = specularcolor;
 		mode = 0;
 	}
-	NodeVisitor_dyer(osg::ref_ptr<osg::StateSet> init_state) :osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN),initstate(init_state)//用于恢复到初始状态
+	NodeVisitor_dyer(osg::ref_ptr<osg::StateSet> init_state) :osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN), initstate(init_state)//用于恢复到初始状态
 	{
 		mode = 1;
 	}
-	NodeVisitor_dyer(osg::Vec4 given_color,int m): osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
+	NodeVisitor_dyer(osg::Vec4 given_color, int m) : osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
 	{
 		color = given_color;
 		mode = m;
@@ -773,7 +820,7 @@ public:
 	{
 		if (mode == 0)//右键点选部件透明
 		{
-			unsigned int i = 0;
+			unsigned int i = 0;//设置材质色
 			osg::ref_ptr<osg::Material> material = new osg::Material;
 			material->setAmbient(osg::Material::FRONT_AND_BACK, ambient);
 			material->setDiffuse(osg::Material::FRONT_AND_BACK, diffuse);
@@ -785,6 +832,18 @@ public:
 			//osg::ref_ptr<osg::PolygonMode> polyMode=new osg::PolygonMode(osg::PolygonMode::FRONT_AND_BACK,osg::PolygonMode::LINE);
 			now_state->setAttributeAndModes(material.get(), osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
 			geode.setStateSet(now_state);
+
+			osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
+			TwoSideLight->setTwoSided(true);
+			//只对模型中的部件进行半透明化，可以在遍历模型部件时，1）设置显示颜色alpha通道小于1，2）开启融合模型，3）同时渲染方式设为透明方式
+			//开启融合操作
+			now_state->setMode(GL_RESCALE_NORMAL, osg::StateAttribute::ON);
+			now_state->setMode(GL_LIGHTING, osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);//d光照
+			now_state->setMode(GL_LIGHT0, osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
+			//设置渲染模式
+
+			now_state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面 ;
+			now_state->setAttributeAndModes(TwoSideLight, osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON | osg::StateAttribute::PROTECTED);  //再加上双面光照，使背面完全出现！;
 		}
 		else if (mode == 2)
 		{
@@ -796,12 +855,12 @@ public:
 				for (int i = 0; i < ge->getNumDrawables(); i++)
 				{
 					osg::ref_ptr<osg::Geometry> geometry = ge->getDrawable(i)->asGeometry();
-					osg::ref_ptr<osg::Array> lastgeocolor = geometry->getColorArray();
-					geo_color.insert(geometry, lastgeocolor);//记录下修改前的颜色
+					//osg::ref_ptr<osg::Array> lastgeocolor = geometry->getColorArray();
+					osg::ref_ptr<osg::Array> color = geometry->getColorArray();
+					geo_color.insert(geometry, color);//记录下修改前的颜色
 					//osg::ref_ptr<osg::StateSet> initgeostate=geometry->getStateSet();
 					geometry->setColorArray(changecolor);
 					geometry->setColorBinding(osg::Geometry::BIND_OVERALL);
-
 					osg::ref_ptr< osg::StateSet > state_set = geometry->getOrCreateStateSet();
 					geo_state.insert(geometry, state_set);
 					//设置geode的材质（这样设置相当于所有的geode的材质相同，如果每个part材质不同可能效果更好？）
@@ -813,8 +872,8 @@ public:
 					material->setShininess(osg::Material::FRONT_AND_BACK, 51.2f);
 					state_set->setAttributeAndModes(material.get(), osg::StateAttribute::ON);
 					state_set->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面;
-					state_set->setMode(GL_LIGHTING, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);//关闭光照
-					state_set->setMode(GL_LIGHT0, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);
+					state_set->setMode(GL_LIGHTING, osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);//关闭光照
+					state_set->setMode(GL_LIGHT0, osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);
 					if (open_transparent)
 					{
 						osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
@@ -843,10 +902,9 @@ public:
 				for (i = 0; i < ge->getNumDrawables(); i++)
 				{
 					osg::ref_ptr<osg::Geometry> geometry = ge->getDrawable(i)->asGeometry();
-					osg::ref_ptr<osg::Array> geocolor = geometry->getColorArray();
-
-					geometry->setColorArray(changecolor);
-					geometry->setColorBinding(osg::Geometry::BIND_OVERALL);
+					//osg::ref_ptr<osg::Array> geocolor = geometry->getColorArray();
+					geometry->setColorArray(changecolor);//设置材质色
+					geometry->setColorBinding(osg::Geometry::BIND_OVERALL);//所有点用同一个颜色
 
 					osg::ref_ptr< osg::StateSet > state_set = geometry->getOrCreateStateSet();//设置geode的材质（这样设置相当于所有的geode的材质相同，如果每个part材质不同可能效果更好？）
 					osg::ref_ptr< osg::Material > material = new osg::Material;
@@ -870,16 +928,39 @@ public:
 		else if (mode == 1)//返回到模型初始设置
 		{
 			geode.setStateSet(init_state_set.get());
+			//geode.getStateSet()->setMode(GL_NORMALIZE, osg::StateAttribute::ON);
 			QMap<osg::ref_ptr<osg::Geometry>, osg::ref_ptr<osg::Array>>::iterator arrayitr = geo_color.begin();
 			QMap<osg::ref_ptr<osg::Geometry>, osg::ref_ptr<osg::StateSet>>::iterator stateitr = geo_state.begin();
-			for (; arrayitr != geo_color.end(); arrayitr++)
-			{
-				arrayitr.key()->setColorArray(arrayitr.value());
-				arrayitr.key()->setColorBinding(osg::Geometry::BIND_OVERALL);
-			}
+			//qDebug() << "return color";
+
+			//qDebug() << "return state";
 			for (; stateitr != geo_state.end(); stateitr++)
 			{
-				stateitr.key()->setStateSet(stateitr.value().get());
+				//stateitr.key()->setStateSet(stateitr.value().get());			
+				osg::ref_ptr< osg::StateSet > state_set = stateitr.key()->getOrCreateStateSet();
+				osg::ref_ptr< osg::Material > material = new osg::Material;
+				material->setColorMode(osg::Material::AMBIENT_AND_DIFFUSE);
+				material->setDiffuse(osg::Material::FRONT_AND_BACK, osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f));
+				material->setSpecular(osg::Material::FRONT_AND_BACK, osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f));
+				material->setAmbient(osg::Material::FRONT_AND_BACK, osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f));
+				material->setShininess(osg::Material::FRONT_AND_BACK, 51.2f);
+				state_set->setAttributeAndModes(material.get(), osg::StateAttribute::INHERIT);
+				state_set->setMode(GL_LIGHTING, osg::StateAttribute::ON | osg::StateAttribute::INHERIT);
+				state_set->setMode(GL_LIGHT0, osg::StateAttribute::ON | osg::StateAttribute::INHERIT);
+			}
+			for (; arrayitr != geo_color.end(); arrayitr++)
+			{
+				//osg::Vec4Array * color = (osg::Vec4Array *)arrayitr.value()->getDataPointer();
+				//osg::Vec4 color1 = color.get;
+
+				//arrayitr.key()->setColorArray(arrayitr.value().get());
+				//osg::Vec4 color(1,1,0,1);
+				//osg::ref_ptr<osg::Vec4Array> changecolor = new osg::Vec4Array();//根据changecolor中存储的part类型名为此geode上色
+				//changecolor->push_back(color);
+				//arrayitr.key()->setColorArray(changecolor);
+				arrayitr.key()->setColorBinding(osg::Geometry::BIND_OFF);
+				//arrayitr.key()->setColorBinding(osg::Geometry::BIND_OVERALL);
+				//arrayitr.key()->setColorBinding(osg::Geometry::BIND_PER_PRIMITIVE);
 			}
 			geo_color.clear();
 			geo_state.clear();
@@ -896,7 +977,7 @@ public:
 
 private:
 	osg::Vec4 color, ambient, diffuse, specular;
-	bool open_transparent=false;//是否开启半透明模式
+	bool open_transparent = false;//是否开启半透明模式
 	osg::ref_ptr<osg::StateSet> initstate;
 	int mode;
 };
@@ -1726,12 +1807,12 @@ void osgqt::initwindow()
 	osg::ref_ptr<osg::Geometry> geo = new osg::Geometry;
 	geo->setDataVariance(osg::Object::DYNAMIC);
 	geo->setUseDisplayList(false);
-	osg::Vec3Array* vertex = new osg::Vec3Array(4);
-	(*vertex)[0] = osg::Vec3(-100.5, 0.0, -100.5);
-	(*vertex)[1] = osg::Vec3(100.5, 0.0, -100.5);
-	(*vertex)[2] = osg::Vec3(100.5, 0.0, 100.5);
-	(*vertex)[3] = osg::Vec3(-100.5, 0.0, 100.5);
-	geo->setVertexArray(vertex);
+	//osg::Vec3Array* vertex = new osg::Vec3Array(4);
+	//(*vertex)[0] = osg::Vec3(-100.5, 0.0, -100.5);
+	//(*vertex)[1] = osg::Vec3(100.5, 0.0, -100.5);
+	//(*vertex)[2] = osg::Vec3(100.5, 0.0, 100.5);
+	//(*vertex)[3] = osg::Vec3(-100.5, 0.0, 100.5);
+	//geo->setVertexArray(vertex);
 
 	osg::Vec4Array* colors = new osg::Vec4Array;
 	colors->push_back(osg::Vec4(1.0, 1.0, 0.0, 1.0));
@@ -2636,29 +2717,31 @@ void osgqt::autorgbshoot()
 	ui->camera_play->setText("animate");
 	ui->motion_play->setText("reset");//拍照之前先得将模型复位
 	motion_play_clicked();
-	shooting_times = 2;
+	shooting_times = 1;
 	shooting_radius = 6;
 	camera_height = 3;
 	int num = 1;
 	qDebug() << "ranse gray 1";
 	for (int i = 0; i < root->getNumChildren(); i++)
 	{
-		osg::ref_ptr<osg::Node> tran = root->getChild(i);
-		if (tran->getName() == "trans")
-		{
-			//双面光照（打开）+背面裁剪(关闭状态机)----解决CAD设计的模型中面片法向不同而造成的透明现象----perfect!!!;
-			osg::StateSet* state = tran->asGroup()->getChild(0)->getOrCreateStateSet();
-			osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
-			TwoSideLight->setTwoSided(true);
-			state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面;
-			state->setAttributeAndModes(TwoSideLight, osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON | osg::StateAttribute::PROTECTED);  //再加上双面光照，使背面完全出现;
 
-			state->setMode(GL_LIGHTING, osg::StateAttribute::ON);
-			state->setMode(GL_LIGHT0, osg::StateAttribute::ON);
-			state->setMode(GL_NORMALIZE, osg::StateAttribute::ON);
+			//双面光照（打开）+背面裁剪(关闭状态机)----解决CAD设计的模型中面片法向不同而造成的透明现象----perfect!!!;
+			//osg::StateSet* state = root->asGroup()->getChild(0)->getOrCreateStateSet();
+			//osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
+			//TwoSideLight->setTwoSided(true);
+			//state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面;
+			//state->setAttributeAndModes(TwoSideLight, osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON | osg::StateAttribute::PROTECTED);  //再加上双面光照，使背面完全出现;
+
+			//state->setMode(GL_LIGHTING, osg::StateAttribute::ON);
+			//state->setMode(GL_LIGHT0, osg::StateAttribute::ON);
+			//state->setMode(GL_NORMALIZE, osg::StateAttribute::ON);
+			
+			osg::StateSet* state = root->asGroup()->getOrCreateStateSet();
+			osg::Texture2D* const tex2D = new osg::Texture2D;
+			state->setAttributeAndModes(tex2D, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);
 			//changecolor(tran->asGroup()->getChild(0), Color,false);
 			NodeVisitor_dyer dyerb(osg::Vec4(0.7, 0.7, 0.7, 1.0),3); //不开启透明  
-			tran->asGroup()->getChild(0)->accept(dyerb); //给所有model设置整体为黑色
+			root->accept(dyerb); //给所有model设置整体为黑色
 			/*osg::Vec4 Color(0,0,0,1.f);
 			osg::Callback * cb1=new modelCallBack1(Color, false);
 			tran->asGroup()->getChild(0)->setUpdateCallback(cb1);*/
@@ -2666,7 +2749,6 @@ void osgqt::autorgbshoot()
 			state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面;
 			state->setMode(GL_LIGHTING, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);//关闭光照
 			state->setMode(GL_LIGHT0, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);*/
-		}
 	}
 	qDebug() << "ranse rgb";
 	for (QMap<osg::ref_ptr<osg::Node>, motionif>::iterator it = motion.begin(); it != motion.end(); it++, num++)
@@ -2678,18 +2760,60 @@ void osgqt::autorgbshoot()
 	}
 	osg::ref_ptr<osg::Vec3dArray> eye = new osg::Vec3dArray();
 	float thea = 2 * osg::PI / shooting_times;
-	for (int i = 0; i < shooting_times; i++)
-	{
-		eye->push_back(osg::Vec3d(shooting_radius * cos(i * thea), shooting_radius * sin(i * thea), camera_height));
-	}
+
+		eye->push_back(osg::Vec3d(4, 4,4));
 	double i = 0.000001;//记录拍了i组照；
 	qDebug() << "start shoot 1";
 	//开始布置每个相机
 	for (int j = 0; j < shooting_times; j++)
 	{
+		//osg::ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
+		////viewer->getCamera()->setComputeNearFarMode( osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR );//启用该模式后 zNear zFar的值才是准确的，否则是默认自动计算远近剪裁面，zNear即使设置了也无效
+		//viewer->setSceneData(roottrans.get());
+		//int pixelwidth = 1080, pixelheight = 1040;
+		//osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
+		//traits->x = 0;
+		//traits->y = 0;
+		//traits->width = pixelwidth;
+		//traits->height = pixelheight;
+		//traits->windowDecoration = true;
+		//traits->doubleBuffer = true;
+		//traits->sharedContext = 0;
+		//traits->samples = 16; //抗锯齿 像素采样率
+		//traits->pbuffer = true; //离屏渲染
+		//osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
+		//viewer->getCamera()->setClearColor(osg::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));      //         底色白色 255 255 255
+		//viewer->getCamera()->setGraphicsContext(gc);
+		//gc->setClearMask(GL_COLOR_BUFFER_BIT);
+		//viewer->getCamera()->setViewport(new osg::Viewport(0, 0, traits->width, traits->height));
+		//double fovy = 30.f, aspectRatio = double(traits->width) / double(traits->height), zNear = 1.0, zFar = 10.0;
+		//viewer->getCamera()->setProjectionMatrixAsPerspective(fovy, aspectRatio, zNear, zFar);
+		////osg::ref_ptr<osg::GraphicsContext::WindowingSystemInterface> wsi = osg::GraphicsContext::getWindowingSystemInterface();
+		//unsigned int  width = gc->getTraits()->width, height = gc->getTraits()->height;
+		////wsi->getScreenResolution(osg::GraphicsContext::ScreenIdentifier(0), width, height);
+		//viewer->realize();
+		//osg::Vec3d eyes = eye->at(j), center = osg::Vec3d(0.0, 0.0, 0.0), up = osg::Vec3d(0.0, 0.0, 1.0);
+		//viewer->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
+
+		//osg::ref_ptr<osg::Image> image_rgb = new osg::Image();
+		//std::string output_path_l = savepicpath.toStdString() + "rgb\\l_ani_" + std::to_string((long double)i) + "_photo_" + std::to_string((long double)j) + ".png";
+		//image_rgb->allocateImage(width, height, 1, GL_RGB, GL_UNSIGNED_BYTE);
+		//viewer->getCamera()->attach(osg::Camera::COLOR_BUFFER, image_rgb.get());
+		//viewer->frame();
+		//viewer->renderingTraversals();
+		//viewer->renderingTraversals();
+		//osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
+		//i += 0.000001;
 		osg::ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
-		//viewer->getCamera()->setComputeNearFarMode( osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR );//启用该模式后 zNear zFar的值才是准确的，否则是默认自动计算远近剪裁面，zNear即使设置了也无效
-		viewer->setSceneData(roottrans.get());
+
+		viewer->setSceneData(roottrans.get());//or roottrans
+		viewer->getCamera()->setClearColor(osg::Vec4f(255.0f, 255.0f, 255.0f, 1.0f));
+		// 环境光
+		viewer->getLight()->setAmbient(osg::Vec4(0.8f, 0.8f, 0.8f, 1.0f));
+		// 漫反射光
+		viewer->getLight()->setDiffuse(osg::Vec4(0.3f, 0.3f, 0.3f, 1.0f));
+		viewer->getLight()->setSpecular(osg::Vec4(0.0f, 0.0f, 0.0f, 1.f));
+		viewer->getLight()->setPosition(osg::Vec4(0.0f, 3.0f, 3.f, 1.0f));
 		int pixelwidth = 1080, pixelheight = 1040;
 		osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
 		traits->x = 0;
@@ -2699,7 +2823,7 @@ void osgqt::autorgbshoot()
 		traits->windowDecoration = true;
 		traits->doubleBuffer = true;
 		traits->sharedContext = 0;
-		traits->samples = 16; //抗锯齿 像素采样率
+		traits->samples = 0; //抗锯齿 像素采样率
 		traits->pbuffer = true; //离屏渲染
 		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
 		viewer->getCamera()->setClearColor(osg::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));      //         底色白色 255 255 255
@@ -2714,15 +2838,14 @@ void osgqt::autorgbshoot()
 		viewer->realize();
 		osg::Vec3d eyes = eye->at(j), center = osg::Vec3d(0.0, 0.0, 0.0), up = osg::Vec3d(0.0, 0.0, 1.0);
 		viewer->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
-
+		//保存图片和参数
 		osg::ref_ptr<osg::Image> image_rgb = new osg::Image();
-		std::string output_path_l = savepicpath.toStdString() + "rgb\\l_ani_" + std::to_string((long double)i) + "_photo_" + std::to_string((long double)j) + ".png";
+		std::string output_path_l = savepicpath1 + "rgb\\l_ani_" + std::to_string((long double)i) + "_photo_" + std::to_string((long double)j) + ".png";
 		image_rgb->allocateImage(width, height, 1, GL_RGB, GL_UNSIGNED_BYTE);
 		viewer->getCamera()->attach(osg::Camera::COLOR_BUFFER, image_rgb.get());
 		viewer->frame();
 		viewer->renderingTraversals();
-		viewer->renderingTraversals();
-		Sleep(2000);
+
 		osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
 		i += 0.000001;
 	}
@@ -3356,9 +3479,9 @@ void osgqt::addmodel1(int i)//用于scan2cadtxt文件添加shapenet模型
 	//将模型移动到地面上，z=0平面
 	osg::Node* model1 = model;
 	osg::Node* node = dynamic_cast<osg::Node*>(model1);
-	osg::ComputeBoundsVisitor boundVisitor;
-	node->accept(boundVisitor);
-	osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
+	//osg::ComputeBoundsVisitor boundVisitor;
+	//node->accept(boundVisitor);
+	//osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
 	/*float z = 0 - boundingBox.zMin();
 	height.insert(trans, z);
 	osg::Matrix m = osg::Matrix::translate(0, 0, z);*/
@@ -3377,7 +3500,7 @@ void osgqt::addmodel1(int i)//用于scan2cadtxt文件添加shapenet模型
 		m(0, 1), m(1, 1), m(2, 1), m(3, 1), 
 		m(0, 2), m(1, 2), m(2, 2), m(3, 2),
 		m(0, 3), m(1, 3), m(2, 3), m(3, 3));
-	m = modelinfo[i].t[2]*m* modelinfo[i].t[0]*n;//左边乘上模型，所以先缩放后旋转后平移，右边*n以后就可以换一个平面
+	m = modelinfo[i].t[2]*m*modelinfo[i].t[0]*n* sceneM;//左边乘上模型，所以先缩放后旋转后平移，右边*n以后就可以换一个平面
 	trans->setMatrix(m);
 
 	//trans->setMatrix(osg::Matrix::scale(scale_all,scale_all,scale_all));
@@ -3386,6 +3509,8 @@ void osgqt::addmodel1(int i)//用于scan2cadtxt文件添加shapenet模型
 	osg::StateSet* state = model->getOrCreateStateSet();
 	osg::ref_ptr<osg::LightModel> TwoSideLight = new osg::LightModel;
 	TwoSideLight->setTwoSided(true);
+	osg::Texture2D* const tex2D = new osg::Texture2D;
+	state->setAttributeAndModes(tex2D, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);
 	state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面 ;
 	state->setAttributeAndModes(TwoSideLight, osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON | osg::StateAttribute::PROTECTED);  //再加上双面光照，使背面完全出现！;
 	trans->setName("trans");
@@ -3406,10 +3531,9 @@ void osgqt::addmodel2(int i)//用于文本文件添加shape2motion模型
 	node->accept(boundVisitor);
 	osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
 	//表示shape2motion模型到shapenet模型的缩放
-	osg::Matrix s1 = osg::Matrix::scale(modelinfo[i].bobox.z()/boundingBox.xMax(), modelinfo[i].bobox.x() / boundingBox.yMax(), modelinfo[i].bobox.y() / boundingBox.zMax());
-	//float z = 0 - boundingBox.zMin();
-	//height.insert(trans, z);
-	//osg::Matrix m = osg::Matrix::translate(0, 0, z);
+	s1 = osg::Matrix::scale(modelinfo[i].bobox.z()/boundingBox.xMax(), modelinfo[i].bobox.x() / boundingBox.yMax(), modelinfo[i].bobox.y() / boundingBox.zMax());
+	//InfoVisitor1 addscale(s1);
+	//model->accept(addscale);
 	osg::Matrix m = osg::Matrix::identity();//表示旋转
 	osg::Matrix n = osg::Matrix(1, 0, 0, 0,
 								0, 0, 1, 0,
@@ -3425,7 +3549,7 @@ void osgqt::addmodel2(int i)//用于文本文件添加shape2motion模型
 		m(0, 1), m(1, 1), m(2, 1), m(3, 1),
 		m(0, 2), m(1, 2), m(2, 2), m(3, 2),
 		m(0, 3), m(1, 3), m(2, 3), m(3, 3));
-	m =  s1 *n2 * modelinfo[i].t[3]* modelinfo[i].t[2]*m* modelinfo[i].t[0]*n;//左边乘上模型，所以先缩放后旋转后平移，右边*n以后就可以换一个平面
+	m =  s1*n2 * modelinfo[i].t[3]* modelinfo[i].t[2]*m* modelinfo[i].t[0]*n* sceneM ;//左边乘上模型，所以先缩放后旋转后平移，右边*n以后就可以换一个平面
 	//m = n2;
 	trans->setMatrix(m);
 
@@ -3549,15 +3673,15 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 {
 	QDir dir;
 	//QString  directory= QFileDialog::getExistingDirectory(this, tr("Choose txt file Path"), "./");
-	QString  directory = "D:/my/sunxun/Json2txt_only_ani";//autocreatescene
+	QString  directory = "D:/my/sunxun/autocreatescene";//Json2txt_only_ani
 	dir = QDir(directory);
 	dir.setFilter(QDir::Files);
 	//QString  shapenetdir = QFileDialog::getExistingDirectory(this, tr("Choose shapenet Path"), "./");
 	
 	//QString  shape2motiondir = QFileDialog::getExistingDirectory(this, tr("Choose shape2motion Path"), "./");
-	QString  shapenetdir = "E:/Motion Dataset v0"; 
-	QString  shape2motiondir = "E:/shapenet_part";
-	
+	QString  shape2motiondir = "J:/Motion Dataset v0"; 
+	QString  shapenetdir = "J:/shapenet_part";
+	QString  scandir = "J:/scans-original/";
 	QFileInfoList list = dir.entryInfoList();//获取文件信息列表
 	ifstream fin1(dir.absolutePath().toStdString() + "/" + "shapenet_shape2motion_corres.txt");	
 	struct shapenet_motion
@@ -3570,7 +3694,7 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 	{
 		shape_motion.push_back(tem);
 	}fin1.close();
-	std::string savemodelpath = "E:/model";
+	std::string savemodelpath = "G:/model";
 	if (0 != access(savemodelpath.c_str(), 0))
 	{ // if this folder not exist, create a new one.
 		mkdir(savemodelpath.c_str());   // 返回 0 表示创建成功，-1 表示失败
@@ -3582,9 +3706,16 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 		mkdir(savetxtpath.c_str());   // 返回 0 表示创建成功，-1 表示失败
 		//换成 ::_mkdir  ::_access 也行，不知道什么意思
 	}
-	
-	for (int filenum = 1371; filenum < list.size(); filenum++)//依次打开场景txt文件
+
+	for (int filenum = 0; filenum < list.size(); filenum++)//依次打开场景txt文件
 	{
+		for (int i = 0; i < roottrans->getNumChildren(); i++)
+		{
+			roottrans->removeChild(i);
+			i--;
+		}
+		root->removeChild(0,root->getNumChildren());
+		motion.clear();
 		std::ofstream f1;
 		f1.open("./log.txt",ios::app);
 		QFileInfo fileInfo = list.at(filenum);
@@ -3614,12 +3745,32 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 			else isdone = true;
 		}
 		ifstream fout(savetxtpath + "/path" + fileInfo.baseName().toStdString() + ".txt", ios::in);
-		std::string modelpath = savemodelpath + "/" + fileInfo.baseName().toStdString() + ".flt";
+		ifstream scanfile(scandir.toStdString() + fileInfo.baseName().toStdString() + "/" + fileInfo.baseName().toStdString() + ".txt");
+		std::string scantem;
+		double mat[16];
+		while(scanfile >> scantem)
+		{
+			if (scantem == "axisAlignment")
+			{
+				scanfile >> scantem;
+				for (int j = 0; j < 16; j++)
+				{
+					scanfile >> mat[j];
+				}
+				break;
+			}
+		}
+		sceneM = osg::Matrix(mat);
+		sceneM = osg::Matrixf(sceneM(0, 0), sceneM(1, 0), sceneM(2, 0), sceneM(3, 0),
+			sceneM(0, 1), sceneM(1, 1), sceneM(2, 1), sceneM(3, 1),
+			sceneM(0, 2), sceneM(1, 2), sceneM(2, 2), sceneM(3, 2),
+			sceneM(0, 3), sceneM(1, 3), sceneM(2, 3), sceneM(3, 3));;
+		std::string modelpath = savemodelpath + "/" + fileInfo.baseName().toStdString() + ".ive";
 		QFileInfo modelflt(QString::fromStdString(modelpath));
-		if (isdone&&modelflt.exists() && modelflt.size() > 10000)
+		/*if (isdone&&modelflt.exists() && modelflt.size() > 10000)
 		{	
 			continue;
-		}
+		}*/
 		//std::string tem = fileInfo.baseName().toStdString();
 		//f1 << tem<< endl;
 		//f1.close();
@@ -3657,68 +3808,65 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 		}
 		fin.close();
 		
-		if (modelflt.exists()&&modelflt.size()>10000)
-		{
-			osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
-			model = osgDB::readNodeFile(modelpath, a);
-			if (model == NULL)
-			{
-				f1 << modelpath << endl;
-				//f1.close();
-				QFile modelp(QString::fromStdString(modelpath));
-				modelp.remove();
-				filenum--;
-				continue;
-			}
-			update_treewidget2();
-			osg::Node* node = dynamic_cast<osg::Node*>((osg::Node*)model);
-			osg::ComputeBoundsVisitor boundVisitor;
-			node->accept(boundVisitor);
-			osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
-			double xrange = boundingBox.xMax() - boundingBox.xMin();
-			double yrange = boundingBox.yMax() - boundingBox.yMin();
-			double zrange = boundingBox.zMax() - boundingBox.zMin();
-			osg::Vec3 center = boundingBox.center();
-			//osg::Matrix m = osg::Matrix::identity();
-			osg::Matrix m = osg::Matrix::scale(2.0 / xrange, 2.0 / xrange, 2.0 / xrange) * osg::Matrix::translate(-boundingBox.center().x(), -boundingBox.center().y(), -boundingBox.center().z());
-			roottrans->setMatrix(m);
-			roottrans->setName("scenescale");
-			roottrans->addChild(model);
-			//ViewerWindow->setSceneData(roottrans);
-			if (!isdone)
-			{
-				autorgbshoot1();//自动拍rgb照
-			}
-			roottrans->removeChild(model);
-			motion.clear();
-		}
-		else
-		{
+		//if (modelflt.exists()&&modelflt.size()>10000)
+		//{
+		//	osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
+		//	model = osgDB::readNodeFile(modelpath, a);
+		//	if (model == NULL)
+		//	{
+		//		f1 << modelpath << endl;
+		//		//f1.close();
+		//		QFile modelp(QString::fromStdString(modelpath));
+		//		modelp.remove();
+		//		filenum--;
+		//		continue;
+		//	}
+		//	update_treewidget2();
+		//	osg::Node* node = dynamic_cast<osg::Node*>((osg::Node*)model);
+		//	osg::ComputeBoundsVisitor boundVisitor;
+		//	node->accept(boundVisitor);
+		//	osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
+		//	double xrange = boundingBox.xMax() - boundingBox.xMin();
+		//	double yrange = boundingBox.yMax() - boundingBox.yMin();
+		//	double zrange = boundingBox.zMax() - boundingBox.zMin();
+		//	osg::Vec3 center = boundingBox.center();
+		//	//osg::Matrix m = osg::Matrix::identity();
+		//	osg::Matrix m = osg::Matrix::scale(2.0 / xrange, 2.0 / xrange, 2.0 / xrange) * osg::Matrix::translate(-boundingBox.center().x(), -boundingBox.center().y(), -boundingBox.center().z());
+		//	roottrans->setMatrix(m);
+		//	roottrans->setName("scenescale");
+		//	roottrans->addChild(model);
+		//	//ViewerWindow->setSceneData(roottrans);
+		//	if (!isdone)
+		//	{
+		//		autorgbshoot1();//自动拍rgb照
+		//	}
+		//	roottrans->removeChild(model);
+		//	motion.clear();
+		//}
+		/*else
+		{*/
 			int i = -1; string cate, id; bool modelnull = false;
 			while (fout >> i >> cate)//事先生成的路径文件
 			{
 				string cad_file;
+				model = new osg::Node;
 				if (cate != "none")
 				{
 					fout >> id;
-					cad_file = shapenetdir.toStdString() + "/" + cate + "/" + id + "/flt/" + id + ".flt";
-					current_file_name = cate + "/" + id;
-				}
-				else//没有匹配motion 模型的时候，
-				{
-					cad_file = shape2motiondir.toStdString() + "/" + modelinfo[i].cate + "/" + modelinfo[i].id + "/models/model_normalized.obj";
-					current_file_name = modelinfo[i].cate + "/" + modelinfo[i].id;
-				}
-				osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
-				model = new osg::Node();
+					QDir mot(shape2motiondir + "/" + QString::fromStdString(cate));
+					mot.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+					QFileInfoList li = mot.entryInfoList();
 
-				model->setName(modelinfo[i].cate);
-				//auto aaaa = model->asGroup();
-
-				model_state_set = model->getStateSet();
-				if (cate != "none")
-				{
+					std::random_device rd;
+					std::default_random_engine e(rd());
+					std::uniform_int_distribution<unsigned> u(0, li.size() - 1);
+					int num = u(e);
+					cad_file = li.at(num).absolutePath().toStdString()  +"/"+li.at(num).baseName().toStdString()+ "/flt/" + li.at(num).baseName().toStdString() + ".flt";
+					id = li.at(num).baseName().toStdString() + ".flt";
+					osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
 					model = osgDB::readNodeFile(cad_file, a);
+					//model->setName(cate + "_" + id+"_"+ std::to_string(i));
+					model->setName(cate + "_" + id);
 					addmodel2(i);//加载shape2motion模型
 
 					init_state_set = model->getStateSet();
@@ -3735,18 +3883,15 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 					box_is_picked = false;
 					flag_open = true;
 				}
-				else
+				else//没有匹配motion 模型的时候，
 				{
-					osgDB::Options * options = new osgDB::Options("noRotation | noTriStripPolygons");
-					qDebug() << QString::fromStdString(cad_file);
+					cad_file = shapenetdir.toStdString() + "/" + modelinfo[i].cate + "/" + modelinfo[i].id + "/models/model_normalized.obj";
+					current_file_name = modelinfo[i].cate + "/" + modelinfo[i].id;
+					osgDB::Options* options = new osgDB::Options("noRotation | noTriStripPolygons");
+					//qDebug() << QString::fromStdString(cad_file);
 					model = osgDB::readNodeFile(cad_file, options);
-					if (model == NULL)
-					{
-						f1 << cad_file << endl;
-						//f1.close();
-						modelnull = true;
-						break;
-					}
+					//model->setName(modelinfo[i].cate + "_" + modelinfo[i].id + "_" + std::to_string(i));
+					model->setName(modelinfo[i].cate + "_" + modelinfo[i].id);
 					addmodel1(i);
 					init_state_set = model->getStateSet();
 					box_infomation = "";
@@ -3760,6 +3905,7 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 					box_is_picked = false;
 					flag_open = true;
 				}
+				qDebug() << QString::fromStdString(cad_file);
 			}
 			fout.close();
 			i++;
@@ -3768,41 +3914,30 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 			{
 				for (int j = 0; j < shape_motion.size(); j++)
 				{
+					string id1;
+					model = new osg::Node;
 					if (modelinfo[i].cate == shape_motion[j].shapecate)
 					{
 						string cad_file;
 						if (shape_motion[j].motioncate != "none")
 						{
-							cad_file = shapenetdir.toStdString() + "/" + shape_motion[j].motioncate + "/" + shape_motion[j].motionid + "/flt/" + shape_motion[j].motionid + ".flt";
+							QDir mot(shape2motiondir + "/" + QString::fromStdString(shape_motion[j].motioncate));
+							mot.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+							QFileInfoList li = mot.entryInfoList();
+
+							//std::random_device rd;
+							unsigned seed = std::chrono::steady_clock::now().time_since_epoch().count();
+							std::default_random_engine e(seed);
+							std::uniform_int_distribution<unsigned> u(0, li.size() - 1);
+							int num = u(e);
+							cad_file = li.at(num).absolutePath().toStdString()  +"/" + li.at(num).baseName().toStdString() + "/flt/" + li.at(num).baseName().toStdString() + ".flt";
+							//cad_file = shape2motiondir.toStdString() + "/" + shape_motion[j].motioncate + "/" + shape_motion[j].motionid + "/flt/" + shape_motion[j].motionid + ".flt";
 							current_file_name = shape_motion[j].motioncate + "/" + shape_motion[j].motionid;
 							fout1 << i << " " << shape_motion[j].motioncate << " " << shape_motion[j].motionid << endl;
-						}
-						else//没有匹配motion 模型的时候，
-						{
-							cad_file = shape2motiondir.toStdString() + "/" + modelinfo[i].cate + "/" + modelinfo[i].id + "/models/model_normalized.obj";
-							current_file_name = modelinfo[i].cate + "/" + modelinfo[i].id;
-							fout1 << i << " " << "none" << endl;
-						}
-						flag_open = false;
-						current_tree_item_name = "";
-						// 注释： 用于更换模型
-						flag_open = false;
-						//selectedItemList.clear();
-						mouse_is_picked_empty = false;
-						mouse_is_picked = false;
-						tree_widget_is_picked = false;
-						tree_widget_is_picked_empyt = false;
-						box_is_picked = false;
-						osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
-						model = new osg::Node();
-
-						model->setName(modelinfo[i].cate);
-						//auto aaaa = model->asGroup();
-
-						model_state_set = model->getStateSet();
-						if (shape_motion[j].motioncate != "none")
-						{
+							osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
 							model = osgDB::readNodeFile(cad_file, a);
+							//model->setName(cate + "_" + li.at(num).baseName().toStdString() + ".flt" + "_" + std::to_string(i));
+							model->setName(cate + "_" + li.at(num).baseName().toStdString() + ".flt");
 							addmodel2(i);//加载shape2motion模型
 
 							init_state_set = model->getStateSet();
@@ -3819,14 +3954,19 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 							box_is_picked = false;
 							flag_open = true;
 						}
-						else
+						else//没有匹配motion 模型的时候，
 						{
+							cad_file = shapenetdir.toStdString() + "/" + modelinfo[i].cate + "/" + modelinfo[i].id + "/models/model_normalized.obj";
+							current_file_name = modelinfo[i].cate + "/" + modelinfo[i].id;
+							fout1 << i << " " << "none" << endl;
 							osg::ref_ptr<osgDB::Options> options = new osgDB::Options("noRotation | noTriStripPolygons");
+							//model->setName(modelinfo[i].cate + "_" + modelinfo[i].id + "_" + std::to_string(i));
+							model->setName(modelinfo[i].cate + "_" + modelinfo[i].id);
 							model = osgDB::readNodeFile(cad_file, options);
 							if (model == NULL)
 							{
 								f1 << cad_file << endl;
-								
+
 								modelnull = true;
 								break;
 							}
@@ -3843,6 +3983,7 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 							box_is_picked = false;
 							flag_open = true;
 						}
+						qDebug() << QString::fromStdString(cad_file);
 					}
 				}
 			}
@@ -3853,21 +3994,73 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 			osg::ComputeBoundsVisitor boundVisitor;
 			node->accept(boundVisitor);
 			osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
-			double xrange = boundingBox.xMax() - boundingBox.xMin();
-			double yrange = boundingBox.yMax() - boundingBox.yMin();
-			double zrange = boundingBox.zMax() - boundingBox.zMin();
+			double xrange = boundingBox.xMax() - boundingBox.xMin()+0.2;
+			double yrange = boundingBox.yMax() - boundingBox.yMin()+0.2;
+			double zrange = boundingBox.zMax() - boundingBox.zMin()+0.2;
 			osg::Vec3 center = boundingBox.center();
+
+			model = new osg::Node;
+			model = osgDB::readNodeFile("./resource/plane.ive");
+			model->setName("floor");
+			osg::Matrix fm = osg::Matrix::scale(xrange / 30., yrange / 30., 1.0) * osg::Matrix::translate(center.x(), center.y(), boundingBox.zMin());
+			osg::MatrixTransform* trans= new osg::MatrixTransform;
+			trans->setMatrix(fm);
+			trans->setName("floortrans");
+			trans->addChild(model);
+			root->addChild(trans);
+
+			trans = new osg::MatrixTransform;
+			model = new osg::Node;
+			model = osgDB::readNodeFile("./resource/plane.ive");
+			model->setName("wall1");
+			fm = osg::Matrix::scale(xrange / 30., zrange / 30., 1.0) * osg::Matrix::rotate(osg::PI/2,1,0,0)* osg::Matrix::translate(center.x(), boundingBox.yMin()-0.1,center.z()+0.1 );
+			trans->setMatrix(fm);
+			trans->setName("walltrans1");
+			trans->addChild(model);
+			root->addChild(trans);
+
+			trans = new osg::MatrixTransform;
+			model = new osg::Node;
+			model = osgDB::readNodeFile("./resource/plane.ive");
+			model->setName("wall2");
+			fm = osg::Matrix::scale(xrange / 30., zrange / 30. ,1.0) * osg::Matrix::rotate(osg::PI / 2, 1, 0, 0) * osg::Matrix::translate(center.x(), boundingBox.yMax()+0.1, center.z() + 0.1);
+			trans->setMatrix(fm);
+			trans->setName("walltrans2");
+			trans->addChild(model);
+			root->addChild(trans);
+
+			trans = new osg::MatrixTransform;
+			model = new osg::Node;
+			model = osgDB::readNodeFile("./resource/plane.ive");
+			model->setName("wall3");
+			fm = osg::Matrix::scale(zrange / 30., yrange / 30., 1.0) * osg::Matrix::rotate(osg::PI / 2, 0, 1, 0) * osg::Matrix::translate(boundingBox.xMin()-0.1,center.y(), center.z() + 0.1);
+			trans->setMatrix(fm);
+			trans->setName("walltrans3");
+			trans->addChild(model);
+			root->addChild(trans);
+
+			trans = new osg::MatrixTransform;
+			model = new osg::Node;
+			model = osgDB::readNodeFile("./resource/plane.ive");
+			model->setName("wall4");
+			fm = osg::Matrix::scale(zrange / 30.,yrange / 30. , 1.0) * osg::Matrix::rotate(osg::PI / 2, 0, 1, 0) * osg::Matrix::translate(boundingBox.xMax()+0.1, center.y(), center.z() + 0.1);
+			trans->setMatrix(fm);
+			trans->setName("walltrans4");
+			trans->addChild(model);
+			root->addChild(trans);
+
+			double range = max(max(xrange, yrange), zrange);
+			
 			//osg::Matrix m = osg::Matrix::identity();
-			osg::Matrix m=osg::Matrix::scale(2.0/xrange, 2.0 / xrange, 2.0 / xrange)*osg::Matrix::translate(-boundingBox.center().x(), -boundingBox.center().y(),-boundingBox.center().z());
+			osg::Matrix m=osg::Matrix::translate(-center.x(), -center.y(),-center.z())*osg::Matrix::scale(2.0/range, 2.0 / range, 2.0 / range);
 			roottrans->setMatrix(m);
 			roottrans->setName("scenescale");
 			roottrans->addChild(root);
-			if(!isdone)
+			//if(!isdone)
 				autorgbshoot();//自动拍rgb照
 			qDebug() << "write";
-			osgDB::Registry::instance()->writeNode(*(root->asNode()), modelpath, osgDB::Registry::instance()->getOptions());//save obj
+			osgDB::Registry::instance()->writeNode(*(roottrans->asNode()), modelpath, osgDB::Registry::instance()->getOptions());//save obj
 			on_pushButton_2_clicked();
-		}
 		//生成点云
 	}
 }
@@ -3910,9 +4103,9 @@ void osgqt::on_pushButton_clicked()//自动场景入口
 */
 void osgqt::on_pushButton_2_clicked()//删除所有节点，使整个程序reset
 {
-	for (int i = 0; i < root->getNumChildren(); i++)
+	for (int i = 0; i < roottrans->getNumChildren(); i++)
 	{
-		root->removeChild(i);
+		roottrans->removeChild(i);
 		i--;
 	}
 	//treewidget->clear();

@@ -104,8 +104,8 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\include;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\include;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\build3.4.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\my\sunxun\osg3.4.1\build3.4.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>H:\osg3.2.1\OpenSceneGraph\include;H:\osg3.2.1\OpenSceneGraph\bin;H:\QT\Tools\mingw530_32\opt\include;H:\R2015\extern\include;H:\R2015\extern\include\win64;$(IncludePath)</IncludePath>

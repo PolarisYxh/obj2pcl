@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QTDIR>C:\Qt\Qt5.12.3\5.12.3\msvc2017_64</QTDIR>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3bD:\MATLAB\R2017a\runtime\win64%3bD:\MATLAB\R2017a\bin%3bD:\MATLAB\R2017a\bin\win64%3bD:\my\sunxun\osg3.4.1\OpenSceneGraph\build3.4.0\bin%3b$(PATH)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3bD:\MATLAB\R2017a\runtime\win64%3bD:\MATLAB\R2017a\bin%3bD:\MATLAB\R2017a\bin\win64%3bD:\my\sunxun\osg3.4.1\build3.4.0\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <QTDIR>H:\QT\5.9.1\msvc2017_64</QTDIR>
