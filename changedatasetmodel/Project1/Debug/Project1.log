@@ -1,0 +1,409 @@
+﻿  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,11): error C2146: 语法错误: 缺少“;”(在标识符“GLboolean”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,25): fatal error C1003: 错误计数超过 100；正在停止编译
+  Photographer_sx.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1158,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,30): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1159,11): error C2146: 语法错误: 缺少“;”(在标识符“GLboolean”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1160,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1161,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1162,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1163,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1164,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1165,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1166,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1167,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1168,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1169,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1170,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1171,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1172,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1173,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1174,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1175,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1176,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1177,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1178,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1179,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1180,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1181,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1182,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1183,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1184,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1185,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1186,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1187,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1188,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1189,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1190,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1191,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1192,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1193,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1194,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1195,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1196,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1197,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1198,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1199,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1200,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1201,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1202,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1203,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1204,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1205,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1206,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,11): error C2144: 语法错误:“void”的前面应有“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,25): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,1): error C2086: “int WINGDIAPI”: 重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1157): message : 参见“WINGDIAPI”的声明
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GL\gl.h(1207,25): fatal error C1003: 错误计数超过 100；正在停止编译
+  正在生成代码...
