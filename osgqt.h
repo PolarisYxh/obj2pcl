@@ -77,13 +77,14 @@
 #include <vector>
 #include <direct.h>
 #include "QtImage2PCL.h"
-
+#include "SVMData.h"
+#include "DraggableWire.h"
+#include "EventHandler.h"
 //#include <omp.h>
 using namespace  std;
 namespace Ui {
 class osgqt;
 }
-
 class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 {
   public:
@@ -253,6 +254,8 @@ private slots:
 
 	void camera_confirm_clicked();	
 	void camera_play_clicked();//点击camera模块的confirm按钮
+	void camera_play_2_clicked();//点击后在有墙面的场景模型的墙面上添加可以点选的点
+	void point_clicked();//点选墙面上的点之后，显示viewport，
 	void camera_delete_clicked();//点击camera模块的delete按钮
 
 	void startButton_pressed();//开始拍照
@@ -272,29 +275,22 @@ private:
 
 	void changecolor(osg::ref_ptr<osg::Node> node, osg::Vec4 Color, bool open_transparent);//没用
 
+	void removeNodebyName(osg::Group* node, std::string name);//将node下的按名字匹配的节点删除	
+	QTreeWidgetItem* findpar(QTreeWidgetItem* fitem);//找到树形图节点的最上层父节点
+	osg::ref_ptr<osg::Node> findnodepar(osg::ref_ptr<osg::Node> node);//返回模型节点的trans父节点
+	bool isdof(osg::Node& node);//用dynamic_cast判断是否dof节点
+
+	bool motionfunc();//添加dof信息到motion结构体，在osgqt.cpp中
 	//void update_treewidget1();//用于自动搭建场景里更新树形结构图，并且给第一个dof添加运动信息到motion结构体
 	//void update_treewidget2();//用于拍摄自动搭建场景rgb图，添加所有dof到motion中
 	//void autostartshoot();//自动场景的自动depth+label拍照功能
 	//void autorgbshoot();//自动场景的自动rgb拍照功能
 	//void autorgbshoot1();//用于场景flt的自动拍照
 
-	QTreeWidgetItem* findpar(QTreeWidgetItem* fitem);//找到树形图节点的最上层父节点
-	osg::ref_ptr<osg::Node> findnodepar(osg::ref_ptr<osg::Node> node);//返回模型节点的trans父节点
-
-	bool isdof(osg::Node& node);
-	//struct motionif
-	//{
-	//	double motioninfo[4];//012对应xyz运动范围，3对应次数
-	//};
     Ui::osgqt *ui;
     QtOsgView * ViewerWindow;
 	QMap<osg::ref_ptr<osg::MatrixTransform>, double> height;
-	void removenode(std::string name);
-	bool motionfunc();
-	//QMap<osg::ref_ptr<osg::Node>, motionif> motion;//保存运动信息，用于拍照和animate
-	//QVector<osg::ref_ptr<osg::Node>> lastmotion;//animate中记录上次animate完未reset的部件
-	//QString motionname;
-	//float motion[2];
+
 	double camera_height;
 	double shooting_radius;
 	int shooting_times;
@@ -306,7 +302,8 @@ private:
 	//Photographer pg;
 	osg::ref_ptr<osg::Node> model=new osg::Node;
 	osg::ref_ptr<osg::Group> root= new osg::Group;
-	osg::ref_ptr<osg::MatrixTransform> roottrans = new osg::MatrixTransform;
+	osg::ref_ptr<osg::MatrixTransform> trans = new osg::MatrixTransform;
+	//osg::ref_ptr<osg::MatrixTransform> roottrans = new osg::MatrixTransform;
 	//表盘的几何节点
 	osg::ref_ptr<osg::Geode> clockGeode = new osg::Geode;
 	//圆圈
@@ -323,11 +320,22 @@ private:
 		string id;
 		osg::Matrix t[4];//t0 平移 t1 旋转 t2 缩放 t3 boundingbox到模型中心的平移转换
 		osg::Vec3 bobox;//boundingbox
-	}* modelinfo;//scene0700_00.txt中的信息
+	}modelinfo;//scene0700_00.txt中的信息
+	
+	struct camerapos
+	{
+		osg::Vec3d eyes;
+		osg::Vec3d center;
+		osg::Vec3d up;
+	};
+	camerapos camtempos;//只用于点击的point的记录
+	std::vector<camerapos> camlist;//保存的相机信息，用于最终拍照
 	osg::Matrix scanM;
 	vector<osg::Vec4> VColor;
 	QIcon dir;
 	QIcon dofp;
+	osg::Matrix pointsmatrix;
+	osg::ref_ptr<osg::Vec3dArray> eye=new osg::Vec3dArray();
 };
 
 #endif // OSG QT_H

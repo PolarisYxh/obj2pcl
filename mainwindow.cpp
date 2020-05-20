@@ -129,7 +129,7 @@ void MainWindow::showpointcloud()
 	osg::ref_ptr<osg::Vec3dArray> vertices = new osg::Vec3dArray();
 	osg::ref_ptr<osg::Vec4Array> colors = new osg::Vec4Array();
 	QMessageBox msgBox;
-	msgBox.setText("wait....");
+	msgBox.setText("loading....");
 	msgBox.show();
 	qApp->processEvents();
 	while (!fs.eof())

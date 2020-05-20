@@ -83,6 +83,24 @@
     <ClCompile Include="QtImage2PCL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wireandpoint\DraggableWire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wireandpoint\EventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wireandpoint\LineIntersector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wireandpoint\PointIntersector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wireandpoint\SVMData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wireandpoint\VirtualPlaneIntersector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_osgqt.h">
@@ -110,6 +128,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QtImage2PCL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\DraggableWire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\EventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\LineIntersector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\PointIntersector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\SVMData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wireandpoint\VirtualPlaneIntersector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

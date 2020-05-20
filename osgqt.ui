@@ -241,7 +241,7 @@
               <bool>true</bool>
              </property>
              <property name="placeholderText">
-              <string>_r _t _rt</string>
+              <string>_r _t _s</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="motion_amp">
@@ -430,7 +430,7 @@
             <widget class="QPushButton" name="camera_play">
              <property name="geometry">
               <rect>
-               <x>90</x>
+               <x>40</x>
                <y>140</y>
                <width>75</width>
                <height>23</height>
@@ -458,6 +458,19 @@
                <width>101</width>
                <height>20</height>
               </rect>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="camera_play_2">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>140</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>monitor</string>
              </property>
             </widget>
            </widget>

@@ -106,7 +106,7 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\wireandpoint;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\MATLAB\R2017a\lib;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -114,7 +114,7 @@
     <LibraryPath>H:\osg3.2.1\OpenSceneGraph\lib;H:\R2015\extern\lib\win64\microsoft;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\MATLAB\R2017a\extern\include;D:\MATLAB\R2017a\extern\include\win64;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\wireandpoint;D:\MATLAB\R2017a\extern\include;D:\MATLAB\R2017a\extern\include\win64;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\MATLAB\R2017a\extern\lib\win64\mingw64;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -397,6 +397,12 @@
     <ClCompile Include="qimageviewer.cpp" />
     <ClCompile Include="QtImage2PCL.cpp" />
     <ClCompile Include="qtosgview.cpp" />
+    <ClCompile Include="wireandpoint\DraggableWire.cpp" />
+    <ClCompile Include="wireandpoint\EventHandler.cpp" />
+    <ClCompile Include="wireandpoint\LineIntersector.cpp" />
+    <ClCompile Include="wireandpoint\PointIntersector.cpp" />
+    <ClCompile Include="wireandpoint\SVMData.cpp" />
+    <ClCompile Include="wireandpoint\VirtualPlaneIntersector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h" />
@@ -408,6 +414,12 @@
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="Tool_test_2.h" />
+    <ClInclude Include="wireandpoint\DraggableWire.h" />
+    <ClInclude Include="wireandpoint\EventHandler.h" />
+    <ClInclude Include="wireandpoint\LineIntersector.h" />
+    <ClInclude Include="wireandpoint\PointIntersector.h" />
+    <ClInclude Include="wireandpoint\SVMData.h" />
+    <ClInclude Include="wireandpoint\VirtualPlaneIntersector.h" />
     <QtMoc Include="qimageviewer.h" />
     <QtMoc Include="qabout.h" />
     <QtMoc Include="osgqt.h" />

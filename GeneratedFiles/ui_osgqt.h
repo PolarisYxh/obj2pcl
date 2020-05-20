@@ -59,6 +59,7 @@ public:
     QPushButton *camera_play;
     QLineEdit *input_shooting_radius;
     QLineEdit *input_camera_height;
+    QPushButton *camera_play_2;
     QGroupBox *groupBox;
     QToolButton *open;
     QToolButton *remove;
@@ -227,13 +228,16 @@ public:
         camera_delete->setGeometry(QRect(140, 170, 75, 23));
         camera_play = new QPushButton(groupBox_14);
         camera_play->setObjectName(QString::fromUtf8("camera_play"));
-        camera_play->setGeometry(QRect(90, 140, 75, 23));
+        camera_play->setGeometry(QRect(40, 140, 75, 23));
         input_shooting_radius = new QLineEdit(groupBox_14);
         input_shooting_radius->setObjectName(QString::fromUtf8("input_shooting_radius"));
         input_shooting_radius->setGeometry(QRect(140, 70, 101, 20));
         input_camera_height = new QLineEdit(groupBox_14);
         input_camera_height->setObjectName(QString::fromUtf8("input_camera_height"));
         input_camera_height->setGeometry(QRect(140, 30, 101, 20));
+        camera_play_2 = new QPushButton(groupBox_14);
+        camera_play_2->setObjectName(QString::fromUtf8("camera_play_2"));
+        camera_play_2->setGeometry(QRect(140, 140, 75, 23));
 
         rightLayout->addWidget(groupBox_14);
 
@@ -326,7 +330,7 @@ public:
         motion_delete->setText(QApplication::translate("osgqt", "delete", nullptr));
         motion_play->setText(QApplication::translate("osgqt", "animate", nullptr));
         label_9->setText(QApplication::translate("osgqt", "dof name", nullptr));
-        input_motion_name->setPlaceholderText(QApplication::translate("osgqt", "_r _t _rt", nullptr));
+        input_motion_name->setPlaceholderText(QApplication::translate("osgqt", "_r _t _s", nullptr));
         motion_amp->setPlaceholderText(QString());
         input_motion_fre->setPlaceholderText(QApplication::translate("osgqt", ">0", nullptr));
         setting_message->setPlaceholderText(QApplication::translate("osgqt", "motion info", nullptr));
@@ -339,6 +343,7 @@ public:
         label_5->setText(QApplication::translate("osgqt", "shooting times", nullptr));
         camera_delete->setText(QApplication::translate("osgqt", "cancel", nullptr));
         camera_play->setText(QApplication::translate("osgqt", "animate", nullptr));
+        camera_play_2->setText(QApplication::translate("osgqt", "monitor", nullptr));
         groupBox->setTitle(QApplication::translate("osgqt", "Model", nullptr));
         open->setText(QApplication::translate("osgqt", "add", nullptr));
         remove->setText(QApplication::translate("osgqt", "remove", nullptr));
