@@ -327,6 +327,7 @@ private:
 		osg::Vec3d eyes;
 		osg::Vec3d center;
 		osg::Vec3d up;
+		osg::Node* point;
 	};
 	camerapos camtempos;//只用于点击的point的记录
 	std::vector<camerapos> camlist;//保存的相机信息，用于最终拍照

@@ -2098,7 +2098,10 @@ void osgqt::camera_confirm_clicked()
 	}
 }
 void osgqt::camera_delete_clicked()
-{
+{	
+	QMessageBox msgBox;
+	msgBox.setText("Clear all cameras' parameters!");
+	msgBox.exec();
 	removeNodebyName(root,"kinectMT");
 	removeNodebyName(root,"viewportMT");
 	removeNodebyName(root,"circle");
@@ -2109,6 +2112,7 @@ void osgqt::camera_delete_clicked()
 	shooting_radius = 0;
 	shooting_times = 0;
 	camlist.clear();
+	pointindex = -1;
 	ui->camera_play->setText("animate");
 	ui->input_camera_height->setDisabled(false);
 	ui->input_shooting_radius->setDisabled(false);
@@ -2209,13 +2213,13 @@ void osgqt::camera_play_2_clicked()//点击后在墙面上添加点
 }
 void osgqt::point_clicked()
 {
-	osg::Vec3d	center = osg::Vec3d(0.0, 0.0, 0.0);
-	osg::Vec3d up = osg::Vec3d(0.0, 0.0, -1.0);
-	camtempos.eyes=pointintersect.getWorldIntersectPoint();
 	osg::NodePath::iterator np = pointintersect.nodePath.begin();
 	osg::MatrixTransform* tran =(osg::MatrixTransform*) (*(np+2));//找到tran节点
+	camtempos.center = osg::Vec3d(0.0, 0.0, 0.0)* tran->getMatrix();
+	osg::Vec3d up = osg::Vec3d(0.0, 0.0, -1.0);
+	camtempos.eyes=pointintersect.getWorldIntersectPoint();
 	removeNodebyName(tran, "viewportPointMT");
-	ViewerWindow->getCamera()->setViewMatrixAsLookAt(camtempos.eyes, center, up);
+	ViewerWindow->getCamera()->setViewMatrixAsLookAt(camtempos.eyes, camtempos.center, up);
 	osg::Matrix V = ViewerWindow->getCamera()->getViewMatrix(); // 视图矩阵
 	osg::Matrix Vni = osg::Matrix::inverse(V);
 	/*osg::Matrix Vtrans = osg::Matrix
@@ -2629,10 +2633,10 @@ void osgqt::startButton_pressed() //开始拍照
 	savepicpath = directory;
 	if (savepicpath == "")
 		return;
-	if (ui->input_camera_height->isEnabled() || motion.empty())
+	if (camlist.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please confirm the camera or add motion information!");
+		msgBox.setText("No camera parameters!Please confirm the camera parameters!");
 		msgBox.exec();
 		return;
 	}
@@ -2643,8 +2647,8 @@ void osgqt::startButton_pressed() //开始拍照
 		ques += QString("%1:%2,%3,%4,%5;\n").arg(QString::fromStdString(it.key()->getName())).arg(it->motioninfo[0]).arg(it->motioninfo[1])
 			.arg(it->motioninfo[2]).arg(it->motioninfo[3]);
 	}
-	
-	ques += QString("camera height:%1,camera radius:%2,camera times:%3;\n").arg(camera_height).arg(shooting_radius).arg(shooting_times);
+	//if(ui->input_camera_height->isEnabled()==false)
+	//	ques += QString("camera height:%1,camera radius:%2,camera times:%3;\n").arg(camera_height).arg(shooting_radius).arg(shooting_times);
 	for (int i = 0; i < camlist.size(); i++)
 	{
 		osg::Vec3 p = camlist[i].eyes;
@@ -2744,7 +2748,7 @@ void osgqt::startButton_pressed() //开始拍照
 		maxnum =maxnum<it->motioninfo[3]? it->motioninfo[3]:maxnum;
 
 	}
-	QProgressDialog process("taking photoes.....", "cancel", 0,maxnum*shooting_times+2,this);
+	QProgressDialog process("taking photoes.....", "cancel", 0,(maxnum+1)*camlist.size()+2,this);
 	process.setWindowModality(Qt::WindowModal);
 	process.show();
 	//float thea = 2 * osg::PI / shooting_times;
@@ -2790,7 +2794,9 @@ void osgqt::startButton_pressed() //开始拍照
 			unsigned int  width = gc->getTraits()->width, height = gc->getTraits()->height;
 			//wsi->getScreenResolution(osg::GraphicsContext::ScreenIdentifier(0), width, height);
 			viewer->realize();
-			osg::Vec3d eyes = camlist.at(j).eyes, center = osg::Vec3d(0.0, 0.0, 0.0), up = osg::Vec3d(0.0, 0.0, 1.0);
+			osg::Vec3d eyes = camlist.at(j).eyes, up = osg::Vec3d(0.0, 0.0, 1.0),center= osg::Vec3d(0.0, 0.0, 0.0);
+			if(camlist.at(j).center!=osg::Vec3d(0,0,0))
+				center = camlist.at(j).center;
 			viewer->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
 			//保存图片和参数
 			std::string output_path_p = savepicpath1 + "pose\\p_ani_" + std::to_string((long double)recurnum) + "_photo_" + std::to_string((long double)j) + ".txt";
@@ -3197,7 +3203,7 @@ void osgqt::timerUpdate() {
 			lastpointindex = pointindex;
 		}
 	}
-	else if (pointindex == -1)
+	else if (pointindex == -1)//点击空白处，或者点击camera的cancel按键，清除viewport
 	{
 		if (lastpointindex != -1)
 		{
