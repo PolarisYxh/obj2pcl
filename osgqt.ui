@@ -45,7 +45,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Motion Part2PCL</string>
+       <string>Motion Model2PCL</string>
       </attribute>
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
@@ -347,7 +347,7 @@
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="title">
-             <string>Photo Track Setting</string>
+             <string>Camera Setting</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -381,27 +381,27 @@
             <widget class="QLabel" name="label_4">
              <property name="geometry">
               <rect>
-               <x>20</x>
+               <x>30</x>
                <y>70</y>
-               <width>121</width>
+               <width>101</width>
                <height>16</height>
               </rect>
              </property>
              <property name="text">
-              <string>shooting radius</string>
+              <string>track radius</string>
              </property>
             </widget>
             <widget class="QLabel" name="label_5">
              <property name="geometry">
               <rect>
-               <x>20</x>
+               <x>0</x>
                <y>110</y>
-               <width>121</width>
+               <width>141</width>
                <height>16</height>
               </rect>
              </property>
              <property name="text">
-              <string>shooting times</string>
+              <string>number of cameras</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="input_shooting_times">
@@ -650,7 +650,7 @@
               </rect>
              </property>
              <property name="text">
-              <string>show Depth Map</string>
+              <string>show photoes</string>
              </property>
             </widget>
             <widget class="QPushButton" name="showButton_1">

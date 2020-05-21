@@ -78,12 +78,16 @@ int createPCL::createSinglePCL(QString rootpath)
 	bool flag = true; // 记录是否还有部件运动，如果有，flag为true，先设为true，拍个静态
 	while (flag)
 	{
-		
 		QString pclfilename = QString(pclpath + "/%1.txt").arg(j);
+		if (j * ShootTimes >= depth.size() || j * ShootTimes>= label.size() || j * ShootTimes + 1 >= list.size())
+		{
+			flag = false;
+			break;
+		}
 		ofstream pclfile(pclfilename.toStdString());
 		for (int i = 0; i < ShootTimes; i++)
 		{
-			if (j * ShootTimes + i > depth.size() || j * ShootTimes + i > label.size()|| j * ShootTimes + i + 1>list.size())
+			if (j * ShootTimes + i >= depth.size() || j * ShootTimes + i >= label.size()|| j * ShootTimes + i + 1>=list.size())
 			{
 				flag = false;
 				break;

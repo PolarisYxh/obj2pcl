@@ -1888,7 +1888,7 @@ void osgqt::viewmotion()
 	QMap<osg::ref_ptr<osg::Node>, motionif>::iterator it;
 	it = motion.begin();
 	ui->setting_message->clear();
-	ui->setting_message->append("motion part:amplitude,frequency;");
+	ui->setting_message->append("moving part:amplitude,frequency;");
 	while (it != motion.end())
 	{
 		ui->setting_message->append(QString("%1:%2,%3,%4,%5;")
@@ -1947,7 +1947,7 @@ bool osgqt::motionfunc()
 	if (selectedNodeList.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please click the dof in tree widget to add a motion part!");
+		msgBox.setText("Please select a moving part to add the motion infomation!");
 		msgBox.exec();
 		return false;
 	}
@@ -2004,7 +2004,7 @@ bool osgqt::motionfunc()
 			}
 			else
 			{
-				QString ques = QString("%1 is not a dof part\nskip").arg(QString::fromStdString(getnode->getName()));
+				QString ques = QString("%1 is not a moving part\nskip").arg(QString::fromStdString(getnode->getName()));
 				QMessageBox messageBox(QMessageBox::NoIcon,
 					"critical", ques);
 				messageBox.exec();
@@ -2012,7 +2012,7 @@ bool osgqt::motionfunc()
 		}
 		else
 		{
-			QString ques = QString("%1 is not a dof part\nskip").arg(QString::fromStdString(getnode->getName()));
+			QString ques = QString("%1 is not a moving part\nskip").arg(QString::fromStdString(getnode->getName()));
 			QMessageBox messageBox(QMessageBox::NoIcon,
 				"critical", ques);
 			messageBox.exec();
@@ -2028,7 +2028,7 @@ void osgqt::motion_delete_clicked()
 	if (selectedNodeList.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please click the dof in tree widget to delete a motion part!");
+		msgBox.setText("Please select a moving part to delete the motion infomation!");
 		msgBox.exec();
 		return;
 	}
@@ -2045,6 +2045,13 @@ void osgqt::motion_delete_clicked()
 }
 void osgqt::camera_confirm_clicked()
 {
+	if (ui->input_camera_height->isEnabled() == false)
+	{
+		QMessageBox msgBox;
+		msgBox.setText("Already confirmed!Click cancel first to change parameter!");
+		msgBox.exec();
+		return;
+	}
 	QString h = ui->input_camera_height->text();
 	QString r = ui->input_shooting_radius->text();
 	QString n = ui->input_shooting_times->text();
@@ -2173,6 +2180,7 @@ void osgqt::camera_play_2_clicked()//点击后在墙面上添加点
 				tran->asGroup()->addChild(svm);
 				ViewerWindow->addEventHandler(new EventHandler());
 				ismoni = true;
+				on_Reset_clicked();
 			}
 		}
 		if (ismoni)
@@ -2180,7 +2188,7 @@ void osgqt::camera_play_2_clicked()//点击后在墙面上添加点
 		else
 		{
 			QMessageBox msg;
-			msg.setText("Please choose a model to add monitor!");
+			msg.setText("Please select a model to add monitor!");
 			msg.exec();
 			return;
 		}
@@ -2643,7 +2651,7 @@ void osgqt::startButton_pressed() //开始拍照
 		ques += QString("camera pos:%1,%2,%3;\n").arg(p.x()).arg(p.y()).arg(p.z());
 	}
 	ques += "\n";
-	ques += QString("Continue shooting?");
+	ques += QString("Continue to take shots?");
 	QMessageBox messageBox(QMessageBox::NoIcon,
 		"critical", ques,
 		QMessageBox::Yes | QMessageBox::No, NULL);
@@ -2692,7 +2700,7 @@ void osgqt::startButton_pressed() //开始拍照
 	isblack = true;
 	std::string output_path_p = savepicpath1 + "pose\\ani_color_matrix_map" + ".txt";
 	std::ofstream outfile(output_path_p);
-	outfile << shooting_times <<" "<<0 << " "<<0 << " " << 0 << " " << std::endl;
+	outfile << camlist.size() <<" "<<0 << " "<<0 << " " << 0 << " " << std::endl;
 	int num = 1;
 	int maxnum = 0;//记录最大的运动数
 	for (QMap<osg::ref_ptr<osg::Node>, motionif>::iterator it = motion.begin(); it != motion.end(); it++, num++)
@@ -2798,6 +2806,8 @@ void osgqt::startButton_pressed() //开始拍照
 			viewer->frame();
 			viewer->renderingTraversals();
 			viewer->renderingTraversals();
+			osgDB::writeImageFile(*(image_d.get()), output_path_d);
+			osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
 			//viewer->run();
 			osg::Matrix V = viewer->getCamera()->getViewMatrix(); // 视图矩阵
 			osg::Matrix P = viewer->getCamera()->getProjectionMatrix(); //投影矩阵
@@ -2810,8 +2820,6 @@ void osgqt::startButton_pressed() //开始拍照
 				outfile << std::endl;
 			}
 			outfile.close();
-			osgDB::writeImageFile(*(image_d.get()), output_path_d);
-			osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
 			recurnum += 0.000001;
 			shootnum++;
 		}
@@ -2821,6 +2829,8 @@ void osgqt::startButton_pressed() //开始拍照
 			move(itr.key(), itr->motioninfo, ismove);
 		}
 	}
+	process.setValue(shootnum+2);
+	qApp->processEvents();
 	//eye->clear();
 	//模型和motion部件颜色+光照设置
 	for (int i = 0; i < root->getNumChildren(); i++)
@@ -2835,7 +2845,7 @@ void osgqt::startButton_pressed() //开始拍照
 	ui->motion_play->setText("reset");
 	on_Reset_clicked();
 	motion_play_clicked();
-	process.setValue(shootnum+2);
+
 }
 
 osg::ref_ptr<osg::Node> osgqt::findnodepar(osg::ref_ptr<osg::Node> node)//返回模型节点的trans父节点
@@ -2937,14 +2947,11 @@ void osgqt::move(osg::ref_ptr<osg::Node> node, double range[4], bool& ismove)
 void osgqt::generateButton_pressed()
 {
 	QString directory;
-	if (savepicpath == "")
-	{
-		directory = QFileDialog::getExistingDirectory(this, tr("Choose rgb and depth directory"), "./");
-		savepicpath = directory;
-	}
-	else if (savepicpath != "")
-		directory = QFileDialog::getExistingDirectory(this, tr("Choose directory to Save pointcloud data"), savepicpath);
-	savepclpath = directory;
+
+	directory = QFileDialog::getExistingDirectory(this, tr("Choose photoes' root directory"), savepicpath);
+	savepicpath = directory;
+
+	savepclpath = savepicpath;
 	if (savepclpath == "")
 		return;
 	/*int numFiles = 10000;
@@ -3192,8 +3199,13 @@ void osgqt::timerUpdate() {
 	}
 	else if (pointindex == -1)
 	{
-		removeNodebyName(root, "viewportPointMT");
-		lastpointindex = -1;
+		if (lastpointindex != -1)
+		{
+			osg::NodePath::iterator np = pointintersect.nodePath.begin();
+			osg::MatrixTransform* tran = (osg::MatrixTransform*) (*(np + 2));//找到tran节点
+			removeNodebyName(tran, "viewportPointMT");
+			lastpointindex = -1;
+		}
 	}
 	/*if(tab_idx==1&&ok_is_clicked){
 		string temp_done_name_info = "";
@@ -3497,7 +3509,7 @@ void osgqt::on_modeltranslate_clicked()
 	if (selectedNodeList.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please click the model in tree widget to delete a model!");
+		msgBox.setText("Please click a model in tree widget to translate!");
 		msgBox.exec();
 		return;
 	}
@@ -3523,7 +3535,7 @@ void osgqt::on_modeltranslate_clicked()
 		else
 		{
 			QMessageBox msgBox;
-			msgBox.setText(QString("%1 is a part.skip").arg(QString::fromStdString(getnode->getName())));
+			msgBox.setText(QString("%1 is a model's part.skip...").arg(QString::fromStdString(getnode->getName())));
 			msgBox.exec();
 		}
 	}
@@ -3534,7 +3546,7 @@ void osgqt::on_modelrotate_clicked()
 	if (selectedItemList.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please click the model in tree widget to rotate a model!");
+		msgBox.setText("Please click a model in tree widget to rotate!");
 		msgBox.exec();
 		return;
 	}
@@ -3663,7 +3675,7 @@ void osgqt::on_remove_clicked()//删除所选模型的树状图、所属模型�
 	if (selectedItemList.empty())
 	{
 		QMessageBox msgBox;
-		msgBox.setText("Please click the model in tree widget to delete a model!");
+		msgBox.setText("Please click a model in tree widget to delete!");
 		msgBox.exec();
 		return;
 	}
@@ -3708,7 +3720,7 @@ void osgqt::on_remove_clicked()//删除所选模型的树状图、所属模型�
 		else
 		{
 			QMessageBox msgBox;
-			msgBox.setText(QString("%1 is a part.skip").arg(QString::fromStdString(getnode->getName())));
+			msgBox.setText(QString("%1 is a model's part.skip").arg(QString::fromStdString(getnode->getName())));
 			msgBox.exec();
 		}
 	}

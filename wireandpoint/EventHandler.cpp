@@ -45,7 +45,7 @@ bool EventHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdap
 
 void EventHandler::doIdleMouse(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
 {
-	if (ea.getEventType() == osgGA::GUIEventAdapter::PUSH && ea.getButton() == ea.LEFT_MOUSE_BUTTON)
+	if (ea.getEventType() == osgGA::GUIEventAdapter::PUSH && ea.getButton() == ea.RIGHT_MOUSE_BUTTON)
 	{
 		bool isModeSame = true;
 		LineIntersector::Intersection intersection;

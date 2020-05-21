@@ -216,10 +216,10 @@ public:
         label_2->setGeometry(QRect(30, 30, 111, 16));
         label_4 = new QLabel(groupBox_14);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(20, 70, 121, 16));
+        label_4->setGeometry(QRect(30, 70, 101, 16));
         label_5 = new QLabel(groupBox_14);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(20, 110, 121, 16));
+        label_5->setGeometry(QRect(0, 110, 141, 16));
         input_shooting_times = new QLineEdit(groupBox_14);
         input_shooting_times->setObjectName(QString::fromUtf8("input_shooting_times"));
         input_shooting_times->setGeometry(QRect(140, 110, 101, 20));
@@ -336,11 +336,11 @@ public:
         setting_message->setPlaceholderText(QApplication::translate("osgqt", "motion info", nullptr));
         motion_amp_2->setPlaceholderText(QString());
         label_7->setText(QApplication::translate("osgqt", "translation range", nullptr));
-        groupBox_14->setTitle(QApplication::translate("osgqt", "Photo Track Setting", nullptr));
+        groupBox_14->setTitle(QApplication::translate("osgqt", "Camera Setting", nullptr));
         camera_confirm->setText(QApplication::translate("osgqt", "confirm", nullptr));
         label_2->setText(QApplication::translate("osgqt", "camera height", nullptr));
-        label_4->setText(QApplication::translate("osgqt", "shooting radius", nullptr));
-        label_5->setText(QApplication::translate("osgqt", "shooting times", nullptr));
+        label_4->setText(QApplication::translate("osgqt", "track radius", nullptr));
+        label_5->setText(QApplication::translate("osgqt", "number of cameras", nullptr));
         camera_delete->setText(QApplication::translate("osgqt", "cancel", nullptr));
         camera_play->setText(QApplication::translate("osgqt", "animate", nullptr));
         camera_play_2->setText(QApplication::translate("osgqt", "monitor", nullptr));
@@ -355,10 +355,10 @@ public:
         groupBox_5->setTitle(QApplication::translate("osgqt", "Generate and Save", nullptr));
         startButton->setText(QApplication::translate("osgqt", "take photo", nullptr));
         generateButton->setText(QApplication::translate("osgqt", "generate PointCloud", nullptr));
-        showButton->setText(QApplication::translate("osgqt", "show Depth Map", nullptr));
+        showButton->setText(QApplication::translate("osgqt", "show photoes", nullptr));
         showButton_1->setText(QApplication::translate("osgqt", "show PointCloud", nullptr));
         Reset->setText(QApplication::translate("osgqt", "Reset Camera", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("osgqt", "Motion Part2PCL", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("osgqt", "Motion Model2PCL", nullptr));
     } // retranslateUi
 
 };

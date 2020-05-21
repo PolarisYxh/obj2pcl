@@ -127,7 +127,7 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 				{
 					if (ycur_rad > yani_range)//_r正确的在y上
 					{
-						curvec.set(0, ycur_rad - ani_radians, 0);
+						curvec.set(0, ycur_rad + ani_radians, 0);
 						dofnode->setCurrentHPR(curvec);
 					}
 				}
@@ -155,7 +155,7 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 				{
 					if (xcur_rad > xani_range)//_t正确的是在x上
 					{
-						curvec.set(xcur_rad - r, 0, 0);
+						curvec.set(xcur_rad + r, 0, 0);
 						dofnode->setCurrentTranslate(curvec);
 					}
 				}
@@ -180,7 +180,7 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 				{
 					if (ycur_rad > yani_range)//_r正确的在y上
 					{
-						curvec.set(0, ycur_rad - ani_radians, 0);
+						curvec.set(0, ycur_rad + ani_radians, 0);
 						dofnode->setCurrentHPR(curvec);
 					}
 				}
@@ -202,7 +202,7 @@ class modelCallBack : public osg::NodeCallback//模型dof运动的回调函数
 				{
 					if (xcur_rad > xani_range)//_t正确的是在x上
 					{
-						curvec.set(xcur_rad - r, 0, 0);
+						curvec.set(xcur_rad + r, 0, 0);
 						dofnode->setCurrentTranslate(curvec);
 					}
 				}
