@@ -144,6 +144,19 @@ void MainWindow::showpointcloud()
 		color = osg::Vec4(r/255.0,g/255.0,b/255.0, 1.0);
 		//color=osg::Vec4(0.7,0.7,0.7,1.0);
 		colors->push_back(color);
+		//double x, y, z, r, g, b,q,w,e;
+		//int proposal_type;
+		//fs >> x >> y >> z >> r >> g >> b>>q>>w>>e;
+		////fs>>z>>x>>y;
+		//vertices->push_back(osg::Vec3d(x, y, z));
+		//osg::Vec4 color;
+		//color = osg::Vec4(0, 0, 0, 1.0);
+		////color=osg::Vec4(0.7,0.7,0.7,1.0);
+		//colors->push_back(color);
+		//vertices->push_back(osg::Vec3d(x+r, y+g, z+b));
+		//color = osg::Vec4(1.0, 0, 0, 1.0);
+		////color=osg::Vec4(0.7,0.7,0.7,1.0);
+		//colors->push_back(color);
 	}
 	geom->setVertexArray(vertices.get());
 	geom->setColorArray(colors.get());
@@ -155,7 +168,7 @@ void MainWindow::showpointcloud()
 	osg::StateSet* stateSet = geode->getOrCreateStateSet();
 	osg::Point* pointSize = new osg::Point;
 	//pointSize->setSize(14.0);
-	pointSize->setSize(7.0);
+	pointSize->setSize(4.0);
 	stateSet->setAttribute(pointSize);
 	//¹ÒÔÚrootÏÂ
 	root->addChild(geode);
