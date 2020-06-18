@@ -52,7 +52,7 @@
 #include <string>
 #include <vector>
 #include <direct.h>
-
+#include <random>
 
 class Photographer
 {

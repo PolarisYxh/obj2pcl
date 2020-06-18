@@ -53,13 +53,14 @@ void handleFiles(string path, vector<string>& files, vector<string>& IVE_models,
 //   输出
 int main() {
 
-	string ive_path = "G:/models";
+	//string ive_path = "D:/my/sunxun/obj2pcl/changedatasetmodel/新建文件夹";
+	string ive_path = "G:/waternclock";//modelnonorm1
 	vector<string> files;
 	vector<string> IVE_models;
 	vector<string> IVE_model_names;
 	handleFiles(ive_path, files, IVE_models, IVE_model_names);
 
-	string save_path = "G:/modelsgai/";
+	string save_path = "G:/waternclockgai/";//modelnonorm1gai
 	//string dof_name = "dof_011_002_t";
 	string dof_name = "dof_rootd_Aa001_r";
 	double ani_range = 90, ani_count = 2, cam_H = 3, track_R = 3, photo_count = 4;//变量名字修改ani_angle为ani_range
@@ -79,6 +80,7 @@ int main() {
 	for (int idx = 0; idx < num_of_file; idx++) {
 
 		//pg.Tool_test_3(IVE_models[idx], save_path, dof_name, ani_range, ani_count, cam_H, track_R, photo_count, IVE_model_names[idx]);
+		std::cout << save_path + IVE_model_names[idx]<<endl;
 		pg.new_dataset(IVE_models[idx], save_path+IVE_model_names[idx]);
 		/*osg::Group* root = new osg::Group; 
 		osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
@@ -128,4 +130,28 @@ int main() {
 	mclTerminateApplication();*/
 
 	return 0;
+}
+void main1()
+{
+	//QString  directory = "G:/modelsgai";
+	//QDir dir(directory);
+	//dir.setFilter(QDir::Files);
+	//QFileInfoList list = dir.entryInfoList();
+	//for (int filenum = 0; filenum < list.size(); filenum++)//依次打开场景txt文件
+	//{
+	//	QFileInfo fileInfo = list.at(filenum);
+	//	string ive_name = fileInfo.absoluteFilePath().toStdString();
+	//	string path = "G:/rgbd/" + fileInfo.baseName().toStdString();
+	//	if (0 != access(path.c_str(), 0))
+	//	{ // if this folder not exist, create a new one.
+	//		mkdir(path.c_str());   // 返回 0 表示创建成功，-1 表示失败
+	//		//换成 ::_mkdir  ::_access 也行，不知道什么意思
+	//	}
+	//	Tool_test_2(ive_name, path, 4, fileInfo.baseName().toStdString());
+	//}
+	string  directory = "G:/modelsgai";
+	vector<string> files;
+	vector<string> IVE_models;
+	vector<string> IVE_model_names;
+	handleFiles(directory, files, IVE_models, IVE_model_names);
 }

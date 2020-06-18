@@ -75,6 +75,7 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
     QPushButton *Reset;
 
     void setupUi(QWidget *osgqt)
@@ -290,13 +291,16 @@ public:
         showButton_1->setGeometry(QRect(10, 140, 231, 31));
         pushButton = new QPushButton(groupBox_5);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(100, 170, 31, 20));
+        pushButton->setGeometry(QRect(30, 170, 31, 20));
         pushButton_2 = new QPushButton(groupBox_5);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(140, 170, 31, 20));
+        pushButton_2->setGeometry(QRect(70, 170, 31, 20));
         pushButton_3 = new QPushButton(groupBox_5);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(180, 170, 41, 28));
+        pushButton_3->setGeometry(QRect(110, 170, 31, 21));
+        pushButton_4 = new QPushButton(groupBox_5);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setGeometry(QRect(160, 170, 31, 21));
 
         rightLayout->addWidget(groupBox_5);
 
@@ -367,6 +371,7 @@ public:
         pushButton->setText(QApplication::translate("osgqt", "PushButton", nullptr));
         pushButton_2->setText(QApplication::translate("osgqt", "PushButton", nullptr));
         pushButton_3->setText(QApplication::translate("osgqt", "PushButton", nullptr));
+        pushButton_4->setText(QApplication::translate("osgqt", "PushButton", nullptr));
         Reset->setText(QApplication::translate("osgqt", "Reset Camera", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("osgqt", "Motion Part2PCL", nullptr));
     } // retranslateUi

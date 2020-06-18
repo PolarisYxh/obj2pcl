@@ -237,7 +237,9 @@ private slots:
 	void addmodel1(int i);//用于scan2cadtxt文件添加shapenet模型
 	void addmodel2(int i);//用于文本文件添加shape2motion模型
 	void on_pushButton_2_clicked();//删除所有节点，使整个程序reset
-	//void on_pushButton_3_clicked();
+	void on_pushButton_3_clicked();
+	void on_pushButton_4_clicked();//处理不要的模型
+	int Tool_test_2(std::string ive_path, std::string save_path, double ani_count, std::string scene_name);
 private:
 	void move(osg::ref_ptr<osg::Node>, double range[4], bool& ismove);//用于拍照过程中运动部件的运动
 
@@ -298,6 +300,7 @@ private:
 	}* modelinfo;
 	osg::Matrix s1=osg::Matrix::identity();
 	vector<osg::Vec4> VColor;
+	int modeltype[10];
 };
 
 #endif // OSG QT_H

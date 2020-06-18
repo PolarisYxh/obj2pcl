@@ -809,19 +809,20 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 	// 记录dofnodes中每个结点的PutMatrix矩阵，用以计算flow ,也记录了运动轴 ,instance_ID和PutMatrix顺序对应
 	std::vector<osg::Matrix> PutMatrix;
 	// 记录每个模型位姿的变换矩阵
-	std::vector<osg::Matrix> Trans;
+	//std::vector<osg::Matrix> Trans;
 	// 记录dof类别 是_r _rt _t
 	std::vector<int> dof_type;
 
 	//记录整个scene的变换矩阵
-	osg::ref_ptr < osg::MatrixTransform> scenescale = dynamic_cast<osg::MatrixTransform*>(scene->asGroup());
-	osg::Matrix scene_M = scenescale->getMatrix();
+	//osg::ref_ptr < osg::MatrixTransform> scenescale = dynamic_cast<osg::MatrixTransform*>(scene->asGroup());
+	//osg::Matrix scene_M = scenescale->getMatrix();
 	//求各个模型根节点，按语义类别和实例染色
 	//osg::ref_ptr<osg::Group> scenegroup = scene->asGroup()->getChild(0)->asGroup(); //到"root"结点
+	std::cout <<ive_path;
 	for (i = 0; i < scenegroup->getNumChildren(); i++)
 	{
 		//静止类别物体染色是（ 0,0,0,1）
-		osg::ref_ptr<osg::Node> tempgroup = scenegroup->getChild(i)->asGroup()->getChild(0);
+		osg::ref_ptr<osg::Node> tempgroup = scenegroup->getChild(i);
 		std::string temp_name = tempgroup->getName();
 		int suffix_begin = temp_name.find("_");
 		if (temp_name.substr(0, suffix_begin) == "cabinet")
@@ -836,17 +837,17 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());	
 			
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
-			osg::Matrix tt = model_trans->getMatrix();
-			osg::Matrix PutM = dofnode->getInversePutMatrix();
-			osg::Vec3d start = dofnode->getInversePutMatrix().getTrans();
-			osg::Vec3d ori_axies = osg::Vec3d(1, 0, 0) * PutM- start;
-			osg::Vec3d new_start = start*tt * scene_M;
-			osg::Vec3d new_axies = ori_axies * tt *scene_M;
-			osg::Matrix new_rot = osg::Matrix::rotate(osg::Vec3d(1, 0, 0), ori_axies);
-			osg::Matrix new_t = osg::Matrix::translate(new_start);
-			osg::Matrix new_inv_pm = new_rot * new_t;
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
+			//osg::Matrix tt = model_trans->getMatrix();
+			//osg::Matrix PutM = dofnode->getInversePutMatrix();
+			//osg::Vec3d start = dofnode->getInversePutMatrix().getTrans();
+			//osg::Vec3d ori_axies = osg::Vec3d(1, 0, 0) * PutM- start;
+			//osg::Vec3d new_start = start*tt * scene_M;
+			//osg::Vec3d new_axies = ori_axies * tt *scene_M;
+			//osg::Matrix new_rot = osg::Matrix::rotate(osg::Vec3d(1, 0, 0), ori_axies);
+			//osg::Matrix new_t = osg::Matrix::translate(new_start);
+			//osg::Matrix new_inv_pm = new_rot * new_t;
 		}
 		if (temp_name.substr(0, suffix_begin) == "swivel")
 		{
@@ -857,8 +858,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "washing")
 		{
@@ -869,8 +870,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "water")
 		{
@@ -881,8 +882,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "laptop")
 		{
@@ -893,8 +894,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "lamp")
 		{
@@ -905,8 +906,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "bucket")
 		{
@@ -917,8 +918,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "clock")
 		{
@@ -929,8 +930,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "oven")
 		{
@@ -941,8 +942,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		if (temp_name.substr(0, suffix_begin) == "faucet")
 		{
@@ -953,8 +954,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 			dofnodes.push_back(tempgroup->asGroup());
 			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
 			PutMatrix.push_back(dofnode->getPutMatrix());
-			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
-			Trans.push_back(model_trans->getMatrix());
+			//osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+			//Trans.push_back(model_trans->getMatrix());
 		}
 		
 	}
@@ -966,11 +967,14 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 	state->setMode(GL_LIGHT0, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);
 
 	//相机的位置
+	osg::ComputeBoundsVisitor boundVisitor;
+	scene->accept(boundVisitor);
+	osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
 	osg::Vec3d eye = osg::Vec3d(0., 1, 4);
 	// 重设运动次数
 	ani_count = 4;
-	float rotate_step = 20.0;
-	float tran_step = 0.05;
+	float rotate_step = 10.0;
+	float tran_step = 0.02;
 	// 可以获得区分类别和实例的RGB图、depth图、matrix信息保存
 	for (i = 0; i < ani_count; i++)
 	{
@@ -1061,7 +1065,8 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 		image_rgb->allocateImage(width, height, 1, GL_RGB, GL_UNSIGNED_BYTE);
 		viewer->getCamera()->attach(osg::Camera::COLOR_BUFFER, image_rgb.get());
 		viewer->frame();
-		Sleep(1000);
+		viewer->renderingTraversals();
+		//Sleep(1000);
 		//viewer->run();
 		osg::Matrix V = viewer->getCamera()->getViewMatrix(); // 视图矩阵
 		osg::Matrix P = viewer->getCamera()->getProjectionMatrix(); //投影矩阵
@@ -1070,12 +1075,6 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 		for (int m = 0; m < 4; m++) {
 			for (int n = 0; n < 4; n++) {
 				outfile << VPW(m, n) << " ";
-			}
-			outfile << std::endl;
-		}
-		for (int m = 0; m < 4; m++) {
-			for (int n = 0; n < 4; n++) {
-				outfile << scene_M(m, n) << " ";
 			}
 			outfile << std::endl;
 		}
@@ -1090,12 +1089,6 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 				}
 				outfile << std::endl;
 			}
-			for (int m = 0; m < 4; m++) {
-				for (int n = 0; n < 4; n++) {
-					outfile << Trans[j](m, n) << " ";
-				}
-				outfile << std::endl;
-			}
 		}
 		outfile.close();
 		bool a = osgDB::writeImageFile(*(image_d.get()), output_path_d);
@@ -1106,7 +1099,7 @@ int Photographer::Tool_test_3(std::string ive_path, std::string save_path, std::
 	return 0;
 }
 
-int Photographer::new_dataset(std::string ive_path, std::string save_path)
+int Photographer::new_dataset(std::string ive_path, std::string save_path)//修改自己tool生成的场景数据集，给孙逊师姐
 {
 	osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
 	osg::ref_ptr<osg::Node> scene = osgDB::readNodeFile(ive_path, a);
@@ -1120,16 +1113,66 @@ int Photographer::new_dataset(std::string ive_path, std::string save_path)
 	osg::Matrix scene_M = scenescale->getMatrix();
 	for (int model_id = 0; model_id < scenegroup->getNumChildren(); model_id++)
 	{
-		osg::ref_ptr<osg::Node> tempgroup = scenegroup->getChild(model_id)->asGroup()->getChild(0); //每个模型的root ,e.g. cabinet_0006.flt
+		scenegroup->getChild(model_id)->setNodeMask(1);
+		osg::ref_ptr<osg::Node> tempgroup = scenegroup->getChild(model_id)->asGroup()->getChild(0); //场景root下的trans下每个模型的root ,e.g. cabinet_0006.flt
 		std::string temp_name = tempgroup->getName();
 		int suffix_begin = temp_name.find("_");
 		osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(scenegroup->getChild(model_id)->asGroup()); // 变换矩阵结点 trans
 		osg::Matrix trans = model_trans->getMatrix();
 		osg::Matrix trans_scene_M = trans * scene_M;
 		std::string name_suf = temp_name.substr(0, suffix_begin);
-
-		if (name_suf == "swivel" || name_suf == "cabinet" || name_suf == "washing" || name_suf == "water" || name_suf == "laptop" || name_suf == "lamp" || name_suf == "bucket" || name_suf == "clock" || name_suf == "oven" || name_suf == "faucet")
+		//if (name_suf == "03211117")//替换为laptop
+		//{
+		//	std::random_device rd;
+		//	std::default_random_engine e(rd());
+		//	std::uniform_int_distribution<unsigned> u(1, 86);
+		//	int num = u(e);
+		//	string lapname;
+		//	if(num<10)
+		//		lapname = "J:/Motion Dataset v0/laptop/000"+std::to_string(num)+"/flt/000"+std::to_string(num)+".flt";
+		//	else
+		//		lapname = "J:/Motion Dataset v0/laptop/00" + std::to_string(num) + "/flt/00" + std::to_string(num) + ".flt";
+		//	osg::ref_ptr<osg::Node> laptop = osgDB::readNodeFile(lapname, a);
+		//	if (num < 10)
+		//		laptop->setName("laptop_000" + std::to_string(num));
+		//	else
+		//		laptop->setName("laptop_00" + std::to_string(num));
+		//	scenegroup->getChild(model_id)->asGroup()->removeChild(tempgroup.get());
+		//	scenegroup->getChild(model_id)->asGroup()->addChild(laptop);
+		//}
+		std::string name_suf2 = temp_name.substr(4, 8);
+		std::string name_suf1 = temp_name.substr(0, 4);
+		int type =std::atoi(temp_name.substr(2, 4).c_str());
+		if (name_suf2 == ".flt" && type <= 10)
 		{
+			tempgroup->setName("water_bottle_" + name_suf1);
+		}
+		else if (name_suf2 == ".flt" && type <= 20 && type > 10)
+		{
+			tempgroup->setName("clock_" + name_suf1);
+		}
+		else if (name_suf2 == ".flt" && type <= 30 && type > 20)
+		{
+			tempgroup->setName("washing_machine" + name_suf1);
+		}
+		tempgroup = scenegroup->getChild(model_id)->asGroup()->getChild(0); //场景root下的trans下每个模型的root ,e.g. cabinet_0006.flt
+		temp_name = tempgroup->getName();
+		suffix_begin = temp_name.find("_");
+		model_trans = dynamic_cast<osg::MatrixTransform*>(scenegroup->getChild(model_id)->asGroup()); // 变换矩阵结点 trans
+		trans = model_trans->getMatrix();
+		trans_scene_M = trans * scene_M;
+		name_suf = temp_name.substr(0, suffix_begin);
+		tempgroup->setNodeMask(1);
+		if (name_suf == "swivel" || name_suf == "cabinet" || name_suf == "washing" || name_suf == "water" || name_suf == "laptop" || name_suf == "lamp" || name_suf == "bucket" || name_suf == "clock" || name_suf == "oven" || name_suf == "desk")
+		{
+			if (name_suf == "desk")
+			{
+				osg::ref_ptr<osg::Node> tem1 = tempgroup->asGroup()->getChild(0);
+				osg::ref_ptr<osg::Node> root1 = tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0);
+				tem1->asGroup()->addChild(root1->asGroup()->getChild(0));
+				tem1->asGroup()->addChild(root1->asGroup()->getChild(1));
+				tem1->asGroup()->removeChild(root1);
+			}
 			std::vector<osg::Group*> dofnodes;
 			getAllDOFNodesUnderNode(tempgroup, dofnodes);
 			unsigned int i = 0;
@@ -1191,7 +1234,7 @@ int Photographer::new_dataset(std::string ive_path, std::string save_path)
 			//osg::ref_ptr < osg::MatrixTransform> new_trans = trans_merge->clone(osg::CopyOp::DEEP_COPY_ALL);
 			//osg::ref_ptr < osg::Node> new_node = dynamic_cast<osg::Node*>(scenegroup->getChild(i)->clone(osg::CopyOp::DEEP_COPY_ALL));
 			
-			osg::ref_ptr < osg::MatrixTransform> trans_merge = dynamic_cast<osg::MatrixTransform*>(scenegroup->getChild(model_id));
+			osg::ref_ptr < osg::MatrixTransform> trans_merge = dynamic_cast<osg::MatrixTransform*>(scenegroup->getChild(model_id));//trans_merge场景root下的节点
 			trans_merge->setMatrix(trans_merge->getMatrix()*scene_M);
 			osg::Node* child = trans_merge->getChild(0);
 			if (trans_merge->getName() == "floortrans"|| trans_merge->getName() == "walltrans1"|| trans_merge->getName() == "walltrans2"|| trans_merge->getName() == "walltrans3")
@@ -1320,3 +1363,435 @@ else if( name_suf == "swivel" )
 	scenegroup->setChild(i, tempgroup);
 }*/
 }
+//int Tool_test_2(std::string ive_path, std::string save_path,double ani_count, std::string scene_name)
+//{
+//	//加载ive模型，每运动一次，调用一次拍照函数
+//	osgDB::Options* a = new osgDB::Options(std::string("noTriStripPolygons"));
+//	osg::ref_ptr<osg::Node> scene = osgDB::readNodeFile(ive_path, a);
+//	/*osg::ComputeBoundsVisitor boundVisitor;
+//	scene->accept(boundVisitor);
+//	osg::BoundingBox boundingBox = boundVisitor.getBoundingBox();
+//	float xl = boundingBox.xMax() - boundingBox.xMin(), yl = boundingBox.yMax() - boundingBox.yMin(), zl = boundingBox.zMax() - boundingBox.zMin();
+//	float ss;
+//	if (xl > yl && xl > zl)ss = xl;
+//	if (yl > xl && yl > zl)ss = yl;
+//	if (zl > yl && zl > xl)ss = zl;
+//	osg::ref_ptr < osg::MatrixTransform> scale = new osg::MatrixTransform;
+//	osg::Vec3 center = scene->getBound().center();
+//	scale->setMatrix(osg::Matrix::translate(-center) * osg::Matrix::scale(1/ss, 1 / ss, 1 / ss));
+//	scale->addChild(scene);*/
+//	osg::ref_ptr<osg::Group> root = new osg::Group;
+//	osg::ref_ptr<osg::Group> scenegroup = scene->asGroup()->getChild(0)->asGroup(); //到"root"结点
+//	root->addChild(scene.get());
+//	int i = 0;
+//
+//	//dofnodes 装所有模型要运动的dof结点 （这里是每个模型的第一个dof）
+//	std::vector<osg::Group*> dofnodes;
+//	// 记录dofnodes中每个结点的PutMatrix矩阵，用以计算flow ,也记录了运动轴 ,instance_ID和PutMatrix顺序对应
+//	std::vector<osg::Matrix> PutMatrix;
+//	// 记录每个模型位姿的变换矩阵
+//	std::vector<osg::Matrix> Trans;
+//	// 记录dof类别 是_r _rt _t
+//	std::vector<int> dof_type;
+//
+//	//记录整个scene的变换矩阵
+//	//osg::ref_ptr < osg::MatrixTransform> scenescale = dynamic_cast<osg::MatrixTransform*>(scene->asGroup());
+//	//osg::Matrix scene_M = scenescale->getMatrix();
+//	//求各个模型根节点，按语义类别和实例染色
+//	//osg::ref_ptr<osg::Group> scenegroup = scene->asGroup()->getChild(0)->asGroup(); //到"root"结点
+//	for (i = 0; i < scenegroup->getNumChildren(); i++)
+//	{
+//		//静止类别物体染色是（ 0,0,0,1）
+//		osg::ref_ptr<osg::Node> tempgroup = scenegroup->getChild(i);//到model节点
+//		std::string temp_name = tempgroup->getName();
+//		int suffix_begin = temp_name.find("_");
+//		if (temp_name.substr(0, suffix_begin) == "cabinet")
+//		{
+//			// dyerr的第一个分类代表语义类别，第二个分类代表instance实例ID
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.01, (dofnodes.size() + 1) * 0.01, 1.0, 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.01, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			//第一个dof是root_dof所以要跳过
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "swivel")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.02, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.02, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "washing")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.03, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.03, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "water")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.04, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.04, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "laptop")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.05, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.05, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "lamp")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.06, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.06, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "bucket")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.07, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.07, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "clock")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.08, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.08, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "oven")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.09, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.09, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "faucet")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.10, (dofnodes.size() + 1) * 0.01, 1., 1.0), false); //不开启透明  
+//			tempgroup->accept(dyerr);
+//			NodeVisitor_dyer dyerdof(osg::Vec4(0.10, (dofnodes.size() + 1) * 0.01, 0.0, 1.0), false);
+//			tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->accept(dyerdof);
+//			dofnodes.push_back(tempgroup->asGroup());
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(tempgroup->asGroup()->getChild(0)->asGroup()->getChild(0)->asGroup());
+//			PutMatrix.push_back(dofnode->getPutMatrix());
+//			osg::ref_ptr < osg::MatrixTransform> model_trans = dynamic_cast<osg::MatrixTransform*>(tempgroup->asGroup()->getParent(0)->asGroup());
+//			Trans.push_back(model_trans->getMatrix());
+//		}
+//		/*if (temp_name.substr(0, suffix_begin) == "04379243")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.7, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "03211117")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.6, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "02818832")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.5, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "04256520")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.4, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "03467517")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.3, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "03991062")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.2, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}
+//		if (temp_name.substr(0, suffix_begin) == "02773838")
+//		{
+//			NodeVisitor_dyer dyerr(osg::Vec4(0.1, 0.0, 0., 1.0), false); //不开启透明
+//			osg::ref_ptr<osg::Node> color_parent = tempgroup->asGroup()->getParent(0);
+//			color_parent->accept(dyerr);
+//		}*/
+//	}
+//
+//	//模型颜色+光照设置
+//	osg::StateSet* state = scene->getOrCreateStateSet();
+//	state->setMode(GL_CULL_FACE, osg::StateAttribute::OVERRIDE | osg::StateAttribute::OFF | osg::StateAttribute::PROTECTED);   // 只关闭背面裁剪，造成生成背面不透明，但黑面;
+//	state->setMode(GL_LIGHTING, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);//关闭光照
+//	state->setMode(GL_LIGHT0, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);
+//
+//	//相机的位置
+//	osg::Vec3d eye = osg::Vec3d(0., 1, 4);
+//	// 重设运动次数
+//	ani_count = 4;
+//
+//	// 可以获得区分类别和实例的RGB图、depth图、matrix信息保存
+//	for (i = 0; i < ani_count; i++)
+//	{
+//		int type = 0;
+//		//开始对每个模型进行一周拍照
+//		osg::ComputeBoundsVisitor boundVisitor;
+//		for (int j = 0; j < dofnodes.size(); j++)
+//		{
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(dofnodes[j]->getChild(0)->asGroup()->getChild(0));
+//			dofnode->accept(boundVisitor);
+//			osg::Vec3 curvec;
+//			std::string dof_name_temp = dofnode->getName();
+//			int suffix_begin = dof_name_temp.rfind("_", dof_name_temp.size() - 1);
+//			std::string ani_type = dof_name_temp.substr(suffix_begin, dof_name_temp.size() - suffix_begin); //【】
+//			if (ani_type == "_r")
+//			{
+//				float ani_radians = osg::DegreesToRadians(10.0);
+//				curvec.set(0, (i + 1) * ani_radians, 0);
+//				dofnode->setCurrentHPR(curvec);
+//				type = 1;
+//			}
+//			if (ani_type == "_t")
+//			{
+//				osg::ref_ptr<osgSim::DOFTransform> dof_next = dynamic_cast<osgSim::DOFTransform*>(dofnodes[j]->getChild(0)->asGroup()->getChild(0)->asGroup()->getChild(0));
+//				if (dof_next == nullptr) {
+//					float ani_radians = 0.05;
+//					curvec.set((i + 1) * ani_radians, 0, 0);
+//					dofnode->setCurrentTranslate(curvec);
+//					type = 2;
+//				}
+//				else {//相当于_rt
+//					float ani_radians = osg::DegreesToRadians(10.0);
+//					curvec.set(0, (i + 1) * ani_radians, 0);
+//					dofnode->setCurrentHPR(curvec);
+//					type = 1;
+//				}
+//
+//			}
+//			if (ani_type == "_s")   //rt类别只进行旋转 简易
+//			{
+//				float ani_radians = osg::DegreesToRadians(10.0);
+//				curvec.set(0, (i + 1) * ani_radians, 0);
+//				dofnode->setCurrentHPR(curvec);
+//				type = 1;
+//			}
+//			//如果是第一次遍历dof,记录_r、_rt、_t类别为1 1 2
+//			if (i == 0) {
+//				dof_type.push_back(type);
+//			}
+//
+//		}
+//		osg::ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
+//		//viewer->getCamera()->setComputeNearFarMode( osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR );//启用该模式后 zNear zFar的值才是准确的，否则是默认自动计算远近剪裁面，zNear即使设置了也无效
+//		viewer->setSceneData(root.get());
+//		int pixelwidth = 600, pixelheight = 400;
+//		osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
+//		traits->x = 0;
+//		traits->y = 0;
+//		traits->width = pixelwidth;
+//		traits->height = pixelheight;
+//		traits->windowDecoration = true;
+//		traits->doubleBuffer = true;
+//		traits->sharedContext = 0;
+//		traits->samples = 0; //抗锯齿 像素采样率
+//		traits->pbuffer = true; //离屏渲染
+//		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
+//		viewer->getCamera()->setClearColor(osg::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));      //         底色白色 255 255 255
+//		viewer->getCamera()->setGraphicsContext(gc);
+//		gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//		viewer->getCamera()->setViewport(new osg::Viewport(0, 0, traits->width, traits->height));
+//		double fovy = 30.f, aspectRatio = double(traits->width) / double(traits->height), zNear = 1.0, zFar = 10.0;
+//		viewer->getCamera()->setProjectionMatrixAsPerspective(fovy, aspectRatio, zNear, zFar);
+//		osg::ref_ptr<osg::GraphicsContext::WindowingSystemInterface> wsi = osg::GraphicsContext::getWindowingSystemInterface();
+//		unsigned int  width = gc->getTraits()->width, height = gc->getTraits()->height;
+//		wsi->getScreenResolution(osg::GraphicsContext::ScreenIdentifier(0), width, height);
+//		viewer->realize();
+//		osg::Vec3d eyes = eye, center = osg::Vec3d(0.0, 0.0, 0.0), up = osg::Vec3d(0.0, 0.0, 1.0);
+//		viewer->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
+//		//保存图片和参数
+//		std::string output_path_p = save_path + "/pose\\" + scene_name + "_" + std::to_string((long double)i) + ".txt";
+//		std::ofstream outfile(output_path_p);
+//		osg::ref_ptr<osg::Image> image_d = new osg::Image();
+//		std::string output_path_d = save_path + "/depth\\" + scene_name + "_" + std::to_string((long double)i) + ".png";
+//		osg::ref_ptr<osg::Image> image_rgb = new osg::Image();
+//		std::string output_path_l = save_path + "/label\\" + scene_name + "_" + std::to_string((long double)i) + ".png";
+//		image_d->allocateImage(width, height, 1, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE);
+//		viewer->getCamera()->attach(osg::Camera::DEPTH_BUFFER, image_d.get());
+//		image_rgb->allocateImage(width, height, 1, GL_RGB, GL_UNSIGNED_BYTE);
+//		viewer->getCamera()->attach(osg::Camera::COLOR_BUFFER, image_rgb.get());
+//		viewer->frame();
+//		Sleep(1000);
+//		//viewer->run();
+//		osg::Matrix V = viewer->getCamera()->getViewMatrix(); // 视图矩阵
+//		osg::Matrix P = viewer->getCamera()->getProjectionMatrix(); //投影矩阵
+//		osg::Matrix W = viewer->getCamera()->getViewport()->computeWindowMatrix(); //窗口变换矩阵
+//		osg::Matrix VPW = V * P * W;
+//		for (int m = 0; m < 4; m++) {
+//			for (int n = 0; n < 4; n++) {
+//				outfile << VPW(m, n) << " ";
+//			}
+//			outfile << std::endl;
+//		}
+//		for (int m = 0; m < 4; m++) {
+//			for (int n = 0; n < 4; n++) {
+//				outfile << scene_M(m, n) << " ";
+//			}
+//			outfile << std::endl;
+//		}
+//		outfile << PutMatrix.size() << " " << 0 << " " << 0 << " " << 0 << std::endl;
+//		for (int j = 0; j < dof_type.size(); j++) {
+//			outfile << dof_type[j] << " " << 0 << " " << 0 << " " << 0 << std::endl;
+//		}
+//		for (int j = 0; j < PutMatrix.size(); j++) {
+//			for (int m = 0; m < 4; m++) {
+//				for (int n = 0; n < 4; n++) {
+//					outfile << PutMatrix[j](m, n) << " ";
+//				}
+//				outfile << std::endl;
+//			}
+//			for (int m = 0; m < 4; m++) {
+//				for (int n = 0; n < 4; n++) {
+//					outfile << Trans[j](m, n) << " ";
+//				}
+//				outfile << std::endl;
+//			}
+//		}
+//		outfile.close();
+//		bool a = osgDB::writeImageFile(*(image_d.get()), output_path_d);
+//		bool b = osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
+//
+//	}
+//
+//	//按dofpart重新上色
+//	/*for (int j = 0; j < dofnodes.size(); j++)
+//	{
+//		NodeVisitor_dyer dyerr(osg::Vec4(0.10, (i + 1) * 0.01, 0., 1.0), false); //不开启透明
+//		tempgroup->accept(dyerr);
+//		dofnodes[j]->getChild(0)->asGroup()->getChild(0);
+//	}
+//	//可以获得instance中 静止部分与dof_part的区分
+//	for (i = 0; i < ani_count; i++)
+//	{
+//		//开始对每个模型进行一周拍照
+//		osg::ComputeBoundsVisitor boundVisitor;
+//		for (int j = 0; j < dofnodes.size(); j++)
+//		{
+//			osg::ref_ptr<osgSim::DOFTransform> dofnode = dynamic_cast<osgSim::DOFTransform*>(dofnodes[j]->getChild(0)->asGroup()->getChild(0));
+//			dofnode->accept(boundVisitor);
+//			osg::Vec3 curvec;
+//			std::string dof_name_temp = dofnode->getName();
+//			int suffix_begin = dof_name_temp.rfind("_", dof_name_temp.size() - 1);
+//			std::string ani_type = dof_name.substr(suffix_begin, dof_name_temp.size() - suffix_begin); //【】
+//			if (ani_type == "_r")
+//			{
+//				float ani_radians = osg::DegreesToRadians(10.0);
+//				curvec.set(0, (i + 1) * ani_radians, 0);
+//				dofnode->setCurrentHPR(curvec);
+//			}
+//			if (ani_type == "_t")
+//			{
+//				float ani_radians = 0.02;
+//				curvec.set((i + 1) * ani_radians, 0, 0);
+//				dofnode->setCurrentTranslate(curvec);
+//			}
+//			if (ani_type == "_rt")   //rt类别只进行选择 简易
+//			{
+//				float ani_radians = osg::DegreesToRadians(10.0);
+//				curvec.set(i * ani_radians, 0, 0);
+//				curvec.set(0, (i + 1) * ani_radians, 0);
+//				dofnode->setCurrentHPR(curvec);
+//			}
+//
+//		}
+//		osg::ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
+//		//viewer->getCamera()->setComputeNearFarMode( osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR );//启用该模式后 zNear zFar的值才是准确的，否则是默认自动计算远近剪裁面，zNear即使设置了也无效
+//		viewer->setSceneData(root.get());
+//		int pixelwidth = 600, pixelheight = 400;
+//		osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
+//		traits->x = 0;
+//		traits->y = 0;
+//		traits->width = pixelwidth;
+//		traits->height = pixelheight;
+//		traits->windowDecoration = true;
+//		traits->doubleBuffer = true;
+//		traits->sharedContext = 0;
+//		traits->samples = 0; //抗锯齿 像素采样率
+//		traits->pbuffer = true; //离屏渲染
+//		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
+//		viewer->getCamera()->setClearColor(osg::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));      //         底色白色 255 255 255
+//		viewer->getCamera()->setGraphicsContext(gc);
+//		gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//		viewer->getCamera()->setViewport(new osg::Viewport(0, 0, traits->width, traits->height));
+//		double fovy = 30.f, aspectRatio = double(traits->width) / double(traits->height), zNear = 1.0, zFar = 10.0;
+//		viewer->getCamera()->setProjectionMatrixAsPerspective(fovy, aspectRatio, zNear, zFar);
+//		osg::ref_ptr<osg::GraphicsContext::WindowingSystemInterface> wsi = osg::GraphicsContext::getWindowingSystemInterface();
+//		unsigned int  width = gc->getTraits()->width, height = gc->getTraits()->height;
+//		wsi->getScreenResolution(osg::GraphicsContext::ScreenIdentifier(0), width, height);
+//		viewer->realize();
+//		osg::Vec3d eyes = eye, center = osg::Vec3d(0.0, 0.0, 0.0), up = osg::Vec3d(0.0, 0.0, 1.0);
+//		viewer->getCamera()->setViewMatrixAsLookAt(eyes, center, up);
+//		//保存图片和参数
+//		osg::ref_ptr<osg::Image> image_rgb = new osg::Image();
+//		std::string output_path_l = save_path + "dof_label\\" + scene_name + "_" + std::to_string((long double)i) + ".png";
+//		image_rgb->allocateImage(width, height, 1, GL_RGB, GL_UNSIGNED_BYTE);
+//		viewer->getCamera()->attach(osg::Camera::COLOR_BUFFER, image_rgb.get());
+//		viewer->frame();
+//		Sleep(1000);
+//		bool b = osgDB::writeImageFile(*(image_rgb.get()), output_path_l);
+//
+//	}*/
+//	return 0;
+//}
+

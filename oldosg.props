@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_PropertySheetDisplayName>oldosgforcreatescene</_PropertySheetDisplayName>
+    <IncludePath>D:\my\sunxun\osg3.4.1\build3.4.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\my\sunxun\osg3.4.1\build3.4.0\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup />
+</Project>
