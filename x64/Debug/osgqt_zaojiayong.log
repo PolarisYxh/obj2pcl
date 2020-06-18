@@ -1,4 +1,2 @@
 ﻿  Generate moc_predefs.h
-  mainwindow.cpp
-D:\my\sunxun\osgqt_zaojiayong\mainwindow.cpp(139,7): warning C4101: “proposal_type”: 未引用的局部变量
   osgqt_zaojiayong.vcxproj -> D:\my\sunxun\osgqt_zaojiayong\debug\osgqt2_1.exe

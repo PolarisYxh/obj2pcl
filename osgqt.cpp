@@ -810,6 +810,7 @@ public:
 		else if (mode == 2)
 		{
 			osg::ref_ptr<osg::Geode> ge = geode.asGeode();
+			geode.setNodeMask(1);
 			if (ge)//找到叶节点
 			{
 				osg::ref_ptr<osg::Vec4Array> changecolor = new osg::Vec4Array();//根据changecolor中存储的part类型名为此geode上色
@@ -828,7 +829,6 @@ public:
 						geo_color.insert(geometry, color);//记录下修改前的颜色和状态用来恢复
 						geo_state.insert(geometry, state_set);
 					}
-					
 					//设置geode的材质（这样设置相当于所有的geode的材质相同，如果每个part材质不同可能效果更好？）
 					osg::ref_ptr< osg::Material > material = new osg::Material;
 					material->setColorMode(osg::Material::AMBIENT_AND_DIFFUSE);
@@ -943,19 +943,22 @@ public:
 				//arrayitr.key()->setColorArray(arrayitr.value().get());
 				//osg::Vec4 color(0.7,0.7,0.7,1);
 				osg::ref_ptr<osg::Vec4Array> changecolor = new osg::Vec4Array();//根据changecolor中存储的part类型名为此geode上色
-				if (color->size() > 0)
+				if (color)
 				{
-					osg::Vec4 color1 = color->at(0);
-					if (color1.r() == 1. && color1.g() == 1. && color1.b() == 1. && color1.a() == 1.)//有些模型没有颜色，读入之后默认白色
+					if (color->size() > 0)
 					{
-						changecolor->push_back(osg::Vec4(0.7, 0.7, 0.7, 1));
+						osg::Vec4 color1 = color->at(0);
+						if (color1.r() == 1. && color1.g() == 1. && color1.b() == 1. && color1.a() == 1.)//有些模型没有颜色，读入之后默认白色
+						{
+							changecolor->push_back(osg::Vec4(0.7, 0.7, 0.7, 1));
+							arrayitr.key()->setColorArray(changecolor);
+							arrayitr.key()->setColorBinding(osg::Geometry::BIND_OVERALL);
+							continue;
+						}
+						changecolor->push_back(color1);
 						arrayitr.key()->setColorArray(changecolor);
 						arrayitr.key()->setColorBinding(osg::Geometry::BIND_OVERALL);
-						continue;
 					}
-					changecolor->push_back(color1);
-					arrayitr.key()->setColorArray(changecolor);
-					arrayitr.key()->setColorBinding(osg::Geometry::BIND_OVERALL);
 				}
 				else
 				{
@@ -1740,7 +1743,7 @@ osgqt::osgqt(QWidget* parent) :
 	//mw->setCentralWidget(ViewerWindow);
 	//mw->setStyleSheet("background:blue;border:2px solid red;");
 	ui->middleLayout->addWidget(ViewerWindow);
-	treewidget = new mytreewidget();
+	treewidget = new mytreewidget(item_node);
 	//treewidget->resize(211,831);
 	ui->leftLayout->addWidget(treewidget);
 	ui->totalLayout->setStretch(0, 180);
@@ -1852,7 +1855,7 @@ void osgqt::initwindow()
 	camera->setRenderOrder(osg::Camera::POST_RENDER);
 	camera->setAllowEventFocus(false);
 	camera->setName("camera");
-	root->addChild(camera);
+	//root->addChild(camera);
 	//初始化后续需要用的数据结构
 	
 	osg::Vec4 color;
@@ -3391,68 +3394,89 @@ void osgqt::timerUpdate() {
 	{
 		tree_widget_is_picked = false;
 		tree_widget_is_picked_empyt = false;
-		for (int i = 0; i < lastselectedNode.size(); i++)
+		try
 		{
-			NodeVisitor_dyer dyerb(init_state_set);
-			lastselectedNode[i]->accept(dyerb);
-			//lastselectedNode[i]->setStateSet(init_state_set.get());	
-		}
-		lastselectedNode.clear();
-		for (int i = 0; i < selectedNodeList.size(); ++i)
-		{
-			/*osg::ref_ptr<osg::Node> getnode = item_node.find(selectedItemList.at(i)).value();
-			lastselectedNode.append(getnode);
-			osg::ref_ptr<osg::StateSet> now_state = new osg::StateSet;
-
-			osg::ref_ptr<osg::Material> material = new osg::Material;
-			osg::Vec4 redColor(0,191,255, 0.5f);
-			material->setAmbient(osg::Material::FRONT_AND_BACK, redColor);
-			material->setDiffuse(osg::Material::FRONT_AND_BACK,redColor);
-
-			now_state->setMode(GL_BLEND,osg::StateAttribute::ON);
-			now_state->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
-
-			//设置网格模型
-			//osg::ref_ptr<osg::PolygonMode> polyMode=new osg::PolygonMode(osg::PolygonMode::FRONT_AND_BACK,osg::PolygonMode::LINE);
-			now_state->setAttributeAndModes(material.get(), osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
-			getnode->setStateSet(now_state);*/
-			osg::ref_ptr<osg::Node> getnode = selectedNodeList.at(i);
-			lastselectedNode.append(getnode);
-			osg::Vec4 redColor(0, 191, 255, 0.5f);
-			NodeVisitor_dyer dyerr(redColor, redColor, osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f), true);
-			getnode->accept(dyerr);
-			
-			if (getnode->getName().length() >= 2 )
+			for (int i = 0; i < lastselectedNode.size(); i++)
 			{
-				if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_r")
+				if (lastselectedNode[i].get())
 				{
-					ui->motion_amp->setEnabled(true);
-					ui->input_motion_fre->setEnabled(true);
-					ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
+					NodeVisitor_dyer dyerb(init_state_set);
+					lastselectedNode[i]->accept(dyerb);
 				}
-				else if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_t")
+				//lastselectedNode[i]->setStateSet(init_state_set.get());	
+			}
+			lastselectedNode.clear();
+			for (int i = 0; i < selectedNodeList.size(); ++i)
+			{
+				/*osg::ref_ptr<osg::Node> getnode = item_node.find(selectedItemList.at(i)).value();
+				lastselectedNode.append(getnode);
+				osg::ref_ptr<osg::StateSet> now_state = new osg::StateSet;
+
+				osg::ref_ptr<osg::Material> material = new osg::Material;
+				osg::Vec4 redColor(0,191,255, 0.5f);
+				material->setAmbient(osg::Material::FRONT_AND_BACK, redColor);
+				material->setDiffuse(osg::Material::FRONT_AND_BACK,redColor);
+
+				now_state->setMode(GL_BLEND,osg::StateAttribute::ON);
+				now_state->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+
+				//设置网格模型
+				//osg::ref_ptr<osg::PolygonMode> polyMode=new osg::PolygonMode(osg::PolygonMode::FRONT_AND_BACK,osg::PolygonMode::LINE);
+				now_state->setAttributeAndModes(material.get(), osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
+				getnode->setStateSet(now_state);*/
+				osg::ref_ptr<osg::Node> getnode = selectedNodeList.at(i);
+				lastselectedNode.append(getnode);
+				osg::Vec4 redColor(0, 191, 255, 0.5f);
+				NodeVisitor_dyer dyerr(redColor, redColor, osg::Vec4(0.75f, 0.75f, 0.75f, 0.5f), true);
+				getnode->accept(dyerr);
+
+				if (getnode->getName().length() >= 2)
 				{
-					ui->motion_amp_2->setEnabled(true);
-					ui->input_motion_fre->setEnabled(true);
-					ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
-				}
-				else if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_s")
-				{
-					ui->motion_amp->setEnabled(true);
-					ui->motion_amp_2->setEnabled(true);
-					ui->input_motion_fre->setEnabled(true);
-					ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
+					if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_r")
+					{
+						ui->motion_amp->setEnabled(true);
+						ui->input_motion_fre->setEnabled(true);
+						ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
+					}
+					else if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_t")
+					{
+						ui->motion_amp_2->setEnabled(true);
+						ui->input_motion_fre->setEnabled(true);
+						ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
+					}
+					else if (getnode->getName().substr(getnode->getName().length() - 2, 2) == "_s")
+					{
+						ui->motion_amp->setEnabled(true);
+						ui->motion_amp_2->setEnabled(true);
+						ui->input_motion_fre->setEnabled(true);
+						ui->input_motion_name->setText(ui->input_motion_name->text() + ";" + QString::fromStdString(getnode->getName()));
+					}
 				}
 			}
 		}
+		catch (...)
+		{
+			qDebug() << "eee2";
+		}
+		qDebug() << "eee3";
 		mouse_is_picked = false;
 	}
 	if (tab_idx == 0 && mouse_is_picked_empty) {   //右键空白处复位
-		for (int i = 0; i < lastselectedNode.size(); i++)
+		try
 		{
-			NodeVisitor_dyer dyerb(init_state_set);
-			lastselectedNode[i]->accept(dyerb);
-			//lastselectedNode[i]->setStateSet(init_state_set.get());
+			for (int i = 0; i < lastselectedNode.size(); i++)
+			{
+				if (lastselectedNode[i].get())
+				{
+					NodeVisitor_dyer dyerb(init_state_set);
+					lastselectedNode[i]->accept(dyerb);
+				}
+				//lastselectedNode[i]->setStateSet(init_state_set.get());
+			}
+		}
+		catch(...)
+		{
+			qDebug() << "eeee";
 		}
 		lastselectedNode.clear();
 		selectedNodeList.clear();
@@ -3465,6 +3489,7 @@ void osgqt::timerUpdate() {
 		ui->input_motion_fre->clear();
 		ui->input_motion_fre->setEnabled(false);
 		mouse_is_picked_empty = false;
+		qDebug() << "eee1";
 		QTreeWidgetItemIterator item(treewidget);
 		while (*item) {
 			(*item)->setSelected(false);
@@ -3489,8 +3514,8 @@ void osgqt::addmodel()//用于点击open按钮添加模型
 	qDebug() << boundingBox.xMin() << " " << boundingBox.xMax() << " " << boundingBox.yMax() << " " << boundingBox.yMin() << boundingBox.zMax() << " " << boundingBox.zMin();
 	float z = 0 - boundingBox.zMin();
 	height.insert(trans, z);
-	osg::Matrix m = osg::Matrix::translate(0, 0, z);
-	//osg::Matrix m = osg::Matrix::identity();
+	//osg::Matrix m = osg::Matrix::translate(0, 0, z);
+	osg::Matrix m = osg::Matrix::identity();
 	trans->setMatrix(m);
 	//trans->setMatrix(osg::Matrix::scale(scale_all,scale_all,scale_all));
 	trans->addChild(model);
@@ -3530,9 +3555,10 @@ void osgqt::on_modeltranslate_clicked()
 		if (trans != NULL)
 		{
 			osg::Matrix m;
-			if (height.find(trans) != height.end())
-				m = osg::Matrix::translate(xcoord, ycoord, zcoord) * osg::Matrix::translate(0, 0, height.find(trans).value()) * osg::Matrix::rotate(trans->getMatrix().getRotate());
-			else m = trans->getMatrix() * osg::Matrix::translate(xcoord, ycoord, zcoord);
+			//if (height.find(trans) != height.end())
+				//m = osg::Matrix::translate(xcoord, ycoord, zcoord) * osg::Matrix::translate(0, 0, height.find(trans).value()) * osg::Matrix::rotate(trans->getMatrix().getRotate());
+			//else 
+			m = trans->getMatrix() * osg::Matrix::translate(xcoord, ycoord, zcoord);
 			trans->setMatrix(m);
 			ui->xcoord->clear();
 			ui->ycoord->clear();
@@ -3569,10 +3595,44 @@ void osgqt::on_modelrotate_clicked()
 		trans = dynamic_cast<osg::MatrixTransform*>(getnode->getParent(0));
 		if (trans != NULL)
 		{
-			osg::Matrix m = osg::Matrix::rotate(zcoord, 0, 0, 1.0f)
+			osg::Matrix m = osg::Matrix::scale(trans->getMatrix().getScale())
+				* osg::Matrix::rotate(zcoord, 0, 0, 1.0f)
 				* osg::Matrix::rotate(ycoord, 0, 1, 0.0f)
 				* osg::Matrix::rotate(xcoord, 1, 0, 0.0f)
 				* osg::Matrix::translate(trans->getMatrix().getTrans());
+			trans->setMatrix(m);
+			ui->xcoord->clear();
+			ui->ycoord->clear();
+			ui->zcoord->clear();
+		}
+		else
+		{
+			QMessageBox msgBox;
+			msgBox.setText(QString("%1 is a part.skip").arg(QString::fromStdString(getnode->getName())));
+			msgBox.exec();
+		}
+	}
+}
+void osgqt::on_scaleButton_clicked()
+{
+	if (selectedItemList.empty())
+	{
+		QMessageBox msgBox;
+		msgBox.setText("Please click a model in tree widget to rotate!");
+		msgBox.exec();
+		return;
+	}
+	double xcoord = ui->xcoord->text().toDouble();
+	double ycoord = xcoord;
+	double zcoord = xcoord;
+	for (int i = 0; i < selectedNodeList.size(); ++i)
+	{
+		osg::ref_ptr<osg::Node> getnode = selectedNodeList.at(i);
+		osg::ref_ptr<osg::MatrixTransform> trans = new osg::MatrixTransform;
+		trans = dynamic_cast<osg::MatrixTransform*>(getnode->getParent(0));
+		if (trans != NULL)
+		{
+			osg::Matrix m = osg::Matrix::scale(xcoord, ycoord, zcoord);
 			trans->setMatrix(m);
 			ui->xcoord->clear();
 			ui->ycoord->clear();
@@ -3732,6 +3792,47 @@ void osgqt::on_remove_clicked()//删除所选模型的树状图、所属模型�
 	}
 	viewmotion();
 	treewidget->clearSelection();
+}
+void osgqt::on_saveButton_clicked()
+{
+			NodeVisitor_dyer dyerb(osg::Vec4(0.7, 0.7, 0.7, 1.0), false); //不开启透明  
+			osg::Node* getnode = root->getChild(0)->asGroup()->getChild(0);
+			getnode->accept(dyerb);
+			findDofNamedNode* visitor = new findDofNamedNode();//找到所有dof节点并添加到motion结构体
+			visitor->setNodeMaskOverride(1);  //注释： 覆盖nodemask，可查找隐藏节点
+			getnode->accept(*visitor);
+			int i = 0;
+			for (QMap<osg::ref_ptr<osg::Node>, motionif>::iterator it = motion.begin(); it != motion.end(); it++, i++)
+				//为不同运动部件设置不同颜色
+			{
+				osg::Vec4 color;
+				if (i <= 5)//每一个通道6个状态，相当于6进制算法，总共能得到216种颜色，除去黑色（模型）、全白（背景），有214种颜色
+					color = osg::Vec4(0.2 * i, 0.0, 0., 1.0);
+				else if (i <= 35)
+					color = osg::Vec4(0.2 * (i % 6), 0.2 * (i/ 6), 0, 1.0);
+				else if (i<= 214)
+					color = osg::Vec4(0.2 * (i % 6), 0.2 * (i / 6 % 6), 0.2 * (i / 36), 1.0);
+				NodeVisitor_dyer dyerr(color, false); //不开启透明
+				it.key()->accept(dyerr);
+			}
+
+			QString modelpath = "G:/" + QString::fromStdString(getnode->getName());
+			osgDB::Registry::instance()->writeNode(*getnode, modelpath.toStdString(), osgDB::Registry::instance()->getOptions());
+			
+	//on_remove_clicked();
+			selectedItemList.clear();
+			selectedNodeList.clear();
+			lastselectedNode.clear();
+			item_node.clear();
+			node_item.clear();
+			motion.clear();
+			treewidget->clearSelection();
+			treewidget->clear();
+			for (int i = 0; i < root->getNumChildren();)
+			{
+				qDebug() <<QString::fromStdString(root->getChild(i)->getName());
+				root->removeChild(i);
+			}	
 }
 /*void osgqt::removeitem(QTreeWidgetItem* fitem)
 {

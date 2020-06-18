@@ -566,9 +566,9 @@
             <widget class="QToolButton" name="modelrotate">
              <property name="geometry">
               <rect>
-               <x>40</x>
+               <x>10</x>
                <y>80</y>
-               <width>75</width>
+               <width>51</width>
                <height>23</height>
               </rect>
              </property>
@@ -579,14 +579,40 @@
             <widget class="QToolButton" name="modeltranslate">
              <property name="geometry">
               <rect>
-               <x>140</x>
+               <x>60</x>
                <y>80</y>
-               <width>75</width>
+               <width>51</width>
                <height>23</height>
               </rect>
              </property>
              <property name="text">
               <string>translate</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="scaleButton">
+             <property name="geometry">
+              <rect>
+               <x>110</x>
+               <y>80</y>
+               <width>51</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>scale</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="saveButton">
+             <property name="geometry">
+              <rect>
+               <x>160</x>
+               <y>80</y>
+               <width>41</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>save</string>
              </property>
             </widget>
            </widget>

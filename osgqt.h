@@ -245,8 +245,10 @@ private slots:
 
     void on_open_clicked();//add model
 	void on_remove_clicked();////删除所选模型的树状图、所属模型的motion信息、lastmotion信息、root下的所属模型
+	void on_saveButton_clicked();
 	void on_modeltranslate_clicked();//点击model模块的平移按钮
 	void on_modelrotate_clicked();//点击model模块的旋转按钮
+	void on_scaleButton_clicked();
 
 	void motion_comfirm_clicked();
 	void motion_delete_clicked();

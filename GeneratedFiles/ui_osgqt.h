@@ -68,6 +68,8 @@ public:
     QLineEdit *zcoord;
     QToolButton *modelrotate;
     QToolButton *modeltranslate;
+    QPushButton *scaleButton;
+    QPushButton *saveButton;
     QGroupBox *groupBox_5;
     QToolButton *startButton;
     QPushButton *generateButton;
@@ -264,10 +266,16 @@ public:
         zcoord->setGeometry(QRect(170, 50, 51, 21));
         modelrotate = new QToolButton(groupBox);
         modelrotate->setObjectName(QString::fromUtf8("modelrotate"));
-        modelrotate->setGeometry(QRect(40, 80, 75, 23));
+        modelrotate->setGeometry(QRect(10, 80, 51, 23));
         modeltranslate = new QToolButton(groupBox);
         modeltranslate->setObjectName(QString::fromUtf8("modeltranslate"));
-        modeltranslate->setGeometry(QRect(140, 80, 75, 23));
+        modeltranslate->setGeometry(QRect(60, 80, 51, 23));
+        scaleButton = new QPushButton(groupBox);
+        scaleButton->setObjectName(QString::fromUtf8("scaleButton"));
+        scaleButton->setGeometry(QRect(110, 80, 51, 21));
+        saveButton = new QPushButton(groupBox);
+        saveButton->setObjectName(QString::fromUtf8("saveButton"));
+        saveButton->setGeometry(QRect(160, 80, 41, 21));
 
         rightLayout->addWidget(groupBox);
 
@@ -352,6 +360,8 @@ public:
         zcoord->setPlaceholderText(QApplication::translate("osgqt", "z", nullptr));
         modelrotate->setText(QApplication::translate("osgqt", "rotate", nullptr));
         modeltranslate->setText(QApplication::translate("osgqt", "translate", nullptr));
+        scaleButton->setText(QApplication::translate("osgqt", "scale", nullptr));
+        saveButton->setText(QApplication::translate("osgqt", "save", nullptr));
         groupBox_5->setTitle(QApplication::translate("osgqt", "Generate and Save", nullptr));
         startButton->setText(QApplication::translate("osgqt", "take photo", nullptr));
         generateButton->setText(QApplication::translate("osgqt", "generate PointCloud", nullptr));

@@ -11,6 +11,7 @@
 #include <QTreeWidgetItem>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <qline.h>
 #include <sstream>
 using namespace std;
 
@@ -18,7 +19,8 @@ class mytreewidget : public QTreeWidget
 {
     Q_OBJECT
 public:
-    explicit mytreewidget(QWidget *parent = nullptr);
+    explicit mytreewidget(QMap<QTreeWidgetItem*, osg::ref_ptr<osg::Node> >& item_n,QWidget *parent = nullptr);
+	~mytreewidget();
     std::vector<string> model_components;
     bool error_flag = false;
     std::string error_message;
@@ -30,7 +32,7 @@ public:
     std::string father_name;
     bool drop = false;
     std::map<osg::ref_ptr<osg::Node>,bool> is_model_componets;
-	QMap<QTreeWidgetItem*, osg::ref_ptr<osg::Node> > item_node;
+	QMap<QTreeWidgetItem*, osg::ref_ptr<osg::Node> >& item_node;
 signals:
 
 public slots:
@@ -41,12 +43,20 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dragMoveEvent(QDragMoveEvent *event);
     void dropEvent(QDropEvent *event);
+	void startDrag();
+	void paintInsertPos(QTreeWidgetItem* dragItem, QTreeWidgetItem* hitItem);
+	void paintTriangle(const QPoint& right, QPainter* painter);
+	void paintEvent(QPaintEvent* p);
 private:
-    void performDrag();
-    void dfs(string father_name);
-    void dfs2(string root_name);
+   // void performDrag();
+   // void dfs(string father_name);
+    //void dfs2(string root_name);
     //QString selectionText() const;
-
+	QLine m_oldLine;
+	QLine m_newLine;
+	bool m_child;
+	bool paint;
+	QPainter* painter;
     //QString toHtml(const QString &plainText) const;
     //QString toCsv(const QString &plainText) const;
     //void fromCsv(const QString &csvText);
