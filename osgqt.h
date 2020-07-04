@@ -63,7 +63,7 @@
 #include <osgUtil/HighlightMapGenerator>
 #include <osgUtil/SceneView>
 #include "mainwindow.h"
-#include "Tool_test_2.h"
+//#include "Tool_test_2.h"
 #include <string>
 #include <vector>
 #include<windows.h>
@@ -232,7 +232,7 @@ public:
 private slots:
     void timerUpdate();// 注释：计时器函数，用于更新显示，里面主要进行模型部件右键和树状图点选、ctrl+框选的更新显示
 	void on_Reset_clicked();//点击reset camera按钮
-
+	//树形图相关
     void on_tabWidget_currentChanged(int index);//没什么用，但勿删
     void on_treeWidget_itemChanged_child(QTreeWidgetItem *item, int column);//点击item复选框时，改变子节点的复选框状态
     void SetParentPartiallyChecked(QTreeWidgetItem *itm,int column);
@@ -242,31 +242,30 @@ private slots:
 	void on_treeWidget_itemSelectionChanged();//点击了树形图的文字
 	//void update_all_treewidget();// 注释：加载模型后用于直接加载所有节点树形结构图,暂时不用，加载全部比较慢
 	void update_treewidget();//加载模型后用于直接加载第一和第二层节点树形结构图，异步加载方式
-
+	//model模块相关按钮
     void on_open_clicked();//add model
 	void on_remove_clicked();////删除所选模型的树状图、所属模型的motion信息、lastmotion信息、root下的所属模型
-	void on_saveButton_clicked();
+	void on_saveButton_clicked();//界面上移除了该按钮
 	void on_modeltranslate_clicked();//点击model模块的平移按钮
 	void on_modelrotate_clicked();//点击model模块的旋转按钮
-	void on_scaleButton_clicked();
-
+	void on_scaleButton_clicked();//点击model模块的缩放按钮，用于缩放模型
+	//Dof Animate Setting模块相关按钮
 	void motion_comfirm_clicked();
 	void motion_delete_clicked();
 	void motion_play_clicked();
-
+	//Camera Setting模块相关
 	void camera_confirm_clicked();	
-	void camera_play_clicked();//点击camera模块的confirm按钮
-	void camera_play_2_clicked();//点击后在有墙面的场景模型的墙面上添加可以点选的点
+	void camera_play_clicked();//点击camera模块的play按钮
+	void camera_play_2_clicked();//点击后在模型的boudingbox上方添加可以点选的点，模拟墙面上的相机
 	void point_clicked();//点选墙面上的点之后，显示viewport，
 	void camera_delete_clicked();//点击camera模块的delete按钮
-
+	//Generate and Save模块相关
 	void startButton_pressed();//开始拍照
 	void generateButton_pressed();//开始生成点云
-	
 	void showButton_pressed(); //点击show picture
 	void showpcl_pressed();//点击show pointcloud
 
-	//自动场景相关
+	//自动生成场景相关
 	//void on_pushButton_clicked();//自动场景入口
 	//void addmodel1(int i);//用于scan2cadtxt文件添加shapenet模型
 	//void addmodel2(int i);//用于文本文件添加shape2motion模型

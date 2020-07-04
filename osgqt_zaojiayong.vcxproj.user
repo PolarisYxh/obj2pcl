@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QTDIR>C:\Qt\Qt5.12.3\5.12.3\msvc2017_64</QTDIR>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3bD:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\bin\osgPlugins-3.6.5%3bD:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\bin%3bC:\Program Files\PCL 1.10.1\bin%3bD:\opencv\build\x64\vc15\bin%3b$(PATH)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\bin%3b.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\bin\osgPlugins-3.6.5%3b.\opencv\x64\vc15\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <QTDIR>H:\QT\5.9.1\msvc2017_64</QTDIR>
@@ -12,7 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QTDIR>C:\Qt\Qt5.12.3\5.12.3\msvc2017_64</QTDIR>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3bD:\opencv\build\x64\vc15\bin%3b$(QTDIR)\bin%3bD:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgPlugins-3.6.5%3b$(QTDIR)\bin%3bD:\MATLAB\R2017a\runtime\win64%3bD:\MATLAB\R2017a\bin%3bD:\MATLAB\R2017a\bin\win64%3bD:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin%3b$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b.\opencv\x64\vc15\bin%3b.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin%3b.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\bin\osgPlugins-3.6.5%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <QTDIR>H:\QT\5.9.1\msvc2017_64</QTDIR>

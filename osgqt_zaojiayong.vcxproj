@@ -106,20 +106,20 @@
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\wireandpoint;D:\MATLAB\R2017a\extern\include\win64;D:\MATLAB\R2017a\extern\include;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\MATLAB\R2017a\lib;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>H:\osg3.2.1\OpenSceneGraph\include;H:\osg3.2.1\OpenSceneGraph\bin;H:\QT\Tools\mingw530_32\opt\include;H:\R2015\extern\include;H:\R2015\extern\include\win64;$(IncludePath)</IncludePath>
     <LibraryPath>H:\osg3.2.1\OpenSceneGraph\lib;H:\R2015\extern\lib\win64\microsoft;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\my\sunxun\osgqt_zaojiayong\wireandpoint;D:\MATLAB\R2017a\extern\include;D:\MATLAB\R2017a\extern\include\win64;C:\Qt\Qt5.12.3\Tools\mingw730_32\opt\include;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\MATLAB\R2017a\extern\lib\win64\mingw64;D:\my\sunxun\osg3.4.1\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\OpenSceneGraph\OpenSceneGraph-3.6.5-VC2019-64-Release\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -138,7 +138,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;$(QTDIR)\lib;C:\OSGQT\lib;D:\matlab\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -148,7 +148,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewer.lib;osgDB.lib;osg.lib;OpenThreads.lib;osgGA.lib;osgWidget.lib;osgAnimation.lib;osgFX.lib;osgManipulator.lib;osgParticle.lib;osgPresentation.lib;osgShadow.lib;osgSim.lib;osgTerrain.lib;osgText.lib;osgUtil.lib;osgVolume.lib;$(QTDIR)\lib\Qt5OpenGL.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewer.lib;osgDB.lib;osg.lib;OpenThreads.lib;osgGA.lib;osgWidget.lib;osgAnimation.lib;osgFX.lib;osgManipulator.lib;osgParticle.lib;osgPresentation.lib;osgShadow.lib;osgSim.lib;osgTerrain.lib;osgText.lib;osgUtil.lib;osgVolume.lib;$(QTDIR)\lib\Qt5OpenGL.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>
@@ -167,7 +167,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>image</InitFuncName>
@@ -234,7 +234,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\release;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>image</InitFuncName>
@@ -253,7 +253,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -273,8 +273,8 @@
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libeng.lib;mclmcrrt.lib;mclmcr.lib;libmx.lib;libmex.lib;libmat.lib;Tool_test_2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;C:\OSGQT\lib;D:\MATLAB\R2017a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;osgViewerd.lib;osgDBd.lib;osgd.lib;OpenThreadsd.lib;osgGAd.lib;osgWidgetd.lib;osgAnimationd.lib;osgFXd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgVolumed.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -309,7 +309,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -375,7 +375,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:\matlab\extern\include;D:\matlab\extern\lib\win64\microsoft;C:\OSGQT\include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;.\debug;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;D:/matlab/extern/include;D:/matlab/extern/lib/win64/microsoft;C:/OSGQT/include;$(QTDIR)\include;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -388,38 +388,37 @@
     <ClCompile Include="AnimationTest.cpp" />
     <ClCompile Include="DOFAdder.cpp" />
     <ClCompile Include="DOFCalculation.cpp" />
+    <ClCompile Include="DraggableWire.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="LineIntersector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="mytreewidget.cpp" />
     <ClCompile Include="mytreewidget2.cpp" />
     <ClCompile Include="osgqt.cpp" />
+    <ClCompile Include="PointIntersector.cpp" />
     <ClCompile Include="qabout.cpp" />
     <ClCompile Include="qimageviewer.cpp" />
     <ClCompile Include="QtImage2PCL.cpp" />
     <ClCompile Include="qtosgview.cpp" />
-    <ClCompile Include="wireandpoint\DraggableWire.cpp" />
-    <ClCompile Include="wireandpoint\EventHandler.cpp" />
-    <ClCompile Include="wireandpoint\LineIntersector.cpp" />
-    <ClCompile Include="wireandpoint\PointIntersector.cpp" />
-    <ClCompile Include="wireandpoint\SVMData.cpp" />
-    <ClCompile Include="wireandpoint\VirtualPlaneIntersector.cpp" />
+    <ClCompile Include="SVMData.cpp" />
+    <ClCompile Include="VirtualPlaneIntersector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="DOFAdder.h" />
     <ClInclude Include="DOFCalculation.h" />
+    <ClInclude Include="DraggableWire.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GeneratedFiles\ui_osgqt.h" />
+    <ClInclude Include="LineIntersector.h" />
     <ClInclude Include="mytreewidget2.h" />
+    <ClInclude Include="PointIntersector.h" />
     <ClInclude Include="QtImage2PCL.h" />
     <ClInclude Include="qtosgview.h" />
     <ClInclude Include="structures.h" />
-    <ClInclude Include="Tool_test_2.h" />
-    <ClInclude Include="wireandpoint\DraggableWire.h" />
-    <ClInclude Include="wireandpoint\EventHandler.h" />
-    <ClInclude Include="wireandpoint\LineIntersector.h" />
-    <ClInclude Include="wireandpoint\PointIntersector.h" />
-    <ClInclude Include="wireandpoint\SVMData.h" />
-    <ClInclude Include="wireandpoint\VirtualPlaneIntersector.h" />
+    <ClInclude Include="SVMData.h" />
+    <ClInclude Include="VirtualPlaneIntersector.h" />
     <QtMoc Include="qimageviewer.h" />
     <QtMoc Include="qabout.h" />
     <QtMoc Include="osgqt.h" />
@@ -461,12 +460,6 @@
   <ItemGroup>
     <QtRcc Include="image.qrc">
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Tool_test_2.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Tool_test_2.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -1,2 +1,88 @@
 ﻿  Generate moc_predefs.h
-  osgqt_zaojiayong.vcxproj -> D:\my\sunxun\osgqt_zaojiayong\debug\osgqt2_1.exe
+  Uic'ing osgqt.ui...
+  Rcc'ing image.qrc...
+  Moc'ing qimageviewer.h...
+  Moc'ing qabout.h...
+  Moc'ing osgqt.h...
+  Moc'ing mytreewidget.h...
+  Moc'ing mainwindow.h...
+  AnimationTest.cpp
+  DOFAdder.cpp
+  DOFCalculation.cpp
+  DraggableWire.cpp
+  EventHandler.cpp
+  LineIntersector.cpp
+  main.cpp
+  mainwindow.cpp
+  mytreewidget.cpp
+  mytreewidget2.cpp
+  osgqt.cpp
+  PointIntersector.cpp
+D:\my\sunxun\osgqt\AnimationTest.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\my\sunxun\osgqt\DOFAdder.cpp(109,65): warning C4100: “Model”: 未引用的形参
+D:\my\sunxun\osgqt\DOFAdder.cpp(172,69): warning C4100: “Model”: 未引用的形参
+D:\my\sunxun\osgqt\AnimationTest.cpp(40,127): warning C4100: “nodeVisitor”: 未引用的形参
+D:\my\sunxun\osgqt\AnimationTest.cpp(40,104): warning C4100: “obj”: 未引用的形参
+D:\my\sunxun\osgqt\AnimationTest.cpp(40,58): warning C4100: “ea”: 未引用的形参
+  qabout.cpp
+  qimageviewer.cpp
+  QtImage2PCL.cpp
+  qtosgview.cpp
+D:\my\sunxun\osgqt\mainwindow.cpp(139,7): warning C4101: “proposal_type”: 未引用的局部变量
+D:\my\sunxun\osgqt\mytreewidget.cpp(346,21): warning C4189: “dragItem”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.h(115,11): warning C4189: “xcur_rad”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(112,11): warning C4189: “xani_range”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(114,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(117,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(142,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(141,11): warning C4189: “yani_range”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(144,11): warning C4189: “ycur_rad”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(145,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(115,11): warning C4189: “xcur_rad”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(112,11): warning C4189: “xani_range”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(114,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(117,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(142,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(141,11): warning C4189: “yani_range”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(144,11): warning C4189: “ycur_rad”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+D:\my\sunxun\osgqt\osgqt.h(145,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 main.cpp)
+  SVMData.cpp
+D:\my\sunxun\osgqt\osgqt.cpp(761,97): warning C4100: “if_open”: 未引用的形参
+D:\my\sunxun\osgqt\osgqt.cpp(818,23): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(785,17): warning C4189: “i”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.cpp(897,19): warning C4189: “state”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.cpp(1978,8): warning C4189: “f”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.cpp(2126,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(2206,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(2205,8): warning C4189: “ismoniclose”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.cpp(2270,25): warning C4189: “MT”: 局部变量已初始化但不引用
+D:\my\sunxun\osgqt\osgqt.cpp(2345,77): warning C4100: “open_transparent”: 未引用的形参
+D:\my\sunxun\osgqt\osgqt.cpp(2701,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(2845,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(3057,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\osgqt.cpp(3160,56): warning C4100: “column”: 未引用的形参
+D:\my\sunxun\osgqt\osgqt.cpp(3663,20): warning C4018: “<”: 有符号/无符号不匹配
+  VirtualPlaneIntersector.cpp
+D:\my\sunxun\osgqt\osgqt.cpp(3831,22): warning C4018: “<”: 有符号/无符号不匹配
+D:\my\sunxun\osgqt\qimageviewer.cpp(105): warning C4715: “QImageViewer::last”: 不是所有的控件路径都返回值
+D:\my\sunxun\osgqt\qimageviewer.cpp(146): warning C4715: “QImageViewer::next”: 不是所有的控件路径都返回值
+D:\my\sunxun\osgqt\qtosgview.cpp(4,116): warning C4100: “f”: 未引用的形参
+D:\my\sunxun\osgqt\qtosgview.cpp(4,87): warning C4100: “shareWidget”: 未引用的形参
+D:\my\sunxun\osgqt\qtosgview.cpp(4,59): warning C4100: “name”: 未引用的形参
+D:\my\sunxun\osgqt\qtosgview.cpp(4,39): warning C4100: “parent”: 未引用的形参
+D:\my\sunxun\osgqt\qtosgview.cpp(120,12): warning C4189: “mTime”: 局部变量已初始化但不引用
+  moc_mainwindow.cpp
+  moc_mytreewidget.cpp
+  moc_osgqt.cpp
+  moc_qabout.cpp
+  moc_qimageviewer.cpp
+  qrc_image.cpp
+D:\my\sunxun\osgqt\osgqt.h(115,11): warning C4189: “xcur_rad”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(112,11): warning C4189: “xani_range”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(114,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(117,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(142,11): warning C4189: “zani_range”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(141,11): warning C4189: “yani_range”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(144,11): warning C4189: “ycur_rad”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+D:\my\sunxun\osgqt\osgqt.h(145,11): warning C4189: “zcur_rad”: 局部变量已初始化但不引用 (编译源文件 GeneratedFiles\Debug\moc_osgqt.cpp)
+  osgqt_zaojiayong.vcxproj -> D:\my\sunxun\osgqt\debug\osgqt2_1.exe

@@ -83,22 +83,22 @@
     <ClCompile Include="QtImage2PCL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\DraggableWire.cpp">
+    <ClCompile Include="DraggableWire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\EventHandler.cpp">
+    <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\LineIntersector.cpp">
+    <ClCompile Include="LineIntersector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\PointIntersector.cpp">
+    <ClCompile Include="PointIntersector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\SVMData.cpp">
+    <ClCompile Include="SVMData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wireandpoint\VirtualPlaneIntersector.cpp">
+    <ClCompile Include="VirtualPlaneIntersector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -124,28 +124,25 @@
     <ClInclude Include="structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tool_test_2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="QtImage2PCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\DraggableWire.h">
+    <ClInclude Include="DraggableWire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\EventHandler.h">
+    <ClInclude Include="EventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\LineIntersector.h">
+    <ClInclude Include="LineIntersector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\PointIntersector.h">
+    <ClInclude Include="PointIntersector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\SVMData.h">
+    <ClInclude Include="SVMData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wireandpoint\VirtualPlaneIntersector.h">
+    <ClInclude Include="VirtualPlaneIntersector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -166,16 +163,6 @@
     <QtRcc Include="image.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Tool_test_2.dll">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Tool_test_2.lib">
-      <Filter>Resource Files</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
